@@ -10,17 +10,22 @@ Test-time scaling (TTS) improves LLM performance by allocating more compute at i
 
 ---
 
-## The Three Dimensions of Test-Time Scaling
+## The Three Kinds of Test-Time Scaling
 
-### The 3D Framework (2511.15738)
+| Kind | Description | Methods | Tradeoffs |
+|------|-------------|---------|-----------|
+| **1. Serial** | Sequential self-refinement | Chain-of-Thought, iterative correction, multi-turn | Deeper reasoning, but linear compute cost |
+| **2. Parallel** | Multiple independent samples | Best-of-N, Self-Consistency, Majority Voting | Wide exploration, but diminishing returns after N~64 |
+| **3. Hybrid** | Combines serial + parallel | RSA (Recursive Self-Aggregation) | Best of both worlds, evolutionary refinement |
 
-| Dimension | Description | Methods | Bounded Capacity |
-|-----------|-------------|---------|------------------|
-| **Context** | Extend reasoning length | Chain-of-Thought, longer token budgets | ~100K tokens |
-| **Batch** | Parallel sampling | Best-of-N, Self-Consistency, Majority Voting | Diminishing returns after N~64 |
-| **Turn** | Iterative refinement | Self-correction, multi-turn reasoning | ~3-5 turns effective |
+### The Third Kind: Hybrid (RSA) - Paper 2509.26626
 
-**Key Insight**: Each dimension has bounded capacity. Integrate all three for optimal performance.
+The hybrid paradigm bridges parallel and serial scaling:
+- **Parallel**: Generate population of N candidate solutions
+- **Serial**: Iteratively aggregate and refine across T steps
+- **Key insight**: Bootstrap from *partially correct* intermediate steps, not just final answers
+
+**Results**: Qwen3-4B matched DeepSeek-R1 and o3-mini on AIME-25, HMMT-25
 
 ---
 
