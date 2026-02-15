@@ -26,6 +26,8 @@ To minimize touchups when adding/removing topics:
 | `test_time_compute_scaling` | 987 | done | 20 grep categories -> 3-tier taxonomy, 76.4% coverage | [analysis](test_time_compute_scaling.md), [papers](test_time_compute_scaling/papers.md), [option C](test_time_compute_scaling/option_c_extraction.md), [option A](test_time_compute_scaling/option_a_refinement.md) |
 | `test_time_adaptation` | 284 | done | 41 grep patterns (Option C), 82.7% coverage, merged into 18-category final taxonomy | [analysis](test_time_adaptation.md), [papers](test_time_adaptation/papers.md), [option C](test_time_adaptation/option_c_extraction.md), [option A](test_time_adaptation/option_a_refinement.md) |
 | `agentic_workflow_pipeline_design` | 92 | done | Reconciled into 8-category workflow-design taxonomy with standalone TTA-grade final doc | [analysis](agentic_workflow_pipeline_design.md), [papers](agentic_workflow_pipeline_design/papers.md), [option C](agentic_workflow_pipeline_design/option_c_extraction.md), [option A](agentic_workflow_pipeline_design/option_a_refinement.md) |
+| `continual_online_tta` | 60 | done | Spin-off from TTA set; 58/60 grep-matched (96.7%), reconciled into 8-category continual/online TTA taxonomy | [analysis](continual_online_tta.md), [papers](continual_online_tta/papers.md), [option C](continual_online_tta/option_c_extraction.md), [option A](continual_online_tta/option_a_refinement.md) |
+| `adaptive_compute_allocation` | 51 | done | Spin-off from TTC set; 51/51 grep-matched (100%), reconciled into 7-category adaptive compute-allocation taxonomy | [analysis](adaptive_compute_allocation.md), [papers](adaptive_compute_allocation/papers.md), [option C](adaptive_compute_allocation/option_c_extraction.md), [option A](adaptive_compute_allocation/option_a_refinement.md) |
 
 ---
 
@@ -35,8 +37,6 @@ To minimize touchups when adding/removing topics:
 
 | group | est papers | status | scope (1-line) | source/dependency | FlatAgents/FlatMachines relevance |
 |---|---:|---|---|---|---|
-| `continual_online_tta` | 60–120 | queued | Continual/online test-time adaptation under non-stationary streams (drift, forgetting, reset) | Spin-off from `test_time_adaptation` | Directly informs long-running pipeline reliability patterns (resume/checkpoint, drift-aware control loops) used by `flatmachines` orchestration and `flatagents` model/profile switching. |
-| `adaptive_compute_allocation` | 50–120 | queued | Dynamic inference compute budgeting (early exit, query-adaptive routing, overthinking mitigation) | Spin-off from `test_time_compute_scaling` | Maps to scheduler policy design in `flatmachines` (resource gating, prioritization, depth/latency tradeoffs) and profile routing in `flatagents`. |
 | `multi_agent_debate` | ~170 | queued | Multi-LLM debate/deliberation frameworks for answer quality improvement | Decomposed from agentic umbrella; TTC-linked | Tests concrete orchestration motifs for `flatmachines` (parallel branches + reconciliation/voting) and execution strategies (`mdap_voting`-style semantics). |
 
 ### P1 (high value, after P0)
