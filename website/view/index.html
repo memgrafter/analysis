@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>View Digest</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #f5f7ff;
+        --panel: #ffffff;
+        --text: #1a2440;
+        --muted: #5d6f9a;
+        --border: #dbe2f4;
+        --accent: #2f63d8;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #0b1020;
+          --panel: #121a33;
+          --text: #e8edff;
+          --muted: #a8b4da;
+          --border: #27335f;
+          --accent: #6ea8ff;
+        }
+      }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); }
+      header, footer { max-width: 1200px; margin: 0 auto; padding: 16px 20px; }
+      header a { color: var(--accent); text-decoration: none; }
+      .layout { max-width: 1200px; margin: 0 auto; padding: 0 20px 24px; display: grid; grid-template-columns: 320px 1fr; gap: 20px; }
+      .panel { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
+      #content p { line-height: 1.7; }
+      #content pre { overflow-x: auto; background: rgba(127,127,127,0.12); padding: 12px; border-radius: 8px; }
+      #content code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
+      #status { color: var(--muted); }
+      .error { color: #cc3b3b; font-weight: 600; }
+      @media (max-width: 960px) { .layout { grid-template-columns: 1fr; } }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  </head>
+  <body>
+    <header>
+      <a href="/">← ML LLM Digests</a>
+      <p id="status">Loading…</p>
+    </header>
+
+    <main class="layout">
+      <aside class="panel" id="meta"></aside>
+      <article class="panel" id="content"></article>
+    </main>
+
+    <footer>Static viewer · path: <code>/view/?id=...</code></footer>
+
+    <script src="/assets/viewer.js"></script>
+  </body>
+</html>
