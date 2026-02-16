@@ -17,6 +17,10 @@ echo "  /view?id=<digest-id>"
 echo "  /view/?id=<digest-id>"
 echo "Raw route:"
 echo "  /view/<digest-id>.md"
+echo "Search routes (after build):"
+echo "  /search/"
+echo "  /search/?q=<query>"
+echo "  /search/manifest.json"
 
 python3 scripts/local_server.py \
   --host 127.0.0.1 \

@@ -1,4 +1,6 @@
 
 
-
-__pycache__
+__pycache__/
+search/*.sqlite
+search/manifest.json
+search/search-manifest.json

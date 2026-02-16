@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import re
 import urllib.parse
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
@@ -12,6 +13,7 @@ DEFAULT_SOURCE_DIRS = [
     PROJECT_ROOT.parent / "ml_research_analysis_2024",
     PROJECT_ROOT.parent / "ml_research_analysis_2025",
 ]
+RANGE_RE = re.compile(r"bytes=(\d*)-(\d*)$")
 
 
 def build_digest_index(source_dirs: list[Path]) -> tuple[dict[str, Path], list[str], list[str]]:
@@ -63,6 +65,13 @@ class ViewHandler(SimpleHTTPRequestHandler):
             self._serve_raw_markdown(digest_id)
             return
 
+        range_header = self.headers.get("Range")
+        if range_header:
+            translated = Path(self.translate_path(path))
+            if translated.is_file():
+                self._serve_static_range_file(translated, range_header)
+                return
+
         super().do_GET()
 
     def _serve_raw_markdown(self, digest_id: str) -> None:
@@ -77,6 +86,58 @@ class ViewHandler(SimpleHTTPRequestHandler):
         self.send_header("Content-Length", str(len(content)))
         self.end_headers()
         self.wfile.write(content)
+
+    def _serve_static_range_file(self, file_path: Path, range_header: str) -> None:
+        match = RANGE_RE.fullmatch(range_header.strip())
+        if not match:
+            self.send_error(416, "Invalid Range header")
+            return
+
+        start_s, end_s = match.groups()
+        if start_s == "" and end_s == "":
+            self.send_error(416, "Invalid Range header")
+            return
+
+        file_size = file_path.stat().st_size
+        try:
+            if start_s == "":
+                suffix_len = int(end_s)
+                if suffix_len <= 0:
+                    self.send_error(416, "Invalid suffix range")
+                    return
+                start = max(0, file_size - suffix_len)
+                end = file_size - 1
+            else:
+                start = int(start_s)
+                end = file_size - 1 if end_s == "" else int(end_s)
+                if start >= file_size or end < start:
+                    self.send_error(416, "Requested range not satisfiable")
+                    return
+                end = min(end, file_size - 1)
+        except ValueError:
+            self.send_error(416, "Invalid Range header")
+            return
+
+        length = end - start + 1
+        content_type = self.guess_type(str(file_path))
+
+        self.send_response(206)
+        self.send_header("Content-Type", content_type)
+        self.send_header("Accept-Ranges", "bytes")
+        self.send_header("Content-Range", f"bytes {start}-{end}/{file_size}")
+        self.send_header("Content-Length", str(length))
+        self.send_header("Last-Modified", self.date_time_string(file_path.stat().st_mtime))
+        self.end_headers()
+
+        with file_path.open("rb") as f:
+            f.seek(start)
+            remaining = length
+            while remaining > 0:
+                chunk = f.read(min(64 * 1024, remaining))
+                if not chunk:
+                    break
+                self.wfile.write(chunk)
+                remaining -= len(chunk)
 
 
 def main() -> None:

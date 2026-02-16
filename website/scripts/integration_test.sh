@@ -1,0 +1,134 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+PORT="${PORT:-8010}"
+PREVIEW_WORDS="${PREVIEW_WORDS:-500}"
+MAX_FILES="${MAX_FILES:-}"
+
+SRC_2023="${DIGESTS_2023_DIR:-$ROOT_DIR/../ml_research_analysis_2023}"
+SRC_2024="${DIGESTS_2024_DIR:-$ROOT_DIR/../ml_research_analysis_2024}"
+SRC_2025="${DIGESTS_2025_DIR:-$ROOT_DIR/../ml_research_analysis_2025}"
+
+LOG_DIR="$(mktemp -d "${TMPDIR:-/tmp}/website-integration.XXXXXX")"
+SERVER_LOG="$LOG_DIR/server.log"
+
+SERVER_PID=""
+
+cleanup() {
+  if [[ -n "$SERVER_PID" ]]; then
+    kill "$SERVER_PID" 2>/dev/null || true
+    wait "$SERVER_PID" 2>/dev/null || true
+  fi
+  rm -rf "$LOG_DIR"
+}
+trap cleanup EXIT
+
+fail() {
+  echo "\n[FAIL] $1" >&2
+  if [[ -f "$SERVER_LOG" ]]; then
+    echo "\n--- server log tail ---" >&2
+    tail -n 60 "$SERVER_LOG" >&2 || true
+  fi
+  exit 1
+}
+
+expect_status() {
+  local url="$1"
+  local expected="$2"
+  local code
+  code="$(curl -sS -o /dev/null -w "%{http_code}" "$url")"
+  if [[ "$code" != "$expected" ]]; then
+    fail "Expected HTTP $expected for $url, got $code"
+  fi
+}
+
+echo "[1/6] Building search DB"
+mkdir -p "$ROOT_DIR/search"
+rm -f "$ROOT_DIR/search"/search-*.sqlite \
+      "$ROOT_DIR/search"/manifest.json \
+      "$ROOT_DIR/search"/search-manifest.json
+
+BUILD_CMD=(
+  python3 "$ROOT_DIR/scripts/build_search_db.py"
+  --source-dir "$SRC_2023"
+  --source-dir "$SRC_2024"
+  --source-dir "$SRC_2025"
+  --output-dir "$ROOT_DIR/search"
+  --preview-words "$PREVIEW_WORDS"
+)
+if [[ -n "$MAX_FILES" ]]; then
+  BUILD_CMD+=(--max-files "$MAX_FILES")
+fi
+
+"${BUILD_CMD[@]}"
+
+MANIFEST_PATH="$ROOT_DIR/search/manifest.json"
+[[ -f "$MANIFEST_PATH" ]] || fail "Manifest not found: $MANIFEST_PATH"
+
+DB_FILE="$(python3 - <<'PY' "$MANIFEST_PATH"
+import json
+import sys
+from pathlib import Path
+manifest = json.loads(Path(sys.argv[1]).read_text())
+print(manifest.get('db_file', ''))
+PY
+)"
+[[ -n "$DB_FILE" ]] || fail "manifest.json is missing db_file"
+[[ -f "$ROOT_DIR/search/$DB_FILE" ]] || fail "DB file missing: $ROOT_DIR/search/$DB_FILE"
+
+echo "[2/6] Validating built DB contents"
+SAMPLE_ID="$(python3 - <<'PY' "$ROOT_DIR/search/$DB_FILE"
+import sqlite3
+import sys
+conn = sqlite3.connect(sys.argv[1])
+row = conn.execute("SELECT digest_id FROM digests ORDER BY digest_id LIMIT 1").fetchone()
+if not row:
+    raise SystemExit(1)
+print(row[0])
+PY
+)"
+[[ -n "$SAMPLE_ID" ]] || fail "Could not fetch sample digest_id from DB"
+
+echo "[3/6] Starting local server on :$PORT"
+(
+  cd "$ROOT_DIR"
+  DIGESTS_2023_DIR="$SRC_2023" \
+  DIGESTS_2024_DIR="$SRC_2024" \
+  DIGESTS_2025_DIR="$SRC_2025" \
+  ./scripts/run.sh "$PORT" >"$SERVER_LOG" 2>&1
+) &
+SERVER_PID=$!
+
+READY=0
+for _ in {1..120}; do
+  if curl -sS "http://127.0.0.1:$PORT/" >/dev/null 2>&1; then
+    READY=1
+    break
+  fi
+  sleep 1
+done
+[[ "$READY" == "1" ]] || fail "Server did not become ready on port $PORT"
+
+echo "[4/6] Checking viewer + raw routes"
+expect_status "http://127.0.0.1:$PORT/" 200
+expect_status "http://127.0.0.1:$PORT/view/" 200
+
+VIEW_CODE="$(curl -sS -L -o /dev/null -w "%{http_code}" "http://127.0.0.1:$PORT/view?id=$SAMPLE_ID")"
+[[ "$VIEW_CODE" == "200" ]] || fail "Expected /view?id=<sample> to resolve to 200, got $VIEW_CODE"
+
+expect_status "http://127.0.0.1:$PORT/view/$SAMPLE_ID.md" 200
+
+echo "[5/6] Checking search routes/assets"
+expect_status "http://127.0.0.1:$PORT/search/" 200
+expect_status "http://127.0.0.1:$PORT/search/?q=transformers" 200
+expect_status "http://127.0.0.1:$PORT/search/manifest.json" 200
+expect_status "http://127.0.0.1:$PORT/search/$DB_FILE" 200
+
+echo "[6/6] Checking HTTP Range support for SQLite file"
+RANGE_HEADERS="$(curl -sS -D - -o /dev/null -H "Range: bytes=0-1023" "http://127.0.0.1:$PORT/search/$DB_FILE")"
+
+echo "$RANGE_HEADERS" | grep -q " 206 " || fail "Expected 206 Partial Content for range request"
+echo "$RANGE_HEADERS" | grep -qi "^Content-Range: bytes 0-" || fail "Missing Content-Range header"
+
+echo "\nPASS: integration test runner completed successfully"

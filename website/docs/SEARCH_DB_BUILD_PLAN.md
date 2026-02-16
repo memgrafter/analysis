@@ -7,6 +7,7 @@ Generate a reproducible SQLite search database from curated markdown digests, wi
 - Full rebuild on each run (no incremental updates).
 - Source directories read in place (no asset moves).
 - Output one SQLite DB + one manifest JSON.
+- Integration-only testing via one shell entrypoint (no other test suites).
 
 ---
 
@@ -74,23 +75,24 @@ Selection rule:
 ---
 
 ## Build Script Contract
-Planned script:
+Implemented script:
 - `scripts/build_search_db.py`
 
-Planned CLI:
+Typical CLI (local serving-friendly output path):
 ```bash
 python3 scripts/build_search_db.py \
   --source-dir ../ml_research_analysis_2023 \
   --source-dir ../ml_research_analysis_2024 \
   --source-dir ../ml_research_analysis_2025 \
-  --output-dir build \
+  --output-dir search \
   --preview-words 500
 ```
 
 Optional flags:
 - `--db-name search.sqlite` (default logical name)
-- `--fail-on-parse-error` (default true)
-- `--max-parse-errors <N>` (if we later allow partial)
+- `--max-files <N>` (optional bounded run)
+- `--fail-on-parse-error` / `--no-fail-on-parse-error`
+- `--max-parse-errors <N>`
 
 ---
 
@@ -119,9 +121,10 @@ Finalize (serving-friendly):
 ---
 
 ## Output Artifacts
-Write to `build/`:
+Write to configured `--output-dir` (typically `search/` for local serving):
 - `search-<build_hash>.sqlite`
-- `search-manifest.json`
+- `manifest.json`
+- `search-manifest.json` (compat copy)
 
 Manifest fields (v1):
 - `build_hash`
@@ -159,6 +162,65 @@ Log summary each run:
 - unique arXiv IDs
 - DB file size
 - build duration
+
+---
+
+## Local Serving for End-to-End Testing
+Use the existing local server to test viewer + raw markdown + search assets without moving source digests.
+
+Run:
+```bash
+./scripts/run.sh
+```
+
+Expected local URLs:
+- Home: `http://localhost:8000/`
+- Viewer: `http://localhost:8000/view/?id=<digest-id>`
+- Viewer alias: `http://localhost:8000/view?id=<digest-id>`
+- Raw markdown: `http://localhost:8000/view/<digest-id>.md`
+
+Search URLs (after DB build):
+- `http://localhost:8000/search/` (search UI vertical slice)
+- `http://localhost:8000/search/?q=<query>`
+- `http://localhost:8000/search/manifest.json`
+- `http://localhost:8000/search/search-<build_hash>.sqlite`
+
+Range request check (required for sqlite-over-HTTP behavior):
+```bash
+curl -i -H "Range: bytes=0-1023" \
+  http://localhost:8000/search/search-<build_hash>.sqlite
+```
+Expected: `206 Partial Content`.
+
+---
+
+## Integration Test Runner (Only Test Suite)
+Use a single shell entrypoint for all integration checks:
+- `scripts/integration_test.sh`
+
+Single command contract:
+```bash
+./scripts/integration_test.sh
+```
+
+Runner responsibilities (v1):
+1. Build SQLite + manifest via `scripts/build_search_db.py`.
+2. Start local server (`scripts/run.sh`) on localhost test port.
+3. Validate HTTP routes and outputs with shell checks (`curl`, `jq`, `sqlite3` as needed):
+   - `/` returns 200
+   - `/view/` returns 200
+   - `/view?id=<sample>` resolves
+   - `/view/<sample>.md` returns 200
+   - `/search/` returns 200
+   - `/search/manifest.json` returns 200 and references DB file
+   - `/search/<db_file>` returns 200
+   - Range request on DB returns `206 Partial Content`
+4. Exit non-zero on any failed check.
+
+Testing policy:
+- No separate unit tests.
+- No separate Python/JS test runners.
+- Integration runner is the only required/official test path.
 
 ---
 

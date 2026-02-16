@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search Digests</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #f5f7ff;
+        --panel: #ffffff;
+        --text: #1a2440;
+        --muted: #5d6f9a;
+        --border: #dbe2f4;
+        --accent: #2f63d8;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #0b1020;
+          --panel: #121a33;
+          --text: #e8edff;
+          --muted: #a8b4da;
+          --border: #27335f;
+          --accent: #6ea8ff;
+        }
+      }
+
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+      }
+      main {
+        max-width: 980px;
+        margin: 32px auto;
+        padding: 0 16px 24px;
+      }
+      .panel {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 16px;
+        margin-bottom: 14px;
+      }
+      a { color: var(--accent); text-decoration: none; }
+      .muted { color: var(--muted); }
+      form {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 8px;
+        margin: 12px 0;
+      }
+      input[type="search"] {
+        width: 100%;
+        border: 1px solid var(--border);
+        background: transparent;
+        color: inherit;
+        border-radius: 10px;
+        padding: 10px 12px;
+        font-size: 16px;
+      }
+      button {
+        border: 1px solid var(--border);
+        background: var(--accent);
+        color: white;
+        border-radius: 10px;
+        padding: 10px 14px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      .result {
+        border-top: 1px solid var(--border);
+        padding: 12px 0;
+      }
+      .result:first-child { border-top: 0; padding-top: 0; }
+      .title { font-weight: 600; }
+      code {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        font-size: 12px;
+      }
+      .pill {
+        display: inline-block;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        padding: 3px 8px;
+        font-size: 12px;
+        color: var(--muted);
+      }
+    </style>
+    <script src="/assets/sqljs/sql-wasm.js"></script>
+  </head>
+  <body>
+    <main>
+      <section class="panel">
+        <p><a href="/">← ML LLM Digests</a></p>
+        <h1>Search</h1>
+        <p class="muted">SQLite search vertical slice (client-side). URL supports <code>/search/?q=...</code>.</p>
+
+        <form id="search-form">
+          <input id="q" type="search" name="q" placeholder="Try: transformers, retrieval, 2404.18923" autocomplete="off" />
+          <button type="submit">Search</button>
+        </form>
+
+        <p id="status" class="muted">Loading search index…</p>
+        <p id="meta" class="muted"></p>
+      </section>
+
+      <section class="panel">
+        <div id="results"></div>
+      </section>
+    </main>
+
+    <script src="/assets/search.js"></script>
+  </body>
+</html>
