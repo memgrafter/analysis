@@ -37,7 +37,7 @@ Columns:
 - `title TEXT`
 - `core_contribution TEXT`
 - `tags TEXT` (joined/normalized string)
-- `body_preview TEXT` (first N words, default 500)
+- `body_preview TEXT` (indexed body text; default build uses full body with `--preview-words 0`)
 - `source_path TEXT NOT NULL`
 - `year INTEGER`
 - `timestamp_suffix TEXT` (parsed from filename if present)
@@ -75,24 +75,27 @@ Selection rule:
 ---
 
 ## Build Script Contract
-Implemented script:
-- `scripts/build_search_db.py`
+Canonical wrapper:
+- `scripts/build_db.sh`
 
-Typical CLI (local serving-friendly output path):
+Single-command build:
 ```bash
-python3 scripts/build_search_db.py \
-  --source-dir ../ml_research_analysis_2023 \
-  --source-dir ../ml_research_analysis_2024 \
-  --source-dir ../ml_research_analysis_2025 \
-  --output-dir search \
-  --preview-words 500
+./scripts/build_db.sh
 ```
 
-Optional flags:
+Implementation script invoked by wrapper:
+- `scripts/build_search_db.py`
+
+Advanced flags (implementation script only):
 - `--db-name search.sqlite` (default logical name)
 - `--max-files <N>` (optional bounded run)
+- `--preview-words <N>` where `0` means full-body indexing (default)
 - `--fail-on-parse-error` / `--no-fail-on-parse-error`
 - `--max-parse-errors <N>`
+
+Wrapper behavior:
+- `scripts/build_db.sh` always builds with `--preview-words 0`.
+- Optional dev override: `MAX_FILES=<N> ./scripts/build_db.sh`.
 
 ---
 
@@ -133,6 +136,7 @@ Manifest fields (v1):
 - `digest_count`
 - `arxiv_count`
 - `source_dirs`
+- `preview_words` (`0` means full-body indexing; `>0` means first N words)
 
 ---
 
@@ -204,8 +208,8 @@ Single command contract:
 ```
 
 Runner responsibilities (v1):
-1. Build SQLite + manifest via `scripts/build_search_db.py`.
-2. Start local server (`scripts/run.sh`) on localhost test port.
+1. Build SQLite + manifest via `scripts/build_db.sh` into an isolated temp `search/` for tests.
+2. Start local server on localhost test port using an isolated temp site root.
 3. Validate HTTP routes and outputs with shell checks (`curl`, `jq`, `sqlite3` as needed):
    - `/` returns 200
    - `/view/` returns 200
@@ -221,6 +225,7 @@ Testing policy:
 - No separate unit tests.
 - No separate Python/JS test runners.
 - Integration runner is the only required/official test path.
+- Integration runner does not mutate deploy artifacts in repository `search/`.
 
 ---
 

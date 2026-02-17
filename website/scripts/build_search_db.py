@@ -136,6 +136,9 @@ def parse_frontmatter(frontmatter: str) -> dict[str, str | list[str]]:
 
 def extract_preview_words(text: str, limit: int) -> str:
     words = re.findall(r"\S+", text)
+    # IMPORTANT: limit <= 0 means "index the full body" (current default behavior).
+    if limit <= 0:
+        return " ".join(words)
     return " ".join(words[:limit])
 
 
@@ -368,7 +371,12 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Build SQLite search DB from digest markdown")
     parser.add_argument("--source-dir", action="append", dest="source_dirs")
     parser.add_argument("--output-dir", default="search")
-    parser.add_argument("--preview-words", type=int, default=500)
+    parser.add_argument(
+        "--preview-words",
+        type=int,
+        default=0,
+        help="Number of body words to index in body_preview. Use 0 (default) to index full body text.",
+    )
     parser.add_argument("--db-name", default="search.sqlite")
     parser.add_argument("--max-files", type=int)
     parser.add_argument("--fail-on-parse-error", action="store_true", default=True)
@@ -405,6 +413,11 @@ def main() -> None:
         raise SystemExit("No markdown files found in source directories")
 
     print(f"\nDiscovered markdown files: {len(files):,}")
+    if args.preview_words <= 0:
+        print("Body indexing mode: full body (preview_words=0)")
+    else:
+        print(f"Body indexing mode: first {args.preview_words} words")
+
     build_hash = compute_build_hash(files, args.preview_words)
 
     db_stem = Path(args.db_name).stem or "search"

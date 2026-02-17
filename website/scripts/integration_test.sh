@@ -3,7 +3,6 @@ set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 PORT="${PORT:-8010}"
-PREVIEW_WORDS="${PREVIEW_WORDS:-500}"
 MAX_FILES="${MAX_FILES:-}"
 
 SRC_2023="${DIGESTS_2023_DIR:-$ROOT_DIR/../ml_research_analysis_2023}"
@@ -12,6 +11,8 @@ SRC_2025="${DIGESTS_2025_DIR:-$ROOT_DIR/../ml_research_analysis_2025}"
 
 LOG_DIR="$(mktemp -d "${TMPDIR:-/tmp}/website-integration.XXXXXX")"
 SERVER_LOG="$LOG_DIR/server.log"
+TEST_ROOT="$LOG_DIR/site"
+TEST_SEARCH_DIR="$TEST_ROOT/search"
 
 SERVER_PID=""
 
@@ -28,7 +29,7 @@ fail() {
   echo "\n[FAIL] $1" >&2
   if [[ -f "$SERVER_LOG" ]]; then
     echo "\n--- server log tail ---" >&2
-    tail -n 60 "$SERVER_LOG" >&2 || true
+    tail -n 80 "$SERVER_LOG" >&2 || true
   fi
   exit 1
 }
@@ -43,27 +44,26 @@ expect_status() {
   fi
 }
 
-echo "[1/6] Building search DB"
-mkdir -p "$ROOT_DIR/search"
-rm -f "$ROOT_DIR/search"/search-*.sqlite \
-      "$ROOT_DIR/search"/manifest.json \
-      "$ROOT_DIR/search"/search-manifest.json
+echo "[1/6] Preparing isolated test root"
+mkdir -p "$TEST_ROOT" "$TEST_SEARCH_DIR"
+ln -s "$ROOT_DIR/index.html" "$TEST_ROOT/index.html"
+ln -s "$ROOT_DIR/view" "$TEST_ROOT/view"
+ln -s "$ROOT_DIR/assets" "$TEST_ROOT/assets"
+cp "$ROOT_DIR/search/index.html" "$TEST_SEARCH_DIR/index.html"
 
-BUILD_CMD=(
-  python3 "$ROOT_DIR/scripts/build_search_db.py"
-  --source-dir "$SRC_2023"
-  --source-dir "$SRC_2024"
-  --source-dir "$SRC_2025"
-  --output-dir "$ROOT_DIR/search"
-  --preview-words "$PREVIEW_WORDS"
+echo "[2/6] Building search DB (isolated, does not touch $ROOT_DIR/search)"
+BUILD_ENV=(
+  "DIGESTS_2023_DIR=$SRC_2023"
+  "DIGESTS_2024_DIR=$SRC_2024"
+  "DIGESTS_2025_DIR=$SRC_2025"
+  "OUTPUT_DIR=$TEST_SEARCH_DIR"
 )
 if [[ -n "$MAX_FILES" ]]; then
-  BUILD_CMD+=(--max-files "$MAX_FILES")
+  BUILD_ENV+=("MAX_FILES=$MAX_FILES")
 fi
+env "${BUILD_ENV[@]}" "$ROOT_DIR/scripts/build_db.sh"
 
-"${BUILD_CMD[@]}"
-
-MANIFEST_PATH="$ROOT_DIR/search/manifest.json"
+MANIFEST_PATH="$TEST_SEARCH_DIR/manifest.json"
 [[ -f "$MANIFEST_PATH" ]] || fail "Manifest not found: $MANIFEST_PATH"
 
 DB_FILE="$(python3 - <<'PY' "$MANIFEST_PATH"
@@ -75,10 +75,10 @@ print(manifest.get('db_file', ''))
 PY
 )"
 [[ -n "$DB_FILE" ]] || fail "manifest.json is missing db_file"
-[[ -f "$ROOT_DIR/search/$DB_FILE" ]] || fail "DB file missing: $ROOT_DIR/search/$DB_FILE"
+[[ -f "$TEST_SEARCH_DIR/$DB_FILE" ]] || fail "DB file missing: $TEST_SEARCH_DIR/$DB_FILE"
 
-echo "[2/6] Validating built DB contents"
-SAMPLE_ID="$(python3 - <<'PY' "$ROOT_DIR/search/$DB_FILE"
+echo "[3/6] Validating built DB contents"
+SAMPLE_ID="$(python3 - <<'PY' "$TEST_SEARCH_DIR/$DB_FILE"
 import sqlite3
 import sys
 conn = sqlite3.connect(sys.argv[1])
@@ -90,13 +90,17 @@ PY
 )"
 [[ -n "$SAMPLE_ID" ]] || fail "Could not fetch sample digest_id from DB"
 
-echo "[3/6] Starting local server on :$PORT"
+echo "[4/6] Starting local server on :$PORT (isolated root)"
 (
   cd "$ROOT_DIR"
-  DIGESTS_2023_DIR="$SRC_2023" \
-  DIGESTS_2024_DIR="$SRC_2024" \
-  DIGESTS_2025_DIR="$SRC_2025" \
-  ./scripts/run.sh "$PORT" >"$SERVER_LOG" 2>&1
+  python3 "$ROOT_DIR/scripts/local_server.py" \
+    --host 127.0.0.1 \
+    --port "$PORT" \
+    --root "$TEST_ROOT" \
+    --source-dir "$SRC_2023" \
+    --source-dir "$SRC_2024" \
+    --source-dir "$SRC_2025" \
+    >"$SERVER_LOG" 2>&1
 ) &
 SERVER_PID=$!
 
@@ -110,7 +114,7 @@ for _ in {1..120}; do
 done
 [[ "$READY" == "1" ]] || fail "Server did not become ready on port $PORT"
 
-echo "[4/6] Checking viewer + raw routes"
+echo "[5/6] Checking routes/assets"
 expect_status "http://127.0.0.1:$PORT/" 200
 expect_status "http://127.0.0.1:$PORT/view/" 200
 
@@ -118,16 +122,16 @@ VIEW_CODE="$(curl -sS -L -o /dev/null -w "%{http_code}" "http://127.0.0.1:$PORT/
 [[ "$VIEW_CODE" == "200" ]] || fail "Expected /view?id=<sample> to resolve to 200, got $VIEW_CODE"
 
 expect_status "http://127.0.0.1:$PORT/view/$SAMPLE_ID.md" 200
-
-echo "[5/6] Checking search routes/assets"
 expect_status "http://127.0.0.1:$PORT/search/" 200
 expect_status "http://127.0.0.1:$PORT/search/?q=transformers" 200
 expect_status "http://127.0.0.1:$PORT/search/manifest.json" 200
 expect_status "http://127.0.0.1:$PORT/search/$DB_FILE" 200
+expect_status "http://127.0.0.1:$PORT/assets/sqljs-httpvfs/index.js" 200
+expect_status "http://127.0.0.1:$PORT/assets/sqljs-httpvfs/sqlite.worker.js" 200
+expect_status "http://127.0.0.1:$PORT/assets/sqljs-httpvfs/sql-wasm.wasm" 200
 
 echo "[6/6] Checking HTTP Range support for SQLite file"
 RANGE_HEADERS="$(curl -sS -D - -o /dev/null -H "Range: bytes=0-1023" "http://127.0.0.1:$PORT/search/$DB_FILE")"
-
 echo "$RANGE_HEADERS" | grep -q " 206 " || fail "Expected 206 Partial Content for range request"
 echo "$RANGE_HEADERS" | grep -qi "^Content-Range: bytes 0-" || fail "Missing Content-Range header"
 

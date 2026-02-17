@@ -6,7 +6,8 @@
   const resultsEl = document.getElementById("results");
 
   let db = null;
-  let manifest = null;
+  let workerDb = null;
+  let backend = null; // "httpvfs" | "full"
   let supportsFts = false;
 
   const escapeHtml = (value) =>
@@ -80,48 +81,83 @@
     return /^\d{4}\.\d{4,5}(v\d+)?$/i.test(input.trim());
   }
 
-  function queryArxiv(input) {
-    const stmt = db.prepare(`
+  function isFtsError(error) {
+    const text = String(error || "").toLowerCase();
+    return text.includes("fts5") || text.includes("digests_fts") || text.includes("no such module");
+  }
+
+  async function execRaw(sql, params = []) {
+    if (backend === "httpvfs" && workerDb?.db) {
+      return workerDb.db.exec(sql, params);
+    }
+    if (backend === "full" && db) {
+      return db.exec(sql, params);
+    }
+    throw new Error("Search backend is not initialized");
+  }
+
+  async function execRows(sql, params = []) {
+    const out = await execRaw(sql, params);
+    if (!Array.isArray(out) || out.length === 0) return [];
+
+    const first = out[0];
+    const cols = first.columns || [];
+    const values = first.values || [];
+    return values.map((rowValues) => {
+      const row = {};
+      cols.forEach((col, i) => {
+        row[col] = rowValues[i];
+      });
+      return row;
+    });
+  }
+
+  async function detectFtsSupport() {
+    try {
+      await execRaw("SELECT rowid FROM digests_fts LIMIT 1");
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
+  async function queryArxiv(input) {
+    return execRows(
+      `
       SELECT digest_id, title, arxiv_id
       FROM digests
       WHERE arxiv_id = ?
       ORDER BY timestamp_suffix DESC, digest_id DESC
       LIMIT 50
-    `);
-    stmt.bind([input.trim()]);
-
-    const rows = [];
-    while (stmt.step()) rows.push(stmt.getAsObject());
-    stmt.free();
-    return rows;
+      `,
+      [input.trim()]
+    );
   }
 
-  function queryFts(input) {
+  async function queryFts(input) {
     const fts = normalizeFtsQuery(input);
     if (!fts) return [];
 
-    const stmt = db.prepare(`
+    return execRows(
+      `
       SELECT d.digest_id AS digest_id, d.title AS title, d.arxiv_id AS arxiv_id, bm25(digests_fts) AS score
       FROM digests_fts
       JOIN digests d ON d.id = digests_fts.rowid
       WHERE digests_fts MATCH ?
       ORDER BY score
       LIMIT 50
-    `);
-    stmt.bind([fts]);
-
-    const rows = [];
-    while (stmt.step()) rows.push(stmt.getAsObject());
-    stmt.free();
-    return rows;
+      `,
+      [fts]
+    );
   }
 
-  function queryLike(input) {
+  async function queryLike(input) {
     const q = input.trim().toLowerCase();
     if (!q) return [];
     const pattern = `%${q}%`;
 
-    const stmt = db.prepare(`
+    return execRows(
+      `
       SELECT digest_id, title, arxiv_id
       FROM digests
       WHERE lower(COALESCE(digest_id, '')) LIKE ?
@@ -139,25 +175,12 @@
         timestamp_suffix DESC,
         digest_id DESC
       LIMIT 50
-    `);
-    stmt.bind([pattern, pattern, pattern, pattern, pattern, pattern, q, q]);
-
-    const rows = [];
-    while (stmt.step()) rows.push(stmt.getAsObject());
-    stmt.free();
-    return rows;
+      `,
+      [pattern, pattern, pattern, pattern, pattern, pattern, q, q]
+    );
   }
 
-  function detectFtsSupport() {
-    try {
-      db.exec("SELECT rowid FROM digests_fts LIMIT 1");
-      return true;
-    } catch {
-      return false;
-    }
-  }
-
-  function runSearch() {
+  async function runSearch() {
     const q = inputEl.value.trim();
     updateUrlQuery(q);
 
@@ -166,40 +189,35 @@
       return;
     }
 
-    if (!db) {
-      renderEmpty("Search DB is still loading…");
-      return;
-    }
-
     try {
       statusEl.textContent = `Searching for \"${q}\"…`;
       const started = performance.now();
 
-      let rows;
       let mode = "like";
+      let rows = [];
+
       if (looksLikeArxivId(q)) {
-        mode = "arxiv";
-        rows = queryArxiv(q);
+        mode = "arxiv_exact";
+        rows = await queryArxiv(q);
       } else if (supportsFts) {
         mode = "fts";
         try {
-          rows = queryFts(q);
+          rows = await queryFts(q);
         } catch (err) {
-          const msg = String(err).toLowerCase();
-          if (msg.includes("fts5") || msg.includes("digests_fts")) {
+          if (isFtsError(err)) {
             supportsFts = false;
             mode = "like";
-            rows = queryLike(q);
+            rows = await queryLike(q);
           } else {
             throw err;
           }
         }
       } else {
-        rows = queryLike(q);
+        rows = await queryLike(q);
       }
 
       const elapsedMs = (performance.now() - started).toFixed(1);
-      statusEl.textContent = `Found ${rows.length} result(s) for \"${q}\" in ${elapsedMs} ms (${mode}).`;
+      statusEl.textContent = `Found ${rows.length} result(s) for \"${q}\" in ${elapsedMs} ms (${backend}/${mode}).`;
       renderResults(rows, q);
     } catch (err) {
       statusEl.textContent = "Search failed.";
@@ -209,8 +227,58 @@
 
   formEl.addEventListener("submit", (event) => {
     event.preventDefault();
-    runSearch();
+    runSearch().catch((err) => {
+      statusEl.textContent = "Search failed.";
+      renderError(String(err));
+    });
   });
+
+  async function initHttpRangeBackend(dbFile) {
+    if (typeof createDbWorker !== "function") {
+      throw new Error("createDbWorker is unavailable");
+    }
+
+    const config = {
+      from: "inline",
+      config: {
+        serverMode: "full",
+        requestChunkSize: 4096,
+        url: `/search/${dbFile}`,
+      },
+    };
+
+    workerDb = await createDbWorker(
+      [config],
+      "/assets/sqljs-httpvfs/sqlite.worker.js",
+      "/assets/sqljs-httpvfs/sql-wasm.wasm"
+    );
+
+    backend = "httpvfs";
+    supportsFts = await detectFtsSupport();
+  }
+
+  async function initFullDownloadBackend(dbFile) {
+    if (typeof initSqlJs !== "function") {
+      throw new Error("initSqlJs is unavailable");
+    }
+
+    const sqlPromise = initSqlJs({
+      locateFile: (file) => `/assets/sqljs/${file}`,
+    });
+
+    const dbRes = await fetch(`/search/${dbFile}`, { cache: "no-store" });
+    if (!dbRes.ok) {
+      throw new Error(`Could not load /search/${dbFile} (${dbRes.status})`);
+    }
+    const dbBytes = await dbRes.arrayBuffer();
+
+    const SQL = await sqlPromise;
+    db = new SQL.Database(new Uint8Array(dbBytes));
+    backend = "full";
+    supportsFts = await detectFtsSupport();
+
+    return ((dbBytes.byteLength || 0) / (1024 * 1024)).toFixed(1);
+  }
 
   async function init() {
     try {
@@ -219,42 +287,37 @@
       if (!manifestRes.ok) {
         throw new Error(`Could not load /search/manifest.json (${manifestRes.status})`);
       }
-      manifest = await manifestRes.json();
+      const manifest = await manifestRes.json();
 
       const dbFile = manifest.db_file;
       if (!dbFile) {
         throw new Error("manifest.json is missing db_file");
       }
 
-      const sqlPromise = initSqlJs({
-        locateFile: (file) => `/assets/sqljs/${file}`,
-      });
-
-      statusEl.textContent = `Downloading ${dbFile}…`;
-      const dbRes = await fetch(`/search/${dbFile}`, { cache: "no-store" });
-      if (!dbRes.ok) {
-        throw new Error(`Could not load /search/${dbFile} (${dbRes.status})`);
+      let fetchLabel = "on-demand-range";
+      try {
+        statusEl.textContent = "Initializing HTTP range SQLite…";
+        await initHttpRangeBackend(dbFile);
+      } catch (rangeErr) {
+        statusEl.textContent = `HTTP range init failed (${String(rangeErr)}). Falling back to full download…`;
+        fetchLabel = `${await initFullDownloadBackend(dbFile)} MB`;
       }
-      const dbBytes = await dbRes.arrayBuffer();
 
-      statusEl.textContent = "Opening SQLite in browser…";
-      const SQL = await sqlPromise;
-      db = new SQL.Database(new Uint8Array(dbBytes));
-      supportsFts = detectFtsSupport();
-
-      const sizeMB = ((dbBytes.byteLength || 0) / (1024 * 1024)).toFixed(1);
       const modeLabel = supportsFts ? "fts" : "like-fallback";
+      const backendLabel = backend === "httpvfs" ? "http-range" : "full-download";
+
       metaEl.innerHTML =
         `<span class=\"pill\">digests: ${escapeHtml(manifest.digest_count ?? "?")}</span> ` +
         `<span class=\"pill\">arXiv IDs: ${escapeHtml(manifest.arxiv_count ?? "?")}</span> ` +
         `<span class=\"pill\">db: ${escapeHtml(dbFile)}</span> ` +
-        `<span class=\"pill\">size: ${sizeMB} MB</span> ` +
-        `<span class=\"pill\">mode: ${modeLabel}</span>`;
+        `<span class=\"pill\">backend: ${backendLabel}</span> ` +
+        `<span class=\"pill\">search: ${modeLabel}</span> ` +
+        `<span class=\"pill\">fetch: ${escapeHtml(fetchLabel)}</span>`;
 
       statusEl.textContent = "Search index ready.";
 
       if (initialQ) {
-        runSearch();
+        await runSearch();
       } else {
         renderEmpty("Search index loaded. Enter a query above.");
       }

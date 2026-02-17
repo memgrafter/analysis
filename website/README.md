@@ -3,13 +3,11 @@
 Build DB:
 
 ```bash
-  python3 scripts/build_search_db.py \
-    --source-dir ../ml_research_analysis_2023 \
-    --source-dir ../ml_research_analysis_2024 \
-    --source-dir ../ml_research_analysis_2025 \
-    --output-dir search \
-    --preview-words 500
+  ./scripts/build_db.sh
 ```
+
+> This is the canonical build path (full-body indexing).
+> Optional quick dev/test run: `MAX_FILES=1500 ./scripts/build_db.sh`
 
 Run local server:
 
@@ -22,6 +20,8 @@ Run the integration suite (single entrypoint):
 ```bash
   ./scripts/integration_test.sh
 ```
+
+> Integration builds are isolated in a temp directory and do not overwrite `search/` deploy artifacts.
 
 Optional faster integration run while iterating:
 
