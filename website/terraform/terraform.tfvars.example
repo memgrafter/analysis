@@ -1,0 +1,10 @@
+# Copy to terraform.tfvars (ignored) and set your bucket name.
+bucket_name = "ml-llm-digests-xxxxxxxxxx"
+
+# Optional:
+# aws_region     = "us-east-1"
+# index_document = "index.html"
+# error_document = "index.html"
+# tags = {
+#   Project = "ml-llm-digests"
+# }
