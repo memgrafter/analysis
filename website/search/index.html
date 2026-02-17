@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/mldigest.ico" type="image/x-icon" />
     <title>Search Digests</title>
     <style>
       :root {
@@ -48,6 +49,14 @@
       }
       a { color: var(--accent); text-decoration: none; }
       .muted { color: var(--muted); }
+      .search-anim {
+        margin: 4px 0 0;
+        min-height: 6.2em;
+        line-height: 1.15;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        font-size: 12px;
+        white-space: pre;
+      }
       form {
         display: grid;
         grid-template-columns: 1fr auto;
@@ -208,6 +217,7 @@
         </div>
 
         <p id="status" class="muted">Loading search index…</p>
+        <p id="search-anim" class="search-anim muted" hidden></p>
         <p id="meta" class="muted"></p>
       </section>
 

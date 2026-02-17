@@ -30,6 +30,9 @@ echo "Staging site assets into: $STAGE_DIR"
 # Preserve mtimes so aws s3 sync can skip unchanged files.
 mkdir -p "$STAGE_DIR/view" "$STAGE_DIR/assets" "$STAGE_DIR/search"
 cp -p "$ROOT_DIR/index.html" "$STAGE_DIR/index.html"
+if [[ -f "$ROOT_DIR/mldigest.ico" ]]; then
+  cp -p "$ROOT_DIR/mldigest.ico" "$STAGE_DIR/mldigest.ico"
+fi
 cp -a "$ROOT_DIR/view/." "$STAGE_DIR/view/"
 cp -a "$ROOT_DIR/assets/." "$STAGE_DIR/assets/"
 cp -a "$ROOT_DIR/search/." "$STAGE_DIR/search/"

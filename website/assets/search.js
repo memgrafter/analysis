@@ -2,6 +2,7 @@
   const formEl = document.getElementById("search-form");
   const inputEl = document.getElementById("q");
   const statusEl = document.getElementById("status");
+  const searchAnimEl = document.getElementById("search-anim");
   const metaEl = document.getElementById("meta");
   const resultsEl = document.getElementById("results");
 
@@ -84,6 +85,48 @@
       .replaceAll(">", "&gt;")
       .replaceAll('"', "&quot;")
       .replaceAll("'", "&#39;");
+
+  let searchAnimTimer = null;
+  let searchAnimTick = 0;
+  const SEARCH_ASCII_FRAMES = [
+    ["                    _._._", "                   |#|#|#|", "                   |#|#|#|", "                   |_|_|_|", ""].join("\n"),
+    ["  o                 _._._", " /|\\               |#|#|#|", " / \\               |#|#|#|", "                   |_|_|_|", ""].join("\n"),
+    ["      o             _._._", "     /|\\           |#|#|#|", "     / \\           |#|#|#|", "                   |_|_|_|", ""].join("\n"),
+    ["         o          _._._", "        /|\\        |#|#|#|", "        / \\        |#|#|#|", "                   |_|_|_|", ""].join("\n"),
+    ["         o__        _._._", "        /|  \\>     |#|#|#|", "        / \\        |#| |#|", "                   |_|_|_|", ""].join("\n"),
+    ["      o  [#]        _._._", "     /|\\           |#| |#|", "     / \\           |#|#|#|", "                   |_|_|_|", ""].join("\n"),
+    ["   o  [#]           _._._", "  /|\\              |#| |#|", "  / \\              |#|#|#|", "                   |_|_|_|", ""].join("\n"),
+    [" o  [#]             _._._", " /|\\               |#| |#|", " / \\               |#|#|#|", "                   |_|_|_|", ""].join("\n"),
+    ["                    _._._", "                   |#|#|#|", "                   |#|#|#|", "                   |_|_|_|", ""].join("\n"),
+  ];
+
+  function stopSearchAnimation() {
+    if (searchAnimTimer) {
+      clearInterval(searchAnimTimer);
+      searchAnimTimer = null;
+    }
+    if (searchAnimEl) {
+      searchAnimEl.hidden = true;
+      searchAnimEl.textContent = "";
+    }
+  }
+
+  function startSearchAnimation() {
+    if (!searchAnimEl) return;
+
+    stopSearchAnimation();
+    searchAnimEl.hidden = false;
+    searchAnimTick = 0;
+
+    const render = () => {
+      const frame = SEARCH_ASCII_FRAMES[searchAnimTick % SEARCH_ASCII_FRAMES.length];
+      searchAnimEl.textContent = frame;
+      searchAnimTick += 1;
+    };
+
+    render();
+    searchAnimTimer = setInterval(render, 180);
+  }
 
   function parsePageSize(value) {
     const parsed = Number.parseInt(String(value || ""), 10);
@@ -257,6 +300,7 @@
   }
 
   function applyCachedSearchResult(q, cacheKey, cached) {
+    stopSearchAnimation();
     state.mode = cached.mode || state.mode;
     state.hasMore = Boolean(cached.hasMore);
     state.rowCount = Number.isInteger(cached.rowCount) ? cached.rowCount : cached.rows.length;
@@ -782,6 +826,7 @@
     const cacheKey = buildSearchCacheKey(q);
 
     if (!q) {
+      stopSearchAnimation();
       state.mode = null;
       state.currentPage = 1;
       state.currentCursorToken = null;
@@ -798,12 +843,14 @@
     }
 
     if (state.years.size === 0) {
+      stopSearchAnimation();
       statusEl.textContent = "Select at least one year.";
       renderEmpty("Pick one or more years to search.");
       return;
     }
 
     if (state.scopes.size === 0) {
+      stopSearchAnimation();
       statusEl.textContent = "Select at least one search scope.";
       renderEmpty("Pick one or more scopes (title, core contribution, or full text).");
       return;
@@ -824,6 +871,7 @@
 
     try {
       statusEl.textContent = `Searching for \"${q}\"…`;
+      startSearchAnimation();
       const started = performance.now();
 
       const page = await fetchPage(q, state.sort, state.years, state.scopes, state.pageSize, state.currentCursorToken);
@@ -896,6 +944,7 @@
       }
     } finally {
       if (runId === latestSearchRunId) {
+        stopSearchAnimation();
         isSearching = false;
         updatePagerUi();
       }
@@ -1191,6 +1240,7 @@
         renderEmpty("Search index loaded. Enter a query above.");
       }
     } catch (err) {
+      stopSearchAnimation();
       statusEl.textContent = "Failed to initialize search.";
       renderError(String(err));
     }
