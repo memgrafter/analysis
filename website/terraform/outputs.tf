@@ -27,3 +27,11 @@ output "cloudfront_domain_name" {
 output "cloudfront_url" {
   value = "https://${aws_cloudfront_distribution.site.domain_name}"
 }
+
+output "custom_domain" {
+  value = local.use_custom_domain ? var.custom_domain : null
+}
+
+output "custom_domain_url" {
+  value = local.use_custom_domain ? "https://${var.custom_domain}" : null
+}

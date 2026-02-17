@@ -37,3 +37,15 @@ variable "cloudfront_price_class" {
     error_message = "cloudfront_price_class must be one of: PriceClass_100, PriceClass_200, PriceClass_All"
   }
 }
+
+variable "custom_domain" {
+  description = "Optional custom domain for CloudFront (e.g., ml-digest.ftl.cc). Leave empty to use the default CloudFront domain only."
+  type        = string
+  default     = ""
+}
+
+variable "route53_zone_name" {
+  description = "Public Route53 hosted zone name for custom_domain (e.g., ftl.cc). Required when custom_domain is set."
+  type        = string
+  default     = ""
+}

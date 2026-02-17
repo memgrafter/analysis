@@ -31,5 +31,10 @@ terraform -chdir=terraform apply
 - No credentials or secrets are stored in these files.
 - `terraform.tfvars` is ignored by git.
 - This keeps the existing public S3 website origin for simple routing behavior.
-- CloudFront is created with `viewer_protocol_policy = redirect-to-https` and the default CloudFront certificate.
+- CloudFront is created with `viewer_protocol_policy = redirect-to-https`.
 - Default price class is `PriceClass_100` (lowest-cost/free-tier-eligible scope).
+- If `custom_domain` and `route53_zone_name` are set, Terraform also creates:
+  - ACM certificate (DNS validation)
+  - Route53 validation records
+  - Route53 alias `A/AAAA` records to CloudFront
+- If `custom_domain` is empty, CloudFront default certificate/domain are used.
