@@ -37,7 +37,7 @@ Columns:
 - `title TEXT`
 - `core_contribution TEXT`
 - `tags TEXT` (joined/normalized string)
-- `body_preview TEXT` (indexed body text; default build uses full body with `--preview-words 0`)
+- `body_preview TEXT` (short preview field; canonical build stores first 500 words)
 - `source_path TEXT NOT NULL`
 - `year INTEGER`
 - `timestamp_suffix TEXT` (parsed from filename if present)
@@ -55,10 +55,10 @@ CREATE VIRTUAL TABLE digests_fts USING fts5(
   title,
   core_contribution,
   tags,
-  body_preview,
-  content='digests',
-  content_rowid='id',
-  tokenize='porter unicode61'
+  body_text,
+  tokenize='porter unicode61',
+  content='',
+  detail='column'
 );
 ```
 
@@ -89,12 +89,13 @@ Implementation script invoked by wrapper:
 Advanced flags (implementation script only):
 - `--db-name search.sqlite` (default logical name)
 - `--max-files <N>` (optional bounded run)
-- `--preview-words <N>` where `0` means full-body indexing (default)
+- `--preview-words <N>` where `0` means full-body indexing and `500` is the canonical build value
 - `--fail-on-parse-error` / `--no-fail-on-parse-error`
 - `--max-parse-errors <N>`
 
 Wrapper behavior:
-- `scripts/build_db.sh` always builds with `--preview-words 0`.
+- `scripts/build_db.sh` always builds with `--preview-words 500`.
+- FTS always indexes full text in contentless mode with `detail='column'`.
 - Optional dev override: `MAX_FILES=<N> ./scripts/build_db.sh`.
 
 ---
@@ -136,7 +137,10 @@ Manifest fields (v1):
 - `digest_count`
 - `arxiv_count`
 - `source_dirs`
-- `preview_words` (`0` means full-body indexing; `>0` means first N words)
+- `preview_words` (`0` means full body in `digests.body_preview`; `>0` means first N words; canonical value is `500`)
+- `fts_detail` (`column`)
+- `fts_content_mode` (`contentless`)
+- `fts_body_mode` (`full_text`)
 
 ---
 

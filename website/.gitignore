@@ -1,6 +1,19 @@
 
-
 __pycache__/
 search/*.sqlite
 search/manifest.json
 search/search-manifest.json
+
+# Terraform (website/terraform)
+terraform/.terraform/
+terraform/*.tfstate
+terraform/*.tfstate.*
+terraform/*.tfvars
+!terraform/terraform.tfvars
+terraform/*.tfvars.json
+terraform/override.tf
+terraform/override.tf.json
+terraform/*_override.tf
+terraform/*_override.tf.json
+terraform/crash.log
+terraform/backend.hcl

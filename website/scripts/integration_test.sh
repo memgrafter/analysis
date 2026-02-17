@@ -16,6 +16,11 @@ TEST_SEARCH_DIR="$TEST_ROOT/search"
 
 SERVER_PID=""
 
+if lsof -tiTCP:"$PORT" -sTCP:LISTEN >/dev/null 2>&1; then
+  echo "Error: test port $PORT is already in use. Set PORT=<free-port>." >&2
+  exit 1
+fi
+
 cleanup() {
   if [[ -n "$SERVER_PID" ]]; then
     kill "$SERVER_PID" 2>/dev/null || true

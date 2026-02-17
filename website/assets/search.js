@@ -206,6 +206,11 @@
         } catch (err) {
           if (isFtsError(err)) {
             supportsFts = false;
+            if (backend === "httpvfs") {
+              throw new Error(
+                "FTS unavailable for HTTP-range backend. Refusing broad LIKE fallback to avoid large transfer."
+              );
+            }
             mode = "like";
             rows = await queryLike(q);
           } else {
@@ -213,6 +218,12 @@
           }
         }
       } else {
+        if (backend === "httpvfs") {
+          throw new Error(
+            "FTS unavailable for HTTP-range backend. Try an arXiv ID query or use full-download fallback."
+          );
+        }
+        mode = "like";
         rows = await queryLike(q);
       }
 

@@ -136,7 +136,6 @@ def parse_frontmatter(frontmatter: str) -> dict[str, str | list[str]]:
 
 def extract_preview_words(text: str, limit: int) -> str:
     words = re.findall(r"\S+", text)
-    # IMPORTANT: limit <= 0 means "index the full body" (current default behavior).
     if limit <= 0:
         return " ".join(words)
     return " ".join(words[:limit])
@@ -201,6 +200,7 @@ def discover_files(source_dirs: list[Path], max_files: int | None) -> tuple[list
 def compute_build_hash(files: list[Path], preview_words: int) -> str:
     h = hashlib.sha256()
     h.update(f"preview_words={preview_words}\n".encode("utf-8"))
+    h.update(b"fts_mode=contentless_full_text_detail_column\n")
 
     for file_path in files:
         stat = file_path.stat()
@@ -271,10 +271,10 @@ def init_db(conn: sqlite3.Connection) -> None:
             title,
             core_contribution,
             tags,
-            body_preview,
-            content='digests',
-            content_rowid='id',
-            tokenize='porter unicode61'
+            body_text,
+            tokenize='porter unicode61',
+            content='',
+            detail='column'
         );
 
         CREATE TABLE arxiv_latest (
@@ -309,7 +309,48 @@ def insert_rows(conn: sqlite3.Connection, rows: list[DigestRow]) -> None:
         ],
     )
 
-    conn.execute("INSERT INTO digests_fts(digests_fts) VALUES('rebuild')")
+    # Contentless FTS5 index built from full body text with detail='column'.
+    id_by_digest_id = {
+        digest_id: row_id
+        for row_id, digest_id in conn.execute("SELECT id, digest_id FROM digests")
+    }
+
+    fts_batch: list[tuple[int, str, str, str, str]] = []
+    for idx, row in enumerate(rows, start=1):
+        file_text = Path(row.source_path).read_text(encoding="utf-8", errors="replace")
+        _, body = split_frontmatter(file_text)
+
+        fts_batch.append(
+            (
+                id_by_digest_id[row.digest_id],
+                row.title or "",
+                row.core_contribution or "",
+                row.tags or "",
+                body,
+            )
+        )
+
+        if len(fts_batch) >= 250:
+            conn.executemany(
+                """
+                INSERT INTO digests_fts (rowid, title, core_contribution, tags, body_text)
+                VALUES (?, ?, ?, ?, ?)
+                """,
+                fts_batch,
+            )
+            fts_batch.clear()
+
+        if idx % 5000 == 0:
+            print(f"  Indexed FTS text {idx:,} / {len(rows):,}")
+
+    if fts_batch:
+        conn.executemany(
+            """
+            INSERT INTO digests_fts (rowid, title, core_contribution, tags, body_text)
+            VALUES (?, ?, ?, ?, ?)
+            """,
+            fts_batch,
+        )
 
     latest_by_arxiv: dict[str, DigestRow] = {}
     for row in rows:
@@ -360,6 +401,9 @@ def write_manifest(
         "arxiv_count": len(arxiv_ids),
         "source_dirs": [str(p) for p in source_dirs],
         "preview_words": preview_words,
+        "fts_detail": "column",
+        "fts_content_mode": "contentless",
+        "fts_body_mode": "full_text",
     }
 
     manifest_json = json.dumps(manifest, indent=2, sort_keys=True) + "\n"
@@ -374,8 +418,8 @@ def main() -> None:
     parser.add_argument(
         "--preview-words",
         type=int,
-        default=0,
-        help="Number of body words to index in body_preview. Use 0 (default) to index full body text.",
+        default=500,
+        help="Number of body words to index in body_preview (default: 500). Use 0 to index full body text.",
     )
     parser.add_argument("--db-name", default="search.sqlite")
     parser.add_argument("--max-files", type=int)
@@ -414,9 +458,10 @@ def main() -> None:
 
     print(f"\nDiscovered markdown files: {len(files):,}")
     if args.preview_words <= 0:
-        print("Body indexing mode: full body (preview_words=0)")
+        print("Body preview mode (digests.body_preview): full body (preview_words=0)")
     else:
-        print(f"Body indexing mode: first {args.preview_words} words")
+        print(f"Body preview mode (digests.body_preview): first {args.preview_words} words")
+    print("FTS mode: contentless full-text indexing with detail=column")
 
     build_hash = compute_build_hash(files, args.preview_words)
 

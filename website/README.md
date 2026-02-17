@@ -6,8 +6,20 @@ Build DB:
   ./scripts/build_db.sh
 ```
 
-> This is the canonical build path (full-body indexing).
+> This is the canonical build path: stores 500-word body preview in `digests`, and builds full-text contentless FTS5 (`detail=column`).
 > Optional quick dev/test run: `MAX_FILES=1500 ./scripts/build_db.sh`
+
+Provision infrastructure (bucket only):
+
+```bash
+  ./scripts/provision.sh
+```
+
+Provision + deploy in one run:
+
+```bash
+  ./scripts/provision.sh --with-deploy
+```
 
 Run local server:
 

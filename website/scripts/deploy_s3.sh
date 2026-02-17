@@ -2,13 +2,8 @@
 set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-BUCKET_NAME="${1:-}"
+BUCKET_NAME="${1:-${BUCKET_NAME:-ml-llm-digests-9981ee3e6e}}"
 AWS_REGION="${2:-${AWS_REGION:-us-east-1}}"
-
-if [[ -z "$BUCKET_NAME" ]]; then
-  echo "Usage: ./scripts/deploy_s3.sh <bucket-name> [aws-region]" >&2
-  exit 1
-fi
 
 for required in aws mktemp; do
   if ! command -v "$required" >/dev/null 2>&1; then
