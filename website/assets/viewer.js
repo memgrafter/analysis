@@ -118,11 +118,23 @@
 
   statusEl.textContent = "";
 
-  fetch(`/view/${encodeURIComponent(digestId)}.md`, { cache: "no-store" })
-    .then((res) => {
-      if (!res.ok) throw new Error(`Failed to fetch markdown (${res.status})`);
-      return res.text();
-    })
+  const fetchMarkdown = async () => {
+    const candidates = [`/view/${encodeURIComponent(digestId)}.md`, `/view/${digestId}.md`];
+    if (rawId && rawId !== digestId) {
+      candidates.push(`/view/${encodeURIComponent(rawId)}`, `/view/${rawId}`);
+    }
+
+    let lastStatus = "unknown";
+    for (const url of candidates) {
+      const res = await fetch(url, { cache: "no-store" });
+      if (res.ok) return res.text();
+      lastStatus = String(res.status);
+    }
+
+    throw new Error(`Failed to fetch markdown (${lastStatus})`);
+  };
+
+  fetchMarkdown()
     .then((markdown) => {
       const { frontmatter, rawFrontmatter, body } = parseFrontmatter(markdown);
       const resolvedTitle = extractTitle(frontmatter, body, digestId);

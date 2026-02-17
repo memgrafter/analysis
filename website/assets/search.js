@@ -25,22 +25,42 @@
     },
   ];
 
+  const yearInputs = Array.from(document.querySelectorAll('input[name="year-filter"]'));
+  const scopeInputs = Array.from(document.querySelectorAll('input[name="scope-filter"]'));
+
   const PAGE_SIZE_OPTIONS = new Set([10, 25, 50, 100]);
   const DEFAULT_PAGE_SIZE = 10;
   const SORT_OPTIONS = new Set(["newest", "relevance", "title_asc"]);
   const DEFAULT_SORT = "relevance";
+
+  const YEAR_OPTIONS = [2023, 2024, 2025];
+  const YEAR_OPTIONS_SET = new Set(YEAR_OPTIONS);
+  const DEFAULT_YEARS = [2025];
+  const DEFAULT_YEARS_SET = new Set(DEFAULT_YEARS);
+
+  const SCOPE_OPTIONS = ["title", "core", "body"];
+  const SCOPE_OPTIONS_SET = new Set(SCOPE_OPTIONS);
+  const DEFAULT_SCOPES = ["title", "core"];
+  const DEFAULT_SCOPES_SET = new Set(DEFAULT_SCOPES);
 
   let db = null;
   let workerDb = null;
   let backend = null; // "httpvfs" | "full"
   let supportsFts = false;
   let isSearching = false;
+  let latestSearchRunId = 0;
+  let activeDbFile = "";
+  let lastRenderedSearchKey = "";
+
+  const SEARCH_CACHE_PREFIX = "ml-digest-search-cache-v1:";
 
   const state = {
     query: "",
     mode: null, // "fts" | "arxiv_exact"
     sort: DEFAULT_SORT,
     pageSize: DEFAULT_PAGE_SIZE,
+    years: new Set(DEFAULT_YEARS),
+    scopes: new Set(DEFAULT_SCOPES),
     currentPage: 1,
     currentCursorToken: null,
     nextCursorToken: null,
@@ -72,6 +92,57 @@
   function parseSort(value) {
     const sort = String(value || "").trim();
     return SORT_OPTIONS.has(sort) ? sort : DEFAULT_SORT;
+  }
+
+  function normalizeSet(values, allowedSet) {
+    const out = new Set();
+    for (const value of values) {
+      if (allowedSet.has(value)) out.add(value);
+    }
+    return out;
+  }
+
+  function parseYears(value) {
+    const raw = String(value || "")
+      .split(",")
+      .map((v) => Number.parseInt(v, 10));
+    const parsed = normalizeSet(raw, YEAR_OPTIONS_SET);
+    return parsed.size > 0 ? parsed : new Set(DEFAULT_YEARS);
+  }
+
+  function parseScopes(value) {
+    const raw = String(value || "")
+      .split(",")
+      .map((v) => v.trim())
+      .filter(Boolean);
+    const parsed = normalizeSet(raw, SCOPE_OPTIONS_SET);
+    return parsed.size > 0 ? parsed : new Set(DEFAULT_SCOPES);
+  }
+
+  function sortedYears(set) {
+    return Array.from(set).sort((a, b) => a - b);
+  }
+
+  function sortedScopes(set) {
+    return Array.from(set).sort();
+  }
+
+  function setsEqual(a, b) {
+    if (a.size !== b.size) return false;
+    for (const value of a) {
+      if (!b.has(value)) return false;
+    }
+    return true;
+  }
+
+  function syncFilterControls() {
+    for (const input of yearInputs) {
+      const y = Number.parseInt(input.value, 10);
+      input.checked = state.years.has(y);
+    }
+    for (const input of scopeInputs) {
+      input.checked = state.scopes.has(input.value);
+    }
   }
 
   function setPagerVisible(visible) {
@@ -118,12 +189,94 @@
     setControlsDisabled(isSearching);
   }
 
+  function resetPaging() {
+    state.currentCursorToken = null;
+    state.nextCursorToken = null;
+    state.cursorStack = [];
+    state.currentPage = 1;
+  }
+
   function renderEmpty(message) {
     resultsEl.innerHTML = `<p class="muted">${escapeHtml(message)}</p>`;
   }
 
   function renderError(message) {
     resultsEl.innerHTML = `<p style="color:#cc3b3b;font-weight:600;">${escapeHtml(message)}</p>`;
+  }
+
+  function scopeLabel(scopes) {
+    const parts = [];
+    if (scopes.has("title")) parts.push("title");
+    if (scopes.has("core")) parts.push("core");
+    if (scopes.has("body")) parts.push("full-text");
+    return parts.join("+") || "none";
+  }
+
+  function yearsLabel(years) {
+    const ys = sortedYears(years);
+    return ys.length === YEAR_OPTIONS.length ? "all-years" : ys.join(",");
+  }
+
+  function buildSearchCacheKey(query) {
+    if (!activeDbFile) return "";
+
+    const keyPayload = {
+      db: activeDbFile,
+      q: String(query || "").trim().toLowerCase(),
+      sort: state.sort,
+      ps: state.pageSize,
+      cursor: state.currentCursorToken || "",
+      years: sortedYears(state.years),
+      scopes: sortedScopes(state.scopes),
+    };
+
+    return `${SEARCH_CACHE_PREFIX}${hashString(JSON.stringify(keyPayload))}`;
+  }
+
+  function readCachedSearch(cacheKey) {
+    if (!cacheKey) return null;
+    try {
+      const raw = window.sessionStorage.getItem(cacheKey);
+      if (!raw) return null;
+      const parsed = JSON.parse(raw);
+      if (!parsed || !Array.isArray(parsed.rows)) return null;
+      return parsed;
+    } catch {
+      return null;
+    }
+  }
+
+  function writeCachedSearch(cacheKey, payload) {
+    if (!cacheKey) return;
+    try {
+      window.sessionStorage.setItem(cacheKey, JSON.stringify(payload));
+    } catch {
+      // Ignore storage quota/errors; search should still function.
+    }
+  }
+
+  function applyCachedSearchResult(q, cacheKey, cached) {
+    state.mode = cached.mode || state.mode;
+    state.hasMore = Boolean(cached.hasMore);
+    state.rowCount = Number.isInteger(cached.rowCount) ? cached.rowCount : cached.rows.length;
+    state.nextCursorToken = cached.nextCursorToken || null;
+
+    if (Number.isInteger(cached.currentPage) && cached.currentPage > 0) {
+      state.currentPage = cached.currentPage;
+    }
+
+    if (typeof cached.currentCursorToken === "string") {
+      state.currentCursorToken = cached.currentCursorToken || null;
+    }
+
+    const filterSummary = `${yearsLabel(state.years)} · ${scopeLabel(state.scopes)}`;
+    statusEl.textContent = `Showing ${cached.rows.length} result(s) for "${q}" from cache (${state.sort}; ${filterSummary}).`;
+
+    setPagerVisible(true);
+    updateUrlState();
+    updatePagerUi();
+    renderResults(cached.rows, q);
+    lastRenderedSearchKey = cacheKey;
   }
 
   function renderResults(rows, q) {
@@ -153,15 +306,34 @@
       .join("\n");
   }
 
-  function normalizeFtsQuery(input) {
+  function normalizeFtsTokens(input) {
     const normalized = input
       .toLowerCase()
       // Treat common separators as token boundaries so queries like "test-time" become "test time".
       .replace(/[-_/]+/g, " ")
       .replace(/[^a-z0-9.\s]/g, " ");
 
-    const tokens = normalized.split(/\s+/).filter(Boolean);
-    return tokens.join(" AND ");
+    return normalized.split(/\s+/).filter(Boolean);
+  }
+
+  function buildScopedFtsQuery(input, scopes) {
+    const tokens = normalizeFtsTokens(input);
+    if (tokens.length === 0) return "";
+
+    const columns = [];
+    if (scopes.has("title")) columns.push("title");
+    if (scopes.has("core")) columns.push("core_contribution");
+    if (scopes.has("body")) columns.push("body_text");
+
+    if (columns.length === 0) return "";
+    if (columns.length === 3) return tokens.join(" AND ");
+
+    return tokens
+      .map((token) => {
+        if (columns.length === 1) return `${columns[0]}:${token}`;
+        return `(${columns.map((column) => `${column}:${token}`).join(" OR ")})`;
+      })
+      .join(" AND ");
   }
 
   function looksLikeArxivId(input) {
@@ -182,8 +354,10 @@
     return (h >>> 0).toString(16);
   }
 
-  function queryHash(mode, sort, query) {
-    return hashString(`${mode}\n${sort}\n${query.trim().toLowerCase()}`);
+  function queryHash(mode, sort, query, years, scopes) {
+    const yearsKey = sortedYears(years).join(",");
+    const scopesKey = sortedScopes(scopes).join(",");
+    return hashString(`${mode}\n${sort}\n${query.trim().toLowerCase()}\n${yearsKey}\n${scopesKey}`);
   }
 
   function encodeCursor(payload) {
@@ -215,12 +389,12 @@
     }
   }
 
-  function buildNextCursor(mode, sort, query, pageSize, nextPageNumber, lastRow) {
+  function buildNextCursor(mode, sort, query, years, scopes, pageSize, nextPageNumber, lastRow) {
     const base = {
       v: 1,
       m: mode,
       srt: sort,
-      qh: queryHash(mode, sort, query),
+      qh: queryHash(mode, sort, query, years, scopes),
       ps: pageSize,
       p: nextPageNumber,
     };
@@ -237,14 +411,14 @@
     return encodeCursor({ ...base, a: String(lastRow.arxiv_key || ""), id: String(lastRow.digest_id || "") });
   }
 
-  function validateCursor(token, mode, sort, query, pageSize) {
+  function validateCursor(token, mode, sort, query, years, scopes, pageSize) {
     if (!token) return null;
     const payload = decodeCursor(token);
     if (!payload || typeof payload !== "object") {
       throw new CursorError("Invalid cursor token");
     }
 
-    const expectedQh = queryHash(mode, sort, query);
+    const expectedQh = queryHash(mode, sort, query, years, scopes);
     if (
       payload.v !== 1 ||
       payload.m !== mode ||
@@ -275,6 +449,18 @@
       url.searchParams.set("cursor", state.currentCursorToken);
     } else {
       url.searchParams.delete("cursor");
+    }
+
+    if (setsEqual(state.years, DEFAULT_YEARS_SET)) {
+      url.searchParams.delete("y");
+    } else {
+      url.searchParams.set("y", sortedYears(state.years).join(","));
+    }
+
+    if (setsEqual(state.scopes, DEFAULT_SCOPES_SET)) {
+      url.searchParams.delete("f");
+    } else {
+      url.searchParams.set("f", sortedScopes(state.scopes).join(","));
     }
 
     window.history.replaceState({}, "", url.toString());
@@ -315,22 +501,36 @@
     }
   }
 
-  async function queryArxivPage(input, pageSize, cursor, sort) {
+  function buildYearPredicateSql(years, tableAlias = "d") {
+    const selectedYears = sortedYears(years);
+    if (selectedYears.length === YEAR_OPTIONS.length) {
+      return { sql: "", params: [] };
+    }
+
+    const placeholders = selectedYears.map(() => "?").join(", ");
+    return {
+      sql: ` AND ${tableAlias}.year IN (${placeholders})`,
+      params: selectedYears,
+    };
+  }
+
+  async function queryArxivPage(input, pageSize, cursor, sort, years) {
     const limitPlusOne = pageSize + 1;
     const arxivId = input.trim();
+    const yearPredicate = buildYearPredicateSql(years, "d");
 
     const base = `
       WITH scoped AS (
         SELECT
-          digest_id,
-          title,
-          arxiv_id,
-          core_contribution,
-          COALESCE(arxiv_id, '') AS arxiv_key,
-          lower(COALESCE(title, '')) AS title_key,
+          d.digest_id,
+          d.title,
+          d.arxiv_id,
+          d.core_contribution,
+          COALESCE(d.arxiv_id, '') AS arxiv_key,
+          lower(COALESCE(d.title, '')) AS title_key,
           0.0 AS score
-        FROM digests
-        WHERE arxiv_id = ?
+        FROM digests d
+        WHERE d.arxiv_id = ?${yearPredicate.sql}
       )
       SELECT *
       FROM scoped
@@ -344,7 +544,7 @@
           ORDER BY title_key ASC, digest_id ASC
           LIMIT ?
           `,
-          [arxivId, limitPlusOne]
+          [arxivId, ...yearPredicate.params, limitPlusOne]
         );
       } else {
         rows = await execRows(
@@ -355,7 +555,7 @@
           ORDER BY title_key ASC, digest_id ASC
           LIMIT ?
           `,
-          [arxivId, cursor.tk, cursor.tk, cursor.id, limitPlusOne]
+          [arxivId, ...yearPredicate.params, cursor.tk, cursor.tk, cursor.id, limitPlusOne]
         );
       }
     } else if (sort === "relevance") {
@@ -365,7 +565,7 @@
           ORDER BY score ASC, digest_id ASC
           LIMIT ?
           `,
-          [arxivId, limitPlusOne]
+          [arxivId, ...yearPredicate.params, limitPlusOne]
         );
       } else {
         rows = await execRows(
@@ -376,7 +576,7 @@
           ORDER BY score ASC, digest_id ASC
           LIMIT ?
           `,
-          [arxivId, cursor.sc, cursor.sc, cursor.id, limitPlusOne]
+          [arxivId, ...yearPredicate.params, cursor.sc, cursor.sc, cursor.id, limitPlusOne]
         );
       }
     } else {
@@ -387,7 +587,7 @@
           ORDER BY arxiv_key DESC, digest_id DESC
           LIMIT ?
           `,
-          [arxivId, limitPlusOne]
+          [arxivId, ...yearPredicate.params, limitPlusOne]
         );
       } else {
         rows = await execRows(
@@ -398,7 +598,7 @@
           ORDER BY arxiv_key DESC, digest_id DESC
           LIMIT ?
           `,
-          [arxivId, cursor.a, cursor.a, cursor.id, limitPlusOne]
+          [arxivId, ...yearPredicate.params, cursor.a, cursor.a, cursor.id, limitPlusOne]
         );
       }
     }
@@ -408,10 +608,11 @@
     return { rows: pageRows, hasMore };
   }
 
-  async function queryFtsPage(input, pageSize, cursor, sort) {
-    const fts = normalizeFtsQuery(input);
+  async function queryFtsPage(input, pageSize, cursor, sort, years, scopes) {
+    const fts = buildScopedFtsQuery(input, scopes);
     if (!fts) return { rows: [], hasMore: false };
 
+    const yearPredicate = buildYearPredicateSql(years, "d");
     const limitPlusOne = pageSize + 1;
     const base = `
       SELECT *
@@ -426,7 +627,7 @@
           bm25(digests_fts) AS score
         FROM digests_fts
         JOIN digests d ON d.id = digests_fts.rowid
-        WHERE digests_fts MATCH ?
+        WHERE digests_fts MATCH ?${yearPredicate.sql}
       ) ranked
     `;
 
@@ -439,7 +640,7 @@
           ORDER BY arxiv_key DESC, digest_id DESC
           LIMIT ?
           `,
-          [fts, limitPlusOne]
+          [fts, ...yearPredicate.params, limitPlusOne]
         );
       } else {
         rows = await execRows(
@@ -450,7 +651,7 @@
           ORDER BY arxiv_key DESC, digest_id DESC
           LIMIT ?
           `,
-          [fts, cursor.a, cursor.a, cursor.id, limitPlusOne]
+          [fts, ...yearPredicate.params, cursor.a, cursor.a, cursor.id, limitPlusOne]
         );
       }
     } else if (sort === "title_asc") {
@@ -460,7 +661,7 @@
           ORDER BY title_key ASC, digest_id ASC
           LIMIT ?
           `,
-          [fts, limitPlusOne]
+          [fts, ...yearPredicate.params, limitPlusOne]
         );
       } else {
         rows = await execRows(
@@ -471,7 +672,7 @@
           ORDER BY title_key ASC, digest_id ASC
           LIMIT ?
           `,
-          [fts, cursor.tk, cursor.tk, cursor.id, limitPlusOne]
+          [fts, ...yearPredicate.params, cursor.tk, cursor.tk, cursor.id, limitPlusOne]
         );
       }
     } else {
@@ -482,7 +683,7 @@
           ORDER BY score ASC, digest_id ASC
           LIMIT ?
           `,
-          [fts, limitPlusOne]
+          [fts, ...yearPredicate.params, limitPlusOne]
         );
       } else {
         rows = await execRows(
@@ -493,7 +694,7 @@
           ORDER BY score ASC, digest_id ASC
           LIMIT ?
           `,
-          [fts, cursor.sc, cursor.sc, cursor.id, limitPlusOne]
+          [fts, ...yearPredicate.params, cursor.sc, cursor.sc, cursor.id, limitPlusOne]
         );
       }
     }
@@ -509,17 +710,17 @@
     throw new Error("FTS is unavailable for this DB/runtime. Only exact arXiv ID search is available.");
   }
 
-  async function fetchPage(input, sort, pageSize, cursorToken) {
+  async function fetchPage(input, sort, years, scopes, pageSize, cursorToken) {
     const mode = detectMode(input);
-    const cursor = validateCursor(cursorToken, mode, sort, input, pageSize);
+    const cursor = validateCursor(cursorToken, mode, sort, input, years, scopes, pageSize);
 
     if (mode === "arxiv_exact") {
-      const result = await queryArxivPage(input, pageSize, cursor, sort);
+      const result = await queryArxivPage(input, pageSize, cursor, sort, years);
       return { mode, cursor, ...result };
     }
 
     try {
-      const result = await queryFtsPage(input, pageSize, cursor, sort);
+      const result = await queryFtsPage(input, pageSize, cursor, sort, years, scopes);
       return { mode, cursor, ...result };
     } catch (err) {
       if (isFtsError(err)) {
@@ -530,9 +731,13 @@
     }
   }
 
-  async function runSearch({ allowCursorReset = true } = {}) {
+  async function runSearch({ allowCursorReset = true, useCache = true } = {}) {
+    const runId = ++latestSearchRunId;
     const q = inputEl.value.trim();
     state.query = q;
+    updateUrlState();
+
+    const cacheKey = buildSearchCacheKey(q);
 
     if (!q) {
       state.mode = null;
@@ -542,12 +747,31 @@
       state.cursorStack = [];
       state.hasMore = false;
       state.rowCount = 0;
-      updateUrlState();
       setPagerVisible(false);
       updatePagerUi();
       renderEmpty("Enter a query to search digests.");
       statusEl.textContent = "Search index ready.";
       return;
+    }
+
+    if (state.years.size === 0) {
+      statusEl.textContent = "Select at least one year.";
+      renderEmpty("Pick one or more years to search.");
+      return;
+    }
+
+    if (state.scopes.size === 0) {
+      statusEl.textContent = "Select at least one search scope.";
+      renderEmpty("Pick one or more scopes (title, core contribution, or full text).");
+      return;
+    }
+
+    if (useCache) {
+      const cached = readCachedSearch(cacheKey);
+      if (cached) {
+        applyCachedSearchResult(q, cacheKey, cached);
+        return;
+      }
     }
 
     let shouldRetryWithoutCursor = false;
@@ -559,7 +783,9 @@
       statusEl.textContent = `Searching for \"${q}\"…`;
       const started = performance.now();
 
-      const page = await fetchPage(q, state.sort, state.pageSize, state.currentCursorToken);
+      const page = await fetchPage(q, state.sort, state.years, state.scopes, state.pageSize, state.currentCursorToken);
+      if (runId !== latestSearchRunId) return;
+
       state.mode = page.mode;
 
       if (page.cursor && Number.isInteger(page.cursor.p) && page.cursor.p > 1) {
@@ -574,17 +800,41 @@
       const nextPageNumber = state.currentPage + 1;
       state.nextCursorToken =
         page.hasMore && page.rows.length > 0
-          ? buildNextCursor(state.mode, state.sort, q, state.pageSize, nextPageNumber, page.rows[page.rows.length - 1])
+          ? buildNextCursor(
+              state.mode,
+              state.sort,
+              q,
+              state.years,
+              state.scopes,
+              state.pageSize,
+              nextPageNumber,
+              page.rows[page.rows.length - 1]
+            )
           : null;
 
       const elapsedMs = (performance.now() - started).toFixed(1);
-      statusEl.textContent = `Showing ${page.rows.length} result(s) for \"${q}\" in ${elapsedMs} ms (${backend}/${state.mode}/${state.sort}).`;
+      const filterSummary = `${yearsLabel(state.years)} · ${scopeLabel(state.scopes)}`;
+      statusEl.textContent = `Showing ${page.rows.length} result(s) for \"${q}\" in ${elapsedMs} ms (${backend}/${state.mode}/${state.sort}; ${filterSummary}).`;
 
       setPagerVisible(true);
       updateUrlState();
       updatePagerUi();
       renderResults(page.rows, q);
+
+      writeCachedSearch(cacheKey, {
+        rows: page.rows,
+        mode: state.mode,
+        hasMore: state.hasMore,
+        rowCount: state.rowCount,
+        nextCursorToken: state.nextCursorToken,
+        currentPage: state.currentPage,
+        currentCursorToken: state.currentCursorToken,
+        cachedAt: Date.now(),
+      });
+      lastRenderedSearchKey = cacheKey;
     } catch (err) {
+      if (runId !== latestSearchRunId) return;
+
       if (allowCursorReset && err instanceof CursorError && state.currentCursorToken) {
         state.currentCursorToken = null;
         state.cursorStack = [];
@@ -599,12 +849,14 @@
         renderError(String(err));
       }
     } finally {
-      isSearching = false;
-      updatePagerUi();
+      if (runId === latestSearchRunId) {
+        isSearching = false;
+        updatePagerUi();
+      }
     }
 
-    if (shouldRetryWithoutCursor) {
-      await runSearch({ allowCursorReset: false });
+    if (shouldRetryWithoutCursor && runId === latestSearchRunId) {
+      await runSearch({ allowCursorReset: false, useCache });
     }
   }
 
@@ -672,16 +924,75 @@
   formEl.addEventListener("submit", (event) => {
     event.preventDefault();
 
-    state.currentCursorToken = null;
-    state.nextCursorToken = null;
-    state.cursorStack = [];
-    state.currentPage = 1;
+    resetPaging();
 
-    runSearch().catch((err) => {
+    const submittedQuery = inputEl.value.trim();
+    const submittedKey = buildSearchCacheKey(submittedQuery);
+    const useCache = !(submittedKey && submittedKey === lastRenderedSearchKey);
+
+    runSearch({ useCache }).catch((err) => {
       statusEl.textContent = "Search failed.";
       renderError(String(err));
     });
   });
+
+  for (const input of yearInputs) {
+    input.addEventListener("change", () => {
+      const nextYears = new Set(
+        yearInputs
+          .filter((el) => el.checked)
+          .map((el) => Number.parseInt(el.value, 10))
+          .filter((year) => YEAR_OPTIONS_SET.has(year))
+      );
+
+      if (nextYears.size === 0) {
+        syncFilterControls();
+        statusEl.textContent = "Select at least one year.";
+        return;
+      }
+
+      state.years = nextYears;
+      resetPaging();
+
+      if (state.query) {
+        runSearch().catch((err) => {
+          statusEl.textContent = "Search failed.";
+          renderError(String(err));
+        });
+      } else {
+        updateUrlState();
+      }
+    });
+  }
+
+  for (const input of scopeInputs) {
+    input.addEventListener("change", () => {
+      const nextScopes = new Set(
+        scopeInputs
+          .filter((el) => el.checked)
+          .map((el) => el.value)
+          .filter((scope) => SCOPE_OPTIONS_SET.has(scope))
+      );
+
+      if (nextScopes.size === 0) {
+        syncFilterControls();
+        statusEl.textContent = "Select at least one search scope.";
+        return;
+      }
+
+      state.scopes = nextScopes;
+      resetPaging();
+
+      if (state.query) {
+        runSearch().catch((err) => {
+          statusEl.textContent = "Search failed.";
+          renderError(String(err));
+        });
+      } else {
+        updateUrlState();
+      }
+    });
+  }
 
   for (const control of controls) {
     control.prev.addEventListener("click", () => {
@@ -767,12 +1078,17 @@
       const initialPs = parsePageSize(qs.get("ps"));
       const initialSort = parseSort(qs.get("sort"));
       const initialCursor = (qs.get("cursor") || "").trim() || null;
+      const initialYears = parseYears(qs.get("y"));
+      const initialScopes = parseScopes(qs.get("f"));
 
       state.pageSize = initialPs;
       state.sort = initialSort;
       state.currentCursorToken = initialCursor;
+      state.years = initialYears;
+      state.scopes = initialScopes;
       inputEl.value = initialQ;
       state.query = initialQ;
+      syncFilterControls();
 
       if (initialCursor) {
         const payload = decodeCursor(initialCursor);
@@ -794,6 +1110,7 @@
       if (!dbFile) {
         throw new Error("manifest.json is missing db_file");
       }
+      activeDbFile = dbFile;
 
       let fetchLabel = "on-demand-range";
       try {
@@ -819,7 +1136,7 @@
 
       if (initialQ) {
         setPagerVisible(true);
-        await runSearch();
+        await runSearch({ useCache: true });
       } else {
         setPagerVisible(false);
         renderEmpty("Search index loaded. Enter a query above.");

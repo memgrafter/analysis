@@ -54,6 +54,35 @@
         gap: 8px;
         margin: 12px 0;
       }
+      .filters {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 10px;
+        margin: 0 0 12px;
+      }
+      .filters fieldset {
+        margin: 0;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 8px 10px 10px;
+      }
+      .filters legend {
+        padding: 0 6px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .filter-options {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .filter-options label {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 13px;
+        color: var(--muted);
+      }
       input[type="search"] {
         width: 100%;
         border: 1px solid var(--border);
@@ -158,6 +187,26 @@
           <input id="q" type="search" name="q" placeholder="Try: transformers, retrieval, 2404.18923" autocomplete="off" />
           <button type="submit">Search</button>
         </form>
+
+        <div class="filters">
+          <fieldset>
+            <legend>Year</legend>
+            <div class="filter-options">
+              <label><input type="checkbox" name="year-filter" value="2023" /> 2023</label>
+              <label><input type="checkbox" name="year-filter" value="2024" /> 2024</label>
+              <label><input type="checkbox" name="year-filter" value="2025" checked /> 2025</label>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Search scope</legend>
+            <div class="filter-options">
+              <label><input type="checkbox" name="scope-filter" value="title" checked /> Title</label>
+              <label><input type="checkbox" name="scope-filter" value="core" checked /> Core contribution</label>
+              <label><input type="checkbox" name="scope-filter" value="body" /> Full text (body)</label>
+            </div>
+          </fieldset>
+        </div>
 
         <p id="status" class="muted">Loading search index…</p>
         <p id="meta" class="muted"></p>
