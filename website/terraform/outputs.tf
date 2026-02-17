@@ -19,3 +19,11 @@ output "website_url" {
 output "aws_region" {
   value = data.aws_region.current.name
 }
+
+output "cloudfront_domain_name" {
+  value = aws_cloudfront_distribution.site.domain_name
+}
+
+output "cloudfront_url" {
+  value = "https://${aws_cloudfront_distribution.site.domain_name}"
+}

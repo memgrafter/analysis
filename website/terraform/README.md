@@ -1,6 +1,6 @@
-# Terraform (Static Site)
+# Terraform (Static Site + HTTPS CDN)
 
-Minimal Terraform for this repository's S3 static site.
+Minimal Terraform for this repository's S3 static site with CloudFront HTTPS in front of it.
 
 ## Usage
 
@@ -30,4 +30,6 @@ terraform -chdir=terraform apply
 
 - No credentials or secrets are stored in these files.
 - `terraform.tfvars` is ignored by git.
-- This creates a public-read website bucket suitable for static hosting.
+- This keeps the existing public S3 website origin for simple routing behavior.
+- CloudFront is created with `viewer_protocol_policy = redirect-to-https` and the default CloudFront certificate.
+- Default price class is `PriceClass_100` (lowest-cost/free-tier-eligible scope).

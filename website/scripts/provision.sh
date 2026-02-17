@@ -54,10 +54,12 @@ terraform -chdir="$TF_DIR" apply -auto-approve
 BUCKET_NAME="$(terraform -chdir="$TF_DIR" output -raw bucket_name)"
 AWS_REGION="$(terraform -chdir="$TF_DIR" output -raw aws_region)"
 WEBSITE_URL="$(terraform -chdir="$TF_DIR" output -raw website_url)"
+CLOUDFRONT_URL="$(terraform -chdir="$TF_DIR" output -raw cloudfront_url)"
 
 echo "Provisioned bucket: $BUCKET_NAME"
 echo "Region: $AWS_REGION"
 echo "Website URL: $WEBSITE_URL"
+echo "CloudFront URL (HTTPS): $CLOUDFRONT_URL"
 
 if [[ "$WITH_DEPLOY" == "1" ]]; then
   echo "==> Building search DB"
