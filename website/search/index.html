@@ -13,6 +13,7 @@
         --muted: #5d6f9a;
         --border: #dbe2f4;
         --accent: #2f63d8;
+        --meta-link: #244fb5;
       }
       @media (prefers-color-scheme: dark) {
         :root {
@@ -22,6 +23,7 @@
           --muted: #a8b4da;
           --border: #27335f;
           --accent: #6ea8ff;
+          --meta-link: #5b94f7;
         }
       }
 
@@ -70,12 +72,66 @@
         font-weight: 600;
         cursor: pointer;
       }
+      button[disabled] {
+        opacity: 0.55;
+        cursor: not-allowed;
+      }
+      select {
+        border: 1px solid var(--border);
+        background: transparent;
+        color: inherit;
+        border-radius: 10px;
+        padding: 8px 10px;
+      }
+      .pager {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin: 8px 0 18px;
+      }
+      .pager[hidden] {
+        display: none;
+      }
+      .pager-nav {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .pager-size,
+      .pager-sort {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
       .result {
         border-top: 1px solid var(--border);
         padding: 12px 0;
       }
       .result:first-child { border-top: 0; padding-top: 0; }
       .title { font-weight: 600; }
+      .title a {
+        color: var(--accent);
+      }
+      .result-meta-links {
+        margin-top: 2px;
+        font-size: 11px;
+        color: var(--muted);
+      }
+      .result-meta-links a {
+        font-size: 11px;
+        color: var(--meta-link);
+      }
+      .result-takeaway {
+        margin-top: 6px;
+        font-size: 12px;
+        line-height: 1.4;
+        color: var(--muted);
+        white-space: pre-wrap;
+        overflow: visible;
+        text-overflow: unset;
+      }
       code {
         font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
         font-size: 12px;
@@ -109,7 +165,57 @@
       </section>
 
       <section class="panel">
+        <div id="pager-top" class="pager" hidden>
+          <div class="pager-nav">
+            <button id="prev-top" type="button">Prev</button>
+            <button id="next-top" type="button">Next</button>
+            <span id="page-label-top" class="muted"></span>
+          </div>
+          <label class="pager-sort muted">
+            Sort
+            <select id="sort-top" aria-label="Sort results (top)">
+              <option value="newest">Newest</option>
+              <option value="relevance">Relevance</option>
+              <option value="title_asc">Title A→Z</option>
+            </select>
+          </label>
+          <label class="pager-size muted">
+            Per page
+            <select id="page-size-top" aria-label="Results per page (top)">
+              <option value="10">10</option>
+              <option value="25">25</option>
+              <option value="50">50</option>
+              <option value="100">100</option>
+            </select>
+          </label>
+        </div>
+
         <div id="results"></div>
+
+        <div id="pager-bottom" class="pager" hidden>
+          <div class="pager-nav">
+            <button id="prev-bottom" type="button">Prev</button>
+            <button id="next-bottom" type="button">Next</button>
+            <span id="page-label-bottom" class="muted"></span>
+          </div>
+          <label class="pager-sort muted">
+            Sort
+            <select id="sort-bottom" aria-label="Sort results (bottom)">
+              <option value="newest">Newest</option>
+              <option value="relevance">Relevance</option>
+              <option value="title_asc">Title A→Z</option>
+            </select>
+          </label>
+          <label class="pager-size muted">
+            Per page
+            <select id="page-size-bottom" aria-label="Results per page (bottom)">
+              <option value="10">10</option>
+              <option value="25">25</option>
+              <option value="50">50</option>
+              <option value="100">100</option>
+            </select>
+          </label>
+        </div>
       </section>
     </main>
 

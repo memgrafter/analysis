@@ -1,0 +1,3 @@
+- View page: add a copy button that copies the raw markdown content to the clipboard.
+- View page: improve markdown syntax/rendering quality and consistency.
+- Search page: improve content display and add arXiv-ID numeric filtering as a toggleable mode that can be turned on/off.

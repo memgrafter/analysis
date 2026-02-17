@@ -29,7 +29,6 @@ class DigestRow:
     title: str | None
     core_contribution: str | None
     tags: str
-    body_preview: str
     source_path: str
     year: int | None
     timestamp_suffix: str | None
@@ -99,6 +98,20 @@ def parse_frontmatter(frontmatter: str) -> dict[str, str | list[str]]:
             data[key] = " ".join(chunks).strip()
             continue
 
+        # Folded/literal block scalars.
+        if value in {"|", ">", "|-", ">-", "|+", ">+"}:
+            block_lines: list[str] = []
+            i += 1
+            while i < len(lines) and lines[i].startswith((" ", "\t")):
+                block_lines.append(lines[i].strip())
+                i += 1
+
+            if value.startswith("|"):
+                data[key] = "\n".join(block_lines).strip()
+            else:
+                data[key] = " ".join(block_lines).strip()
+            continue
+
         # Quoted multiline scalar continuation
         if value.startswith("'") and not value.endswith("'"):
             chunks = [value[1:]]
@@ -128,17 +141,15 @@ def parse_frontmatter(frontmatter: str) -> dict[str, str | list[str]]:
             data[key] = " ".join(chunks).strip()
             continue
 
-        data[key] = strip_quotes(value)
+        # Plain scalar continuation lines.
+        chunks = [strip_quotes(value)]
         i += 1
+        while i < len(lines) and lines[i].startswith((" ", "\t")):
+            chunks.append(lines[i].strip())
+            i += 1
+        data[key] = " ".join(chunk for chunk in chunks if chunk).strip()
 
     return data
-
-
-def extract_preview_words(text: str, limit: int) -> str:
-    words = re.findall(r"\S+", text)
-    if limit <= 0:
-        return " ".join(words)
-    return " ".join(words[:limit])
 
 
 def infer_arxiv_id(digest_id: str, frontmatter: dict[str, str | list[str]]) -> str | None:
@@ -197,10 +208,11 @@ def discover_files(source_dirs: list[Path], max_files: int | None) -> tuple[list
     return files, missing_dirs, collisions
 
 
-def compute_build_hash(files: list[Path], preview_words: int) -> str:
+def compute_build_hash(files: list[Path]) -> str:
     h = hashlib.sha256()
-    h.update(f"preview_words={preview_words}\n".encode("utf-8"))
     h.update(b"fts_mode=contentless_full_text_detail_column\n")
+    h.update(b"digests_schema=v3_no_body_preview\n")
+    h.update(b"frontmatter_parser=v2_multiline_scalars\n")
 
     for file_path in files:
         stat = file_path.stat()
@@ -214,9 +226,9 @@ def compute_build_hash(files: list[Path], preview_words: int) -> str:
     return h.hexdigest()[:12]
 
 
-def parse_digest_file(file_path: Path, preview_words: int) -> DigestRow:
+def parse_digest_file(file_path: Path) -> DigestRow:
     text = file_path.read_text(encoding="utf-8", errors="replace")
-    frontmatter_raw, body = split_frontmatter(text)
+    frontmatter_raw, _body = split_frontmatter(text)
     frontmatter = parse_frontmatter(frontmatter_raw)
 
     digest_id = file_path.stem
@@ -242,7 +254,6 @@ def parse_digest_file(file_path: Path, preview_words: int) -> DigestRow:
         title=title.strip() if title else None,
         core_contribution=core.strip() if core else None,
         tags=tags,
-        body_preview=extract_preview_words(body, preview_words),
         source_path=str(file_path),
         year=infer_year(arxiv_id, file_path),
         timestamp_suffix=timestamp_suffix(digest_id),
@@ -259,7 +270,6 @@ def init_db(conn: sqlite3.Connection) -> None:
             title TEXT,
             core_contribution TEXT,
             tags TEXT,
-            body_preview TEXT,
             source_path TEXT NOT NULL,
             year INTEGER,
             timestamp_suffix TEXT
@@ -290,8 +300,8 @@ def insert_rows(conn: sqlite3.Connection, rows: list[DigestRow]) -> None:
         """
         INSERT INTO digests (
             digest_id, arxiv_id, title, core_contribution, tags,
-            body_preview, source_path, year, timestamp_suffix
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+            source_path, year, timestamp_suffix
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
         """,
         [
             (
@@ -300,7 +310,6 @@ def insert_rows(conn: sqlite3.Connection, rows: list[DigestRow]) -> None:
                 row.title,
                 row.core_contribution,
                 row.tags,
-                row.body_preview,
                 row.source_path,
                 row.year,
                 row.timestamp_suffix,
@@ -390,7 +399,6 @@ def write_manifest(
     build_hash: str,
     rows: list[DigestRow],
     source_dirs: list[Path],
-    preview_words: int,
 ) -> None:
     arxiv_ids = {row.arxiv_id for row in rows if row.arxiv_id}
     manifest = {
@@ -400,10 +408,10 @@ def write_manifest(
         "digest_count": len(rows),
         "arxiv_count": len(arxiv_ids),
         "source_dirs": [str(p) for p in source_dirs],
-        "preview_words": preview_words,
         "fts_detail": "column",
         "fts_content_mode": "contentless",
         "fts_body_mode": "full_text",
+        "body_preview_stored": False,
     }
 
     manifest_json = json.dumps(manifest, indent=2, sort_keys=True) + "\n"
@@ -415,12 +423,6 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Build SQLite search DB from digest markdown")
     parser.add_argument("--source-dir", action="append", dest="source_dirs")
     parser.add_argument("--output-dir", default="search")
-    parser.add_argument(
-        "--preview-words",
-        type=int,
-        default=500,
-        help="Number of body words to index in body_preview (default: 500). Use 0 to index full body text.",
-    )
     parser.add_argument("--db-name", default="search.sqlite")
     parser.add_argument("--max-files", type=int)
     parser.add_argument("--fail-on-parse-error", action="store_true", default=True)
@@ -457,13 +459,10 @@ def main() -> None:
         raise SystemExit("No markdown files found in source directories")
 
     print(f"\nDiscovered markdown files: {len(files):,}")
-    if args.preview_words <= 0:
-        print("Body preview mode (digests.body_preview): full body (preview_words=0)")
-    else:
-        print(f"Body preview mode (digests.body_preview): first {args.preview_words} words")
     print("FTS mode: contentless full-text indexing with detail=column")
+    print("Storage mode: no body preview text stored in digests table")
 
-    build_hash = compute_build_hash(files, args.preview_words)
+    build_hash = compute_build_hash(files)
 
     db_stem = Path(args.db_name).stem or "search"
     db_file = f"{db_stem}-{build_hash}.sqlite"
@@ -475,7 +474,7 @@ def main() -> None:
 
     for idx, file_path in enumerate(files, start=1):
         try:
-            rows.append(parse_digest_file(file_path, args.preview_words))
+            rows.append(parse_digest_file(file_path))
         except Exception as exc:  # pragma: no cover (hard to predict malformed files)
             parse_errors += 1
             print(f"Parse error [{parse_errors}] {file_path}: {exc}")
@@ -510,7 +509,7 @@ def main() -> None:
         db_path.unlink()
     temp_db_path.rename(db_path)
 
-    write_manifest(output_dir, db_file, build_hash, rows, source_dirs, args.preview_words)
+    write_manifest(output_dir, db_file, build_hash, rows, source_dirs)
 
     elapsed = time.time() - started
     arxiv_count = len({row.arxiv_id for row in rows if row.arxiv_id})

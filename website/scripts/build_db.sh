@@ -22,15 +22,14 @@ CMD=(
   --source-dir "$SRC_2024"
   --source-dir "$SRC_2025"
   --output-dir "$OUTPUT_DIR"
-  --preview-words 500
 )
 
-# Optional test/dev override only. Canonical production path indexes first 500 body words.
+# Optional test/dev override only.
 if [[ -n "${MAX_FILES:-}" ]]; then
   CMD+=(--max-files "$MAX_FILES")
 fi
 
-echo "Building search DB (preview=500 words, FTS=full text detail=column)..."
+echo "Building search DB (FTS=full text contentless detail=column, no body preview storage)..."
 echo "Output: $OUTPUT_DIR"
 echo "Sources:"
 echo "  - $SRC_2023"
