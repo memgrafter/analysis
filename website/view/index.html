@@ -77,6 +77,10 @@
       }
       .search-jump form {
         display: grid;
+        gap: 10px;
+      }
+      .search-jump .search-row {
+        display: grid;
         grid-template-columns: 1fr auto;
         gap: 8px;
       }
@@ -97,6 +101,34 @@
         padding: 10px 14px;
         font-weight: 600;
         cursor: pointer;
+      }
+      .search-jump .filters {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 10px;
+      }
+      .search-jump .filters fieldset {
+        margin: 0;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 8px 10px 10px;
+      }
+      .search-jump .filters legend {
+        padding: 0 6px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .search-jump .filter-options {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .search-jump .filter-options label {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 13px;
+        color: var(--muted);
       }
       .frontmatter {
         margin-bottom: 14px;
@@ -247,8 +279,30 @@
       <section class="panel search-jump">
         <h2>arXiv ML Digest Search</h2>
         <form action="/search/" method="get">
-          <input type="search" name="q" placeholder="Try: transformers, retrieval, 2404.18923" autocomplete="off" />
-          <button type="submit">Search</button>
+          <div class="search-row">
+            <input type="search" name="q" placeholder="Try: transformers, retrieval, 2404.18923" autocomplete="off" />
+            <button type="submit">Search</button>
+          </div>
+
+          <div class="filters">
+            <fieldset>
+              <legend>Year</legend>
+              <div class="filter-options">
+                <label><input type="checkbox" name="y" value="2023" /> 2023</label>
+                <label><input type="checkbox" name="y" value="2024" /> 2024</label>
+                <label><input type="checkbox" name="y" value="2025" checked /> 2025</label>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Search scope</legend>
+              <div class="filter-options">
+                <label><input type="checkbox" name="f" value="title" checked /> Title</label>
+                <label><input type="checkbox" name="f" value="core" checked /> Core contribution</label>
+                <label><input type="checkbox" name="f" value="body" /> Full text (body)</label>
+              </div>
+            </fieldset>
+          </div>
         </form>
       </section>
     </main>

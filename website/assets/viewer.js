@@ -14,6 +14,7 @@
   const params = new URLSearchParams(window.location.search);
   const rawId = (params.get("id") || "").trim();
   const digestId = rawId.endsWith(".md") ? rawId.slice(0, -3) : rawId;
+  const fromParam = (params.get("from") || "").trim();
 
   const escapeHtml = (value) =>
     String(value)
@@ -92,12 +93,28 @@
       frontmatterCodeEl.innerHTML = highlightYaml(rawFrontmatter);
     }
 
-    filenameRowEl.textContent = `filename: ${filename}.md`;
+    const encoded = encodeURIComponent(filename);
+    filenameRowEl.innerHTML = `filename: <a href="/view/${encoded}.md">${escapeHtml(filename)}.md</a>`;
   };
 
+  const resolveBackTarget = () => {
+    if (!fromParam) return "/search/";
+
+    try {
+      const candidate = new URL(fromParam, window.location.origin);
+      if (candidate.origin !== window.location.origin) return "/search/";
+      if (!candidate.pathname.startsWith("/search")) return "/search/";
+      return `${candidate.pathname}${candidate.search}${candidate.hash}` || "/search/";
+    } catch {
+      return "/search/";
+    }
+  };
+
+  const backTarget = resolveBackTarget();
+  backLinkEl.setAttribute("href", backTarget);
   backLinkEl.addEventListener("click", (event) => {
     event.preventDefault();
-    window.history.back();
+    window.location.assign(backTarget);
   });
 
   if (!digestId) {

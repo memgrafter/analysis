@@ -67,6 +67,7 @@
     cursorStack: [],
     hasMore: false,
     rowCount: 0,
+    totalCount: 0,
   };
 
   class CursorError extends Error {
@@ -174,8 +175,8 @@
   function updatePagerLabels() {
     const start = state.rowCount > 0 ? (state.currentPage - 1) * state.pageSize + 1 : 0;
     const end = state.rowCount > 0 ? start + state.rowCount - 1 : 0;
-    const rangeText = state.rowCount > 0 ? ` · showing ${start}-${end}` : "";
-    const label = `Page ${state.currentPage}${rangeText}`;
+    const total = Number.isFinite(state.totalCount) ? state.totalCount : 0;
+    const label = state.rowCount > 0 ? `Showing ${start}-${end} of ${total}` : `Showing 0-0 of ${total}`;
 
     for (const control of controls) {
       control.label.textContent = label;
@@ -259,6 +260,7 @@
     state.mode = cached.mode || state.mode;
     state.hasMore = Boolean(cached.hasMore);
     state.rowCount = Number.isInteger(cached.rowCount) ? cached.rowCount : cached.rows.length;
+    state.totalCount = Number.isInteger(cached.totalCount) ? cached.totalCount : state.rowCount;
     state.nextCursorToken = cached.nextCursorToken || null;
 
     if (Number.isInteger(cached.currentPage) && cached.currentPage > 0) {
@@ -270,7 +272,7 @@
     }
 
     const filterSummary = `${yearsLabel(state.years)} · ${scopeLabel(state.scopes)}`;
-    statusEl.textContent = `Showing ${cached.rows.length} result(s) for "${q}" from cache (${state.sort}; ${filterSummary}).`;
+    statusEl.textContent = `Showing ${cached.rows.length} of ${state.totalCount} result(s) for "${q}" from cache (${state.sort}; ${filterSummary}).`;
 
     setPagerVisible(true);
     updateUrlState();
@@ -285,6 +287,8 @@
       return;
     }
 
+    const fromSearch = `${window.location.pathname}${window.location.search}`;
+
     resultsEl.innerHTML = rows
       .map((row) => {
         const digestId = row.digest_id || "";
@@ -294,11 +298,12 @@
         const arxivLink = arxivId
           ? `<a href="https://arxiv.org/abs/${encodeURIComponent(arxivId)}" target="_blank" rel="noopener noreferrer">${escapeHtml(arxivId)}</a>`
           : "(no arXiv ID)";
+        const viewHref = `/view/?id=${encodeURIComponent(digestId)}&from=${encodeURIComponent(fromSearch)}`;
 
         return `
           <article class="result">
-            <div class="title"><a href="/view/?id=${encodeURIComponent(digestId)}">${escapeHtml(title)}</a></div>
-            <div class="result-meta-links">${arxivLink} | <a href="/view/?id=${encodeURIComponent(digestId)}">view</a> · <a href="/view/${encodeURIComponent(digestId)}.md">raw</a></div>
+            <div class="title"><a href="${viewHref}">${escapeHtml(title)}</a></div>
+            <div class="result-meta-links">${arxivLink} | <a href="${viewHref}">view</a> · <a href="/view/${encodeURIComponent(digestId)}.md">raw</a></div>
             <div class="result-takeaway">${escapeHtml(takeaway || "(No key takeaway available)")}</div>
           </article>
         `;
@@ -704,6 +709,37 @@
     return { rows: pageRows, hasMore };
   }
 
+  async function queryTotalCount(mode, input, years, scopes) {
+    if (mode === "arxiv_exact") {
+      const yearPredicate = buildYearPredicateSql(years, "d");
+      const rows = await execRows(
+        `
+        SELECT COUNT(*) AS c
+        FROM digests d
+        WHERE d.arxiv_id = ?${yearPredicate.sql}
+        `,
+        [input.trim(), ...yearPredicate.params]
+      );
+      return Number(rows[0]?.c || 0);
+    }
+
+    const fts = buildScopedFtsQuery(input, scopes);
+    if (!fts) return 0;
+
+    const yearPredicate = buildYearPredicateSql(years, "d");
+    const rows = await execRows(
+      `
+      SELECT COUNT(*) AS c
+      FROM digests_fts
+      JOIN digests d ON d.id = digests_fts.rowid
+      WHERE digests_fts MATCH ?${yearPredicate.sql}
+      `,
+      [fts, ...yearPredicate.params]
+    );
+
+    return Number(rows[0]?.c || 0);
+  }
+
   function detectMode(input) {
     if (looksLikeArxivId(input)) return "arxiv_exact";
     if (supportsFts) return "fts";
@@ -715,13 +751,19 @@
     const cursor = validateCursor(cursorToken, mode, sort, input, years, scopes, pageSize);
 
     if (mode === "arxiv_exact") {
-      const result = await queryArxivPage(input, pageSize, cursor, sort, years);
-      return { mode, cursor, ...result };
+      const [result, totalCount] = await Promise.all([
+        queryArxivPage(input, pageSize, cursor, sort, years),
+        queryTotalCount(mode, input, years, scopes),
+      ]);
+      return { mode, cursor, totalCount, ...result };
     }
 
     try {
-      const result = await queryFtsPage(input, pageSize, cursor, sort, years, scopes);
-      return { mode, cursor, ...result };
+      const [result, totalCount] = await Promise.all([
+        queryFtsPage(input, pageSize, cursor, sort, years, scopes),
+        queryTotalCount(mode, input, years, scopes),
+      ]);
+      return { mode, cursor, totalCount, ...result };
     } catch (err) {
       if (isFtsError(err)) {
         supportsFts = false;
@@ -747,6 +789,7 @@
       state.cursorStack = [];
       state.hasMore = false;
       state.rowCount = 0;
+      state.totalCount = 0;
       setPagerVisible(false);
       updatePagerUi();
       renderEmpty("Enter a query to search digests.");
@@ -796,6 +839,7 @@
 
       state.hasMore = page.hasMore;
       state.rowCount = page.rows.length;
+      state.totalCount = Number.isInteger(page.totalCount) ? page.totalCount : page.rows.length;
 
       const nextPageNumber = state.currentPage + 1;
       state.nextCursorToken =
@@ -814,7 +858,7 @@
 
       const elapsedMs = (performance.now() - started).toFixed(1);
       const filterSummary = `${yearsLabel(state.years)} · ${scopeLabel(state.scopes)}`;
-      statusEl.textContent = `Showing ${page.rows.length} result(s) for \"${q}\" in ${elapsedMs} ms (${backend}/${state.mode}/${state.sort}; ${filterSummary}).`;
+      statusEl.textContent = `Showing ${page.rows.length} of ${state.totalCount} result(s) for \"${q}\" in ${elapsedMs} ms (${backend}/${state.mode}/${state.sort}; ${filterSummary}).`;
 
       setPagerVisible(true);
       updateUrlState();
@@ -826,6 +870,7 @@
         mode: state.mode,
         hasMore: state.hasMore,
         rowCount: state.rowCount,
+        totalCount: state.totalCount,
         nextCursorToken: state.nextCursorToken,
         currentPage: state.currentPage,
         currentCursorToken: state.currentCursorToken,
@@ -844,6 +889,7 @@
         state.hasMore = false;
         state.nextCursorToken = null;
         state.rowCount = 0;
+        state.totalCount = 0;
         updatePagerUi();
         statusEl.textContent = "Search failed.";
         renderError(String(err));
@@ -1033,7 +1079,8 @@
       from: "inline",
       config: {
         serverMode: "full",
-        requestChunkSize: 4096,
+        // Larger range chunks reduce request fan-out/RTT amplification on remote S3.
+        requestChunkSize: 262144,
         url: `/search/${dbFile}`,
       },
     };
@@ -1078,8 +1125,10 @@
       const initialPs = parsePageSize(qs.get("ps"));
       const initialSort = parseSort(qs.get("sort"));
       const initialCursor = (qs.get("cursor") || "").trim() || null;
-      const initialYears = parseYears(qs.get("y"));
-      const initialScopes = parseScopes(qs.get("f"));
+      const initialYearsValues = qs.getAll("y");
+      const initialScopesValues = qs.getAll("f");
+      const initialYears = parseYears(initialYearsValues.length > 0 ? initialYearsValues.join(",") : qs.get("y"));
+      const initialScopes = parseScopes(initialScopesValues.length > 0 ? initialScopesValues.join(",") : qs.get("f"));
 
       state.pageSize = initialPs;
       state.sort = initialSort;
