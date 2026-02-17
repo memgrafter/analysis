@@ -68,12 +68,13 @@
   }
 
   function normalizeFtsQuery(input) {
-    const tokens = input
+    const normalized = input
       .toLowerCase()
-      .split(/\s+/)
-      .map((token) => token.replace(/[^a-z0-9.]/g, ""))
-      .filter(Boolean);
+      // Treat common separators as token boundaries so queries like "test-time" become "test time".
+      .replace(/[-_/]+/g, " ")
+      .replace(/[^a-z0-9.\s]/g, " ");
 
+    const tokens = normalized.split(/\s+/).filter(Boolean);
     return tokens.map((token) => `${token}*`).join(" AND ");
   }
 
