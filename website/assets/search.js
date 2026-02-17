@@ -28,7 +28,7 @@
   const PAGE_SIZE_OPTIONS = new Set([10, 25, 50, 100]);
   const DEFAULT_PAGE_SIZE = 10;
   const SORT_OPTIONS = new Set(["newest", "relevance", "title_asc"]);
-  const DEFAULT_SORT = "newest";
+  const DEFAULT_SORT = "relevance";
 
   let db = null;
   let workerDb = null;
@@ -161,7 +161,7 @@
       .replace(/[^a-z0-9.\s]/g, " ");
 
     const tokens = normalized.split(/\s+/).filter(Boolean);
-    return tokens.map((token) => `${token}*`).join(" AND ");
+    return tokens.join(" AND ");
   }
 
   function looksLikeArxivId(input) {

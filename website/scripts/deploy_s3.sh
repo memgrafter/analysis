@@ -20,10 +20,12 @@ trap cleanup EXIT
 
 echo "Staging site assets into: $STAGE_DIR"
 
-cp "$ROOT_DIR/index.html" "$STAGE_DIR/index.html"
-cp -R "$ROOT_DIR/view" "$STAGE_DIR/view"
-cp -R "$ROOT_DIR/assets" "$STAGE_DIR/assets"
-cp -R "$ROOT_DIR/search" "$STAGE_DIR/search"
+# Preserve mtimes so aws s3 sync can skip unchanged files.
+mkdir -p "$STAGE_DIR/view" "$STAGE_DIR/assets" "$STAGE_DIR/search"
+cp -p "$ROOT_DIR/index.html" "$STAGE_DIR/index.html"
+cp -a "$ROOT_DIR/view/." "$STAGE_DIR/view/"
+cp -a "$ROOT_DIR/assets/." "$STAGE_DIR/assets/"
+cp -a "$ROOT_DIR/search/." "$STAGE_DIR/search/"
 
 if [[ ! -f "$STAGE_DIR/search/manifest.json" ]]; then
   echo "Error: missing search/manifest.json in staged assets." >&2
