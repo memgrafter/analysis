@@ -9,20 +9,29 @@
       const style = document.createElement("style");
       style.id = "shared-top-links-style";
       style.textContent = `
-        .shared-top-links-row {
-          display: flex;
-          justify-content: flex-end;
-          margin: 0 0 12px;
+        :root {
+          --shared-max-width: 980px;
+          --shared-gutter: 16px;
+          --shared-outer-max-width: 1012px;
+          --shared-top-reserve: 40px;
+        }
+
+        body {
+          padding-top: var(--shared-top-reserve);
         }
 
         .shared-top-links {
+          position: fixed;
+          top: 8px;
+          right: max(var(--shared-gutter), calc((100vw - var(--shared-outer-max-width)) / 2 + var(--shared-gutter)));
+          z-index: 1000;
           display: inline-flex;
           align-items: center;
           gap: 6px;
           padding: 4px 8px;
           border: 1px solid var(--border, #d0d6e8);
           border-radius: 999px;
-          background: var(--panel, rgba(255,255,255,0.92));
+          background: var(--panel, rgba(255, 255, 255, 0.92));
           box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
           font-size: 12px;
           line-height: 1;
@@ -55,12 +64,7 @@
       <a href="${REPO_URL}" target="_blank" rel="noopener noreferrer">github</a>
     `;
 
-    const row = document.createElement("div");
-    row.className = "shared-top-links-row";
-    row.appendChild(nav);
-
-    const host = document.querySelector("main") || document.body;
-    host.insertBefore(row, host.firstChild);
+    document.body.appendChild(nav);
   }
 
   if (document.readyState === "loading") {

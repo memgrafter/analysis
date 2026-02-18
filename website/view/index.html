@@ -6,8 +6,6 @@
     <link rel="icon" href="/mldigest.ico" type="image/x-icon" />
     <title>View Digest</title>
     <style>
-      @import url("https://fonts.googleapis.com/css2?family=Cabin:wght@400;600;700&display=swap");
-
       :root {
         color-scheme: light dark;
         --bg: #f5f7ff;
@@ -43,7 +41,7 @@
       }
       body {
         margin: 0;
-        font-family: "Cabin", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
         background: var(--bg);
         color: var(--text);
       }
@@ -52,22 +50,33 @@
       footer {
         max-width: 980px;
         margin: 0 auto;
-        padding: 16px 20px;
+        padding-left: 16px;
+        padding-right: 16px;
       }
-      header a {
-        color: var(--accent);
-        text-decoration: none;
+      header {
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+      main {
+        padding-top: 0;
+        padding-bottom: 24px;
+      }
+      footer {
+        padding-top: 0;
+        padding-bottom: 24px;
       }
       #status {
         color: var(--muted);
-        margin: 8px 0 0;
+        margin: 0;
       }
       .panel {
         background: var(--panel);
         border: 1px solid var(--border);
         border-radius: 12px;
-        padding: 18px;
+        padding: 16px;
       }
+      .panel > :first-child { margin-top: 0; }
+      .panel > :last-child { margin-bottom: 0; }
       .search-jump {
         margin-top: 14px;
       }
@@ -273,7 +282,6 @@
   </head>
   <body>
     <header>
-      <a id="back-link" href="/search/">← Back</a>
       <p id="status">Loading…</p>
     </header>
 

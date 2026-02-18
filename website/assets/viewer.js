@@ -1,20 +1,18 @@
 (() => {
   const contentEl = document.getElementById("content");
   const statusEl = document.getElementById("status");
-  const backLinkEl = document.getElementById("back-link");
   const titleEl = document.getElementById("digest-title");
   const frontmatterDetailsEl = document.getElementById("frontmatter-details");
   const frontmatterCodeEl = document.getElementById("frontmatter-code");
   const filenameRowEl = document.getElementById("filename-row");
 
-  if (!contentEl || !statusEl || !backLinkEl || !titleEl || !frontmatterDetailsEl || !frontmatterCodeEl || !filenameRowEl) {
+  if (!contentEl || !statusEl || !titleEl || !frontmatterDetailsEl || !frontmatterCodeEl || !filenameRowEl) {
     throw new Error("Viewer DOM is missing required elements.");
   }
 
   const params = new URLSearchParams(window.location.search);
   const rawId = (params.get("id") || "").trim();
   const digestId = rawId.endsWith(".md") ? rawId.slice(0, -3) : rawId;
-  const fromParam = (params.get("from") || "").trim();
 
   const escapeHtml = (value) =>
     String(value)
@@ -96,26 +94,6 @@
     const encoded = encodeURIComponent(filename);
     filenameRowEl.innerHTML = `filename: <a href="/view/${encoded}.md">${escapeHtml(filename)}.md</a>`;
   };
-
-  const resolveBackTarget = () => {
-    if (!fromParam) return "/search/";
-
-    try {
-      const candidate = new URL(fromParam, window.location.origin);
-      if (candidate.origin !== window.location.origin) return "/search/";
-      if (!candidate.pathname.startsWith("/search")) return "/search/";
-      return `${candidate.pathname}${candidate.search}${candidate.hash}` || "/search/";
-    } catch {
-      return "/search/";
-    }
-  };
-
-  const backTarget = resolveBackTarget();
-  backLinkEl.setAttribute("href", backTarget);
-  backLinkEl.addEventListener("click", (event) => {
-    event.preventDefault();
-    window.location.assign(backTarget);
-  });
 
   if (!digestId) {
     titleEl.textContent = "Viewer";
