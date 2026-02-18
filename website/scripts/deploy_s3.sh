@@ -4,7 +4,7 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 BUCKET_NAME="${1:-${BUCKET_NAME:-ml-llm-digests-9981ee3e6e}}"
 AWS_REGION="${2:-${AWS_REGION:-us-east-1}}"
-SYNC_VIEW_MARKDOWN="${SYNC_VIEW_MARKDOWN:-1}"
+SYNC_VIEW_MARKDOWN="${SYNC_VIEW_MARKDOWN:-0}"
 MD_SYNC_PARALLEL="${MD_SYNC_PARALLEL:-1}"
 DELETE_RECONCILE="${DELETE_RECONCILE:-0}"
 
@@ -28,7 +28,7 @@ trap cleanup EXIT
 echo "Staging site assets into: $STAGE_DIR"
 
 # Preserve mtimes so aws s3 sync can skip unchanged files.
-mkdir -p "$STAGE_DIR/view" "$STAGE_DIR/assets" "$STAGE_DIR/search"
+mkdir -p "$STAGE_DIR/view" "$STAGE_DIR/assets" "$STAGE_DIR/search" "$STAGE_DIR/cloud"
 cp -p "$ROOT_DIR/index.html" "$STAGE_DIR/index.html"
 if [[ -f "$ROOT_DIR/mldigest.ico" ]]; then
   cp -p "$ROOT_DIR/mldigest.ico" "$STAGE_DIR/mldigest.ico"
@@ -36,6 +36,9 @@ fi
 cp -a "$ROOT_DIR/view/." "$STAGE_DIR/view/"
 cp -a "$ROOT_DIR/assets/." "$STAGE_DIR/assets/"
 cp -a "$ROOT_DIR/search/." "$STAGE_DIR/search/"
+if [[ -d "$ROOT_DIR/cloud" ]]; then
+  cp -a "$ROOT_DIR/cloud/." "$STAGE_DIR/cloud/"
+fi
 
 if [[ ! -f "$STAGE_DIR/search/manifest.json" ]]; then
   echo "Error: missing search/manifest.json in staged assets." >&2

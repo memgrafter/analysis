@@ -5,6 +5,11 @@
   const searchAnimEl = document.getElementById("search-anim");
   const metaEl = document.getElementById("meta");
   const resultsEl = document.getElementById("results");
+  const pendingEl = document.getElementById("pending-indicator");
+  const topTermCloudEl = document.getElementById("top-term-cloud");
+  const topTermCloudListEl = document.getElementById("top-term-cloud-list");
+  const topTermCloudStatusEl = document.getElementById("top-term-cloud-status");
+  const topTermCloudToggleEl = document.getElementById("top-term-cloud-toggle");
 
   const pagerTopEl = document.getElementById("pager-top");
   const pagerBottomEl = document.getElementById("pager-bottom");
@@ -45,6 +50,8 @@
   const DEFAULT_SCOPES_SET = new Set(DEFAULT_SCOPES);
 
   const CLOUD_POSTING_CHUNK_SIZE = 512;
+  const DEFAULT_TOP_CLOUD_YEAR = "2025";
+  const DEFAULT_TOP_CLOUD_LIMIT = 50;
 
   let db = null;
   let workerDb = null;
@@ -73,6 +80,9 @@
     rowCount: 0,
     totalCount: 0,
   };
+
+  let appliedYears = new Set(DEFAULT_YEARS);
+  let appliedScopes = new Set(DEFAULT_SCOPES);
 
   class CursorError extends Error {
     constructor(message) {
@@ -157,13 +167,27 @@
     return parsed.size > 0 ? parsed : new Set(DEFAULT_YEARS);
   }
 
+  function normalizeProgressiveScopes(scopes) {
+    if (scopes.has("body")) {
+      return new Set(["title", "core", "body"]);
+    }
+    if (scopes.has("core")) {
+      return new Set(["title", "core"]);
+    }
+    if (scopes.has("title")) {
+      return new Set(["title"]);
+    }
+    return new Set(["title"]);
+  }
+
   function parseScopes(value) {
     const raw = String(value || "")
       .split(",")
       .map((v) => v.trim())
       .filter(Boolean);
     const parsed = normalizeSet(raw, SCOPE_OPTIONS_SET);
-    return parsed.size > 0 ? parsed : new Set(DEFAULT_SCOPES);
+    if (parsed.size === 0) return new Set(DEFAULT_SCOPES);
+    return normalizeProgressiveScopes(parsed);
   }
 
   function sortedYears(set) {
@@ -193,6 +217,116 @@
     }
     for (const input of scopeInputs) {
       input.checked = state.scopes.has(input.value);
+    }
+  }
+
+  function setFilterInputPending(input, pending) {
+    const label = input.closest("label");
+    if (!label) return;
+    label.classList.toggle("pending-filter", Boolean(pending));
+  }
+
+  function updatePendingUi() {
+    let hasPending = false;
+
+    for (const input of yearInputs) {
+      const y = Number.parseInt(input.value, 10);
+      const pending = state.years.has(y) !== appliedYears.has(y);
+      setFilterInputPending(input, pending);
+      if (pending) hasPending = true;
+    }
+
+    for (const input of scopeInputs) {
+      const scope = input.value;
+      const pending = state.scopes.has(scope) !== appliedScopes.has(scope);
+      setFilterInputPending(input, pending);
+      if (pending) hasPending = true;
+    }
+
+    if (pendingEl) {
+      pendingEl.hidden = !hasPending;
+    }
+
+    return hasPending;
+  }
+
+  function commitSubmittedFilters() {
+    appliedYears = new Set(state.years);
+    appliedScopes = new Set(state.scopes);
+    updatePendingUi();
+  }
+
+  function setTopTermCloudCollapsed(collapsed) {
+    if (!topTermCloudEl) return;
+    topTermCloudEl.classList.toggle("collapsed", Boolean(collapsed));
+    if (topTermCloudToggleEl) {
+      topTermCloudToggleEl.textContent = collapsed ? "Expand" : "Collapse";
+      topTermCloudToggleEl.setAttribute("aria-expanded", String(!collapsed));
+    }
+  }
+
+  function autoCollapseTopTermCloud() {
+    if (!topTermCloudEl || topTermCloudEl.hidden) return;
+    setTopTermCloudCollapsed(true);
+  }
+
+  function renderTopTermCloudTerms(terms) {
+    if (!topTermCloudListEl) return;
+    if (!Array.isArray(terms) || terms.length === 0) {
+      topTermCloudListEl.innerHTML = `<p class="muted">No top terms available.</p>`;
+      return;
+    }
+
+    const scores = terms.map((item) => Number(item?.score || 0));
+    const min = Math.min(...scores);
+    const max = Math.max(...scores);
+    const spread = max - min || 1;
+
+    topTermCloudListEl.innerHTML = terms
+      .map((item) => {
+        const term = String(item?.term || "").trim();
+        const score = Number(item?.score || 0);
+        const normalized = (score - min) / spread;
+        const fontSizePx = 13 + normalized * 13;
+        return `<button type="button" class="term-cloud-item" data-term="${escapeHtml(term)}" style="font-size:${fontSizePx.toFixed(1)}px;">${escapeHtml(term)}<span class="term-cloud-score">${score}</span></button>`;
+      })
+      .join("\n");
+  }
+
+  async function loadTopTermCloud() {
+    if (!topTermCloudEl) return;
+
+    topTermCloudEl.hidden = false;
+    if (topTermCloudStatusEl) {
+      topTermCloudStatusEl.hidden = false;
+      topTermCloudStatusEl.textContent = "Loading 2025 top terms…";
+    }
+
+    try {
+      const res = await fetch("/search/cloud-terms.json", { cache: "no-store" });
+      if (!res.ok) {
+        throw new Error(`Could not load /search/cloud-terms.json (${res.status})`);
+      }
+
+      const payload = await res.json();
+      const yearTerms = payload?.years?.[DEFAULT_TOP_CLOUD_YEAR]?.terms;
+      const terms = Array.isArray(yearTerms) ? yearTerms.slice(0, DEFAULT_TOP_CLOUD_LIMIT) : [];
+
+      renderTopTermCloudTerms(terms);
+      setTopTermCloudCollapsed(false);
+
+      if (topTermCloudStatusEl) {
+        topTermCloudStatusEl.textContent = "";
+        topTermCloudStatusEl.hidden = true;
+      }
+    } catch (err) {
+      if (topTermCloudStatusEl) {
+        topTermCloudStatusEl.hidden = false;
+        topTermCloudStatusEl.textContent = `Top term cloud unavailable: ${String(err)}`;
+      }
+      if (topTermCloudListEl) {
+        topTermCloudListEl.innerHTML = "";
+      }
     }
   }
 
@@ -329,6 +463,7 @@
     updateUrlState();
     updatePagerUi();
     renderResults(cached.rows, q);
+    autoCollapseTopTermCloud();
     lastRenderedSearchKey = cacheKey;
   }
 
@@ -1098,6 +1233,7 @@
       updateUrlState();
       updatePagerUi();
       renderResults(page.rows, q);
+      autoCollapseTopTermCloud();
 
       writeCachedSearch(cacheKey, {
         rows: page.rows,
@@ -1202,10 +1338,31 @@
     }
   }
 
+  if (topTermCloudToggleEl) {
+    topTermCloudToggleEl.addEventListener("click", () => {
+      const collapsed = topTermCloudEl?.classList.contains("collapsed");
+      setTopTermCloudCollapsed(!collapsed);
+    });
+  }
+
+  if (topTermCloudListEl) {
+    topTermCloudListEl.addEventListener("click", (event) => {
+      const button = event.target.closest(".term-cloud-item");
+      if (!button) return;
+
+      const term = String(button.dataset.term || "").trim();
+      if (!term) return;
+
+      inputEl.value = term;
+      formEl.requestSubmit();
+    });
+  }
+
   formEl.addEventListener("submit", (event) => {
     event.preventDefault();
 
     resetPaging();
+    commitSubmittedFilters();
 
     const submittedQuery = inputEl.value.trim();
     const submittedKey = buildSearchCacheKey(submittedQuery);
@@ -1228,6 +1385,7 @@
 
       if (nextYears.size === 0) {
         syncFilterControls();
+        updatePendingUi();
         statusEl.textContent = "Select at least one year.";
         return;
       }
@@ -1235,8 +1393,9 @@
       state.years = nextYears;
       resetPaging();
       updateUrlState();
+      const hasPending = updatePendingUi();
 
-      if (state.query) {
+      if (state.query && hasPending) {
         statusEl.textContent = "Year filters updated. Press Search to apply.";
       }
     });
@@ -1244,24 +1403,27 @@
 
   for (const input of scopeInputs) {
     input.addEventListener("change", () => {
-      const nextScopes = new Set(
+      const nextScopesRaw = new Set(
         scopeInputs
           .filter((el) => el.checked)
           .map((el) => el.value)
           .filter((scope) => SCOPE_OPTIONS_SET.has(scope))
       );
 
-      if (nextScopes.size === 0) {
+      if (nextScopesRaw.size === 0) {
         syncFilterControls();
-        statusEl.textContent = "Select at least one search Scope.";
+        updatePendingUi();
+        statusEl.textContent = "Select at least one Search Scope.";
         return;
       }
 
-      state.scopes = nextScopes;
+      state.scopes = normalizeProgressiveScopes(nextScopesRaw);
+      syncFilterControls();
       resetPaging();
       updateUrlState();
+      const hasPending = updatePendingUi();
 
-      if (state.query) {
+      if (state.query && hasPending) {
         statusEl.textContent = "Search Scope filters updated. Press Search to apply.";
       }
     });
@@ -1367,6 +1529,7 @@
       inputEl.value = initialQ;
       state.query = initialQ;
       syncFilterControls();
+      commitSubmittedFilters();
 
       if (initialCursor) {
         const payload = decodeCursor(initialCursor);
@@ -1416,6 +1579,7 @@
         `<span class=\"pill\">cloud-cache: ${cacheLabel}</span> ` +
         `<span class=\"pill\">fetch: ${escapeHtml(fetchLabel)}</span>`;
 
+      await loadTopTermCloud();
       statusEl.textContent = "Search index ready.";
 
       if (initialQ) {

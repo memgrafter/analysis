@@ -15,6 +15,7 @@
         --border: #dbe2f4;
         --accent: #2f63d8;
         --meta-link: #244fb5;
+        --pending: #b56576;
       }
       @media (prefers-color-scheme: dark) {
         :root {
@@ -25,6 +26,7 @@
           --border: #27335f;
           --accent: #6ea8ff;
           --meta-link: #5b94f7;
+          --pending: #d89aa7;
         }
       }
 
@@ -63,11 +65,111 @@
         gap: 8px;
         margin: 12px 0;
       }
+      .search-actions {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 4px;
+      }
+      .pending-indicator {
+        margin: 0;
+        min-height: 1em;
+        font-size: 12px;
+        line-height: 1;
+        color: var(--pending);
+        text-align: center;
+      }
       .filters {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
         gap: 10px;
         margin: 0 0 12px;
+      }
+      .top-term-cloud {
+        margin-top: 12px;
+        padding-top: 10px;
+        border-top: 1px dashed var(--border);
+      }
+      .top-term-cloud[hidden] {
+        display: none;
+      }
+      .top-term-cloud-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 6px;
+      }
+      .top-term-cloud-title {
+        margin: 0;
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .top-term-cloud-actions {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .top-term-cloud-link {
+        font-size: 12px;
+        color: var(--accent);
+        text-decoration: none;
+      }
+      .top-term-cloud-toggle {
+        border: 1px solid var(--border);
+        background: transparent;
+        color: var(--muted);
+        border-radius: 8px;
+        padding: 4px 8px;
+        font-size: 12px;
+        font-weight: 600;
+      }
+      .top-term-cloud-status {
+        margin: 0 0 8px;
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .term-cloud-viewport {
+        position: relative;
+        overflow: hidden;
+        max-height: 500px;
+        transition: max-height 180ms ease;
+      }
+      .top-term-cloud.collapsed .term-cloud-viewport {
+        max-height: 78px;
+      }
+      .term-cloud-fade {
+        display: none;
+        position: absolute;
+        inset: auto 0 0 0;
+        height: 42px;
+        pointer-events: none;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0), var(--panel));
+      }
+      .top-term-cloud.collapsed .term-cloud-fade {
+        display: block;
+      }
+      .term-cloud-list {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: 6px 10px;
+      }
+      .term-cloud-item {
+        border: 1px solid transparent;
+        background: transparent;
+        color: var(--accent);
+        border-radius: 8px;
+        padding: 1px 4px;
+        cursor: pointer;
+      }
+      .term-cloud-item:hover {
+        border-color: var(--border);
+      }
+      .term-cloud-score {
+        margin-left: 4px;
+        font-size: 11px;
+        color: var(--muted);
       }
       .filters fieldset {
         margin: 0;
@@ -91,6 +193,13 @@
         gap: 6px;
         font-size: 13px;
         color: var(--muted);
+        border: 1px solid transparent;
+        border-radius: 8px;
+        padding: 2px 6px;
+      }
+      .filter-options label.pending-filter {
+        border-color: var(--pending);
+        color: var(--pending);
       }
       input[type="search"] {
         width: 100%;
@@ -190,11 +299,13 @@
     <main>
       <section class="panel">
         <h1>arXiv ML Digest Search</h1>
-        <p class="muted"><a href="/cloud/">Open term cloud</a> · defaults: all years + full text</p>
 
         <form id="search-form">
           <input id="q" type="search" name="q" placeholder="Try: Latent Reasoning, or by arXiv ID, e.g. 2404.18923" autocomplete="off" />
-          <button type="submit">Search</button>
+          <div class="search-actions">
+            <button type="submit">Search</button>
+            <p id="pending-indicator" class="pending-indicator" hidden>pending</p>
+          </div>
         </form>
 
         <div class="filters">
@@ -220,6 +331,21 @@
         <p id="status" class="muted">Loading search index…</p>
         <p id="search-anim" class="search-anim muted" hidden></p>
         <p id="meta" class="muted"></p>
+
+        <section id="top-term-cloud" class="top-term-cloud" hidden>
+          <div class="top-term-cloud-header">
+            <p class="top-term-cloud-title">2025 top 50 term cloud</p>
+            <div class="top-term-cloud-actions">
+              <a class="top-term-cloud-link" href="/cloud/">open term cloud selector</a>
+              <button id="top-term-cloud-toggle" class="top-term-cloud-toggle" type="button">Collapse</button>
+            </div>
+          </div>
+          <p id="top-term-cloud-status" class="top-term-cloud-status">Loading 2025 top terms…</p>
+          <div class="term-cloud-viewport">
+            <div id="top-term-cloud-list" class="term-cloud-list"></div>
+            <div class="term-cloud-fade"></div>
+          </div>
+        </section>
       </section>
 
       <section class="panel">
