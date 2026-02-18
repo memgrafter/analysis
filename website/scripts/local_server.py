@@ -13,6 +13,7 @@ DEFAULT_SOURCE_DIRS = [
     PROJECT_ROOT.parent / "ml_research_analysis_2024",
     PROJECT_ROOT.parent / "ml_research_analysis_2025",
 ]
+DEFAULT_AGENTS_FILE = PROJECT_ROOT.parent / "AGENTS.md"
 RANGE_RE = re.compile(r"bytes=(\d*)-(\d*)$")
 
 
@@ -39,8 +40,9 @@ def build_digest_index(source_dirs: list[Path]) -> tuple[dict[str, Path], list[s
 
 
 class ViewHandler(SimpleHTTPRequestHandler):
-    def __init__(self, *args, digest_map: dict[str, Path], **kwargs):
+    def __init__(self, *args, digest_map: dict[str, Path], agents_file: Path | None, **kwargs):
         self.digest_map = digest_map
+        self.agents_file = agents_file.resolve() if agents_file else None
         super().__init__(*args, **kwargs)
 
     def do_GET(self) -> None:
@@ -65,6 +67,10 @@ class ViewHandler(SimpleHTTPRequestHandler):
             self._serve_raw_markdown(digest_id)
             return
 
+        if path == "/AGENTS.md":
+            self._serve_agents_markdown(path)
+            return
+
         range_header = self.headers.get("Range")
         if range_header:
             translated = Path(self.translate_path(path))
@@ -86,6 +92,26 @@ class ViewHandler(SimpleHTTPRequestHandler):
         self.send_header("Content-Length", str(len(content)))
         self.end_headers()
         self.wfile.write(content)
+
+    def _serve_agents_markdown(self, request_path: str) -> None:
+        staged_path = Path(self.translate_path(request_path))
+        candidates: list[Path] = []
+        if staged_path.is_file():
+            candidates.append(staged_path)
+        if self.agents_file:
+            candidates.append(self.agents_file)
+
+        for candidate in candidates:
+            if candidate.is_file():
+                content = candidate.read_bytes()
+                self.send_response(200)
+                self.send_header("Content-Type", "text/markdown; charset=utf-8")
+                self.send_header("Content-Length", str(len(content)))
+                self.end_headers()
+                self.wfile.write(content)
+                return
+
+        self.send_error(404, "AGENTS.md not found")
 
     def _serve_static_range_file(self, file_path: Path, range_header: str) -> None:
         match = RANGE_RE.fullmatch(range_header.strip())
@@ -146,9 +172,11 @@ def main() -> None:
     parser.add_argument("--port", type=int, default=8000)
     parser.add_argument("--root", type=Path, default=PROJECT_ROOT)
     parser.add_argument("--source-dir", action="append", dest="source_dirs")
+    parser.add_argument("--agents-file", type=Path, default=DEFAULT_AGENTS_FILE)
     args = parser.parse_args()
 
     source_dirs = [Path(p).resolve() for p in (args.source_dirs or DEFAULT_SOURCE_DIRS)]
+    agents_file = args.agents_file.resolve() if args.agents_file else None
     digest_map, missing_dirs, collisions = build_digest_index(source_dirs)
 
     print("Source directories:")
@@ -169,10 +197,13 @@ def main() -> None:
         raise SystemExit(1)
 
     print(f"\nIndexed digests: {len(digest_map):,}")
+    if agents_file:
+        print(f"AGENTS source fallback: {agents_file}")
 
     handler = lambda *h_args, **h_kwargs: ViewHandler(  # noqa: E731
         *h_args,
         digest_map=digest_map,
+        agents_file=agents_file,
         directory=str(args.root),
         **h_kwargs,
     )
@@ -183,6 +214,8 @@ def main() -> None:
     print("  /view/?id=<digest-id>")
     print("Raw:")
     print("  /view/<digest-id>.md")
+    print("Project:")
+    print("  /AGENTS.md")
 
     try:
         server.serve_forever()

@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="/mldigest.ico" type="image/x-icon" />
-    <title>About</title>
+    <title>AGENTS.md</title>
     <style>
       :root {
         color-scheme: light dark;
@@ -14,6 +14,7 @@
         --muted: #5d6f9a;
         --border: #dbe2f4;
         --accent: #2f63d8;
+        --code-bg: rgba(127, 127, 127, 0.12);
       }
       @media (prefers-color-scheme: dark) {
         :root {
@@ -23,6 +24,7 @@
           --muted: #a8b4da;
           --border: #27335f;
           --accent: #6ea8ff;
+          --code-bg: rgba(180, 195, 230, 0.12);
         }
       }
 
@@ -34,8 +36,8 @@
         color: var(--text);
       }
       main {
-        max-width: 760px;
-        margin: 48px auto;
+        max-width: 980px;
+        margin: 32px auto;
         padding: 0 16px 24px;
       }
       .panel {
@@ -46,20 +48,120 @@
       }
       .panel > :first-child { margin-top: 0; }
       .panel > :last-child { margin-bottom: 0; }
-      h1 { margin: 0 0 8px; }
-      p { color: var(--muted); }
+      .muted { color: var(--muted); }
       a { color: var(--accent); text-decoration: none; }
+
+      .markdown-body {
+        font-size: 16px;
+        line-height: 1.72;
+        overflow-wrap: anywhere;
+      }
+      .markdown-body h1,
+      .markdown-body h2,
+      .markdown-body h3,
+      .markdown-body h4 {
+        line-height: 1.3;
+        margin: 1.4em 0 0.6em;
+      }
+      .markdown-body h1 { font-size: 1.75rem; }
+      .markdown-body h2 { font-size: 1.4rem; }
+      .markdown-body h3 { font-size: 1.2rem; }
+      .markdown-body p,
+      .markdown-body ul,
+      .markdown-body ol,
+      .markdown-body blockquote,
+      .markdown-body table,
+      .markdown-body pre {
+        margin: 0.8em 0;
+      }
+      .markdown-body > :first-child {
+        margin-top: 0 !important;
+      }
+      .markdown-body > :last-child {
+        margin-bottom: 0;
+      }
+      .markdown-body a { color: var(--accent); }
+      .markdown-body code {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        background: var(--code-bg);
+        padding: 0.1em 0.32em;
+        border-radius: 6px;
+      }
+      .markdown-body pre {
+        background: var(--code-bg);
+        border-radius: 8px;
+        padding: 12px;
+        overflow-x: auto;
+      }
+      .markdown-body pre code {
+        background: transparent;
+        padding: 0;
+      }
+      .markdown-body blockquote {
+        border-left: 4px solid var(--border);
+        padding-left: 12px;
+        color: var(--muted);
+      }
+      .markdown-body table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      .markdown-body th,
+      .markdown-body td {
+        border: 1px solid var(--border);
+        padding: 6px 8px;
+        text-align: left;
+      }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   </head>
   <body>
     <main>
       <section class="panel">
-        <h1>About</h1>
-        <p>Minimal placeholder page.</p>
-        <p><a href="/search/">Open search</a></p>
+        <p id="status" class="muted">Loading /AGENTS.md …</p>
+        <div id="content" class="markdown-body"></div>
       </section>
     </main>
 
     <script src="/assets/shared-header.js"></script>
+    <script>
+      (() => {
+        const contentEl = document.getElementById("content");
+        const statusEl = document.getElementById("status");
+        if (!contentEl || !statusEl) return;
+
+        const escapeHtml = (value) =>
+          String(value)
+            .replaceAll("&", "&amp;")
+            .replaceAll("<", "&lt;")
+            .replaceAll(">", "&gt;")
+            .replaceAll('"', "&quot;")
+            .replaceAll("'", "&#39;");
+
+        fetch("/AGENTS.md", { cache: "no-store" })
+          .then((res) => {
+            if (!res.ok) {
+              throw new Error(`Could not load /AGENTS.md (${res.status})`);
+            }
+            return res.text();
+          })
+          .then((markdown) => {
+            statusEl.textContent = "";
+            statusEl.hidden = true;
+
+            if (window.marked && typeof window.marked.parse === "function") {
+              window.marked.setOptions({ gfm: true, breaks: false });
+              contentEl.innerHTML = window.marked.parse(markdown);
+            } else {
+              contentEl.innerHTML = `<pre>${escapeHtml(markdown)}</pre>`;
+            }
+          })
+          .catch((err) => {
+            statusEl.textContent = String(err);
+            statusEl.hidden = false;
+            contentEl.innerHTML = "";
+          });
+      })();
+    </script>
   </body>
 </html>

@@ -21,6 +21,8 @@ echo "Search routes (after build):"
 echo "  /search/"
 echo "  /search/?q=<query>"
 echo "  /search/manifest.json"
+echo "Project route:"
+echo "  /AGENTS.md"
 
 python3 scripts/local_server.py \
   --host 127.0.0.1 \

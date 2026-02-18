@@ -12,7 +12,7 @@
         .shared-top-links-row {
           display: flex;
           justify-content: flex-end;
-          margin: 6px 0 10px;
+          margin: 0 0 12px;
         }
 
         .shared-top-links {
@@ -46,7 +46,11 @@
     nav.className = "shared-top-links";
     nav.setAttribute("aria-label", "Site links");
     nav.innerHTML = `
-      <a href="/about/">about</a>
+      <a href="/search/">search</a>
+      <span class="sep">|</span>
+      <a href="/cloud/">cloud</a>
+      <span class="sep">|</span>
+      <a href="/about/">AGENTS.md</a>
       <span class="sep">|</span>
       <a href="${REPO_URL}" target="_blank" rel="noopener noreferrer">github</a>
     `;

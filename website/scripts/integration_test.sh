@@ -145,6 +145,7 @@ expect_status "http://127.0.0.1:$PORT/view/$SAMPLE_ID.md" 200
 expect_status "http://127.0.0.1:$PORT/search/" 200
 expect_status "http://127.0.0.1:$PORT/cloud/" 200
 expect_status "http://127.0.0.1:$PORT/about/" 200
+expect_status "http://127.0.0.1:$PORT/AGENTS.md" 200
 expect_status "http://127.0.0.1:$PORT/search/?q=transformers" 200
 expect_status "http://127.0.0.1:$PORT/search/manifest.json" 200
 expect_status "http://127.0.0.1:$PORT/search/cloud-terms.json" 200

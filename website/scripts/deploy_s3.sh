@@ -11,6 +11,7 @@ DELETE_RECONCILE="${DELETE_RECONCILE:-0}"
 SRC_2023="${DIGESTS_2023_DIR:-$ROOT_DIR/../ml_research_analysis_2023}"
 SRC_2024="${DIGESTS_2024_DIR:-$ROOT_DIR/../ml_research_analysis_2024}"
 SRC_2025="${DIGESTS_2025_DIR:-$ROOT_DIR/../ml_research_analysis_2025}"
+PROJECT_AGENTS_PATH="${PROJECT_AGENTS_PATH:-$ROOT_DIR/../AGENTS.md}"
 
 for required in aws mktemp; do
   if ! command -v "$required" >/dev/null 2>&1; then
@@ -32,6 +33,11 @@ mkdir -p "$STAGE_DIR/view" "$STAGE_DIR/assets" "$STAGE_DIR/search" "$STAGE_DIR/c
 cp -p "$ROOT_DIR/index.html" "$STAGE_DIR/index.html"
 if [[ -f "$ROOT_DIR/mldigest.ico" ]]; then
   cp -p "$ROOT_DIR/mldigest.ico" "$STAGE_DIR/mldigest.ico"
+fi
+if [[ -f "$PROJECT_AGENTS_PATH" ]]; then
+  cp -p "$PROJECT_AGENTS_PATH" "$STAGE_DIR/AGENTS.md"
+else
+  echo "Warning: project AGENTS.md not found at $PROJECT_AGENTS_PATH" >&2
 fi
 cp -a "$ROOT_DIR/view/." "$STAGE_DIR/view/"
 cp -a "$ROOT_DIR/assets/." "$STAGE_DIR/assets/"
@@ -68,6 +74,7 @@ aws s3 cp "$STAGE_DIR/" "s3://$BUCKET_NAME/" \
   --recursive \
   --exclude "*" \
   --include "*.html" \
+  --include "AGENTS.md" \
   --include "search/manifest.json" \
   --include "search/search-manifest.json" \
   --cache-control "no-store, max-age=0, must-revalidate"
