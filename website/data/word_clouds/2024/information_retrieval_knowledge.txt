@@ -1,0 +1,87 @@
+# Word Cloud: Information Retrieval Knowledge (2024 shotgun split)
+# source: 2024 shotgun candidates + existing theme seeds
+
+embedding
+RAG
+low-rank
+generation rag
+retrieval-augmented generation rag
+embedding space
+embedding model
+word embedding
+text embedding
+graph embedding
+augmented generation rag
+node embedding
+embedding-based
+these embedding
+embedding vector
+semantic alignment
+embedding which
+knowledge graph embedding
+sentence embedding
+vector quantization
+search-based
+token embedding
+clip embedding
+embedding technique
+position embedding
+semantic embedding
+llm embedding
+embedding dimension
+knowledge graph reasoning
+latent embedding
+embedding llm
+embedding then
+embedding language
+semantic reasoning
+rag pipeline
+text embedding model
+speaker embedding
+feature embedding
+llm knowledge graph
+embedding these
+embedding layer
+embedding graph
+embedding each
+embedding language model
+rag model
+language embedding
+pre-trained embedding
+embedding large
+embedding capture
+embedding represent
+embedding while
+embedding representation
+low-dimensional embedding
+semantic token
+positional embedding
+user embedding
+embedding algorithm
+embedding input
+context embedding
+embedding size
+embedding large language
+embedding more
+rag scenario
+embedding knowledge
+rag mitigate
+different embedding
+embedding propose
+embedding extracted
+embedding dynamic
+Retrieval-Augmented Generation
+Dense Retrieval
+Sparse Retrieval
+Knowledge Graph
+Knowledge Base
+Semantic Search
+Vector Database
+Embedding Similarity
+Reranking
+Query Expansion
+Document Chunking
+Hybrid Search
+BM25
+Contriever
+ColBERT

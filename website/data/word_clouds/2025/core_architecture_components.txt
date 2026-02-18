@@ -1,0 +1,19 @@
+# Word Cloud: Core Architecture & Components
+Transformer
+Self-Attention
+Multi-Head Attention
+Encoder-Decoder
+Feed-Forward Network
+LayerNorm
+Residual Connections
+Positional Encoding
+Embedding Layer
+Softmax
+Token Prediction
+Autoregressive
+Masked Language Modeling
+Causal Attention
+Bidirectional
+Flash Attention
+Sparse Attention
+Block Sparse Attention

@@ -1,0 +1,40 @@
+# Word Cloud: Reasoning Cognition (2024 shotgun split)
+# source: 2024 shotgun candidates + existing theme seeds
+
+reason
+reason about
+self-consistency
+self-reflection
+reason behind
+reasoning planning
+cot reasoning
+ability reason
+understand reason
+llm reason
+planning reasoning
+llm planning
+key reason
+chain-of-thought cot reasoning
+COT
+potential reason
+main reason
+planning agent
+underlying reason
+two reason
+reason lack
+thought cot reasoning
+Chain-of-Thought
+Tree of Thoughts
+Reasoning Traces
+Multi-Step Reasoning
+Mathematical Reasoning
+Logical Reasoning
+Commonsense Reasoning
+Causal Reasoning
+Analogical Reasoning
+Metacognition
+Reflection
+Self-Critique
+Deliberation
+Planning
+Decomposition

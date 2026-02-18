@@ -1,0 +1,251 @@
+# Word Cloud: Evaluation Benchmarking (2024 shotgun split)
+# source: 2024 shotgun candidates + existing theme seeds
+
+benchmark
+benchmark dataset
+benchmark demonstrate
+existing benchmark
+evaluation benchmark
+benchmark designed
+gsm8k
+benchmark evaluating
+standard benchmark
+benchmark dataset demonstrate
+comprehensive benchmark
+evaluation llm
+three benchmark
+multiple benchmark
+dataset benchmark
+variou benchmark
+benchmark including
+experiment benchmark
+MMLU
+llm benchmark
+benchmark result
+benchmark evaluate
+benchmark code
+several benchmark
+llm evaluation
+performance benchmark
+benchmark such
+these benchmark
+two benchmark
+three benchmark dataset
+first benchmark
+benchmark evaluation
+benchmark designed evaluate
+introduce benchmark
+benchmark performance
+learning benchmark
+four benchmark
+experiment benchmark dataset
+challenging benchmark
+benchmark specifically
+propose benchmark
+benchmark which
+benchmark however
+current benchmark
+across benchmark
+reasoning benchmark
+real-world benchmark
+public benchmark
+benchmark like
+extensive experiment benchmark
+benchmark while
+however existing benchmark
+self-evaluation
+benchmark large
+popular benchmark
+benchmark model
+classification benchmark
+multiple benchmark dataset
+benchmark across
+benchmark future
+benchmark problem
+used benchmark
+answering benchmark
+question answering benchmark
+llm leaderboard
+state-of-the-art benchmark
+synthetic benchmark
+different benchmark
+diverse benchmark
+serve benchmark
+generation benchmark
+six benchmark
+benchmark specifically designed
+across multiple benchmark
+benchmark reveal
+across variou benchmark
+benchmark demonstrating
+benchmark assessing
+benchmark designed assess
+benchmark provide
+benchmark consisting
+benchmark suite
+set benchmark
+understanding benchmark
+evaluation benchmark dataset
+result benchmark
+establishe benchmark
+benchmark additionally
+benchmark assess
+benchmark large language
+widely used benchmark
+gsm8k math
+d4rl benchmark
+glue benchmark
+graph benchmark
+benchmark multimodal
+large-scale benchmark
+open llm leaderboard
+benchmark compared
+benchmark several
+benchmark comprising
+experiment three benchmark
+benchmark these
+setting benchmark
+construct benchmark
+benchmark data
+benchmark demonstrate effectiveness
+benchmark e.g
+benchmark experiment
+benchmark furthermore
+available benchmark
+publicly available benchmark
+question-answering benchmark
+compared benchmark
+experiment multiple benchmark
+multimodal benchmark
+benchmark primarily
+five benchmark
+llm-based metric
+qa benchmark
+forecasting benchmark
+standardized benchmark
+seven benchmark
+performance benchmark dataset
+safety evaluation
+create benchmark
+experimental result benchmark
+benchmark validate
+benchmark better
+benchmark named
+benchmark llm
+benchmark existing
+detection benchmark
+benchmark introduce
+performance standard benchmark
+outperform benchmark
+range benchmark
+llm-based evaluation
+benchmark experimental
+benchmark experimental result
+benchmark encompasse
+benchmark proposed
+four benchmark dataset
+benchmark available
+establish benchmark
+release benchmark
+benchmark called
+benchmark variou
+benchmark publicly
+benchmark publicly available
+benchmark fail
+safety metric
+static benchmark
+open-source benchmark
+unified benchmark
+benchmark diverse
+benchmark algorithm
+rl benchmark
+benchmark further
+benchmark covering
+benchmark both
+traditional benchmark
+benchmark set
+benchmark but
+medical benchmark
+benchmark highlight
+benchmark function
+benchmark indicate
+evaluate benchmark
+benchmark code available
+benchmark two
+variou benchmark dataset
+benchmark dataset result
+variety benchmark
+benchmark outperforming
+real-world benchmark dataset
+code benchmark
+benchmark available https
+benchmark tests
+benchmark offer
+benchmark moreover
+benchmark test
+established benchmark
+manipulation benchmark
+provide benchmark
+benchmark dataset including
+evaluated benchmark
+result benchmark dataset
+academic benchmark
+benchmark achieving
+benchmark against
+such benchmark
+experiment several benchmark
+mujoco benchmark
+benchmark significantly
+benchmark not
+translation benchmark
+robust benchmark
+code generation benchmark
+benchmark often
+curated benchmark
+benchmark confirm
+benchmark find
+many benchmark
+benchmark cover
+benchmark chinese
+benchmark contain
+present benchmark
+mmlu benchmark
+language benchmark
+ten benchmark
+benchmark demonstrate outperform
+across diverse benchmark
+benchmark language
+compared existing benchmark
+retrieval benchmark
+benchmark evaluation metric
+benchmark real-world
+previou benchmark
+benchmark include
+robustness benchmark
+navigation benchmark
+synthetic real-world benchmark
+two benchmark dataset
+benchmark featuring
+than benchmark
+challenge benchmark
+benchmark instance
+five benchmark dataset
+estimation benchmark
+HumanEval
+TruthfulQA
+HellaSwag
+WinoGrande
+ARC
+BIG-Bench
+GLUE
+SuperGLUE
+MT-Bench
+AlpacaEval
+LMSys Arena
+Perplexity
+BLEU
+ROUGE
+F1 Score
+Accuracy
+Calibration
+Factuality

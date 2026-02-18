@@ -1,0 +1,47 @@
+# Word Cloud: Training Optimization (2024 shotgun split)
+# source: 2024 shotgun candidates + existing theme seeds
+
+gradient-based
+RLHF
+DPO
+SFT
+distill
+feedback rlhf
+human feedback rlhf
+PPO
+optimization dpo
+fine-tuning sft
+preference optimization dpo
+supervised fine-tuning sft
+pretrain
+optimization ppo
+policy optimization ppo
+gradient-free
+distill knowledge
+dpo loss
+ppo algorithm
+sft data
+rlhf dpo
+such dpo
+sft reinforcement
+fine-tuning sft reinforcement
+sft reinforcement learning
+then distill
+Backpropagation
+Gradient Descent
+Adam Optimizer
+Learning Rate Schedule
+Warmup
+Weight Decay
+Dropout
+Batch Normalization
+Pre-training
+Fine-tuning
+Instruction Tuning
+Reward Modeling
+Policy Gradient
+Actor-Critic
+Supervised Fine-Tuning (SFT)
+Contrastive Learning
+Self-Supervised Learning
+Curriculum Learning

@@ -1,0 +1,26 @@
+# Word Cloud: Efficiency Scaling (2024 shotgun split)
+# source: 2024 shotgun candidates + existing theme seeds
+
+Quantization
+QAT
+PTQ
+INT8
+INT4
+FP16
+BF16
+Mixed Precision
+LoRA
+QLoRA
+Adapters
+Prefix Tuning
+Prompt Tuning
+Parameter-Efficient Fine-Tuning
+Knowledge Distillation
+Model Pruning
+Speculative Decoding
+KV Cache
+Flash Attention
+Gradient Checkpointing
+Pipeline Parallelism
+Tensor Parallelism
+Data Parallelism

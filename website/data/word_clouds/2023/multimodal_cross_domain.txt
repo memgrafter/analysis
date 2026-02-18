@@ -1,0 +1,21 @@
+# Word Cloud: Multimodal Cross Domain (2024 shotgun split)
+# source: 2024 shotgun candidates + existing theme seeds
+
+speech-to-speech translation s2st
+text-to-video t2v
+Vision-Language Model
+VQA
+Image Captioning
+Visual Grounding
+OCR
+Document Understanding
+Speech Recognition
+Text-to-Speech
+Audio-Language
+Video Understanding
+Multimodal Fusion
+Cross-Modal Attention
+CLIP
+LLaVA
+GPT-4V
+Gemini Pro Vision

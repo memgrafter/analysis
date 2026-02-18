@@ -1,0 +1,101 @@
+# Word Cloud: Model Families Specific Implementations (2024 shotgun split)
+# source: 2024 shotgun candidates + existing theme seeds
+
+large language model gpt-4
+language model gpt-4
+language model gpt-3
+transformer t5
+chatgpt gpt-4
+transformer gpt-4
+fine-tuned t5
+gpt-3 model
+gpt-4 model
+bert gpt-2
+gpt-2 model
+prompt gpt-4
+chatgpt gpt-3.5
+llama-2 model
+t5 model
+chatgpt gpt-3
+gpt-4 chatgpt
+openai gpt-4
+gpt-4 prompt
+openai gpt-3.5
+prompting gpt-4
+gpt-3 chatgpt
+openai gpt-3
+gpt-4 large
+leveraging gpt-4
+gpt-3.5 model
+chatgpt gpt-3.5 gpt-4
+gpt-3.5 gpt-4
+dataset gpt-4
+leverage gpt-4
+gpt-4 evaluation
+gpt-4 demonstrate
+gpt-4 demonstrated
+gpt-4 achieved
+evaluation gpt-4
+gpt 3.5
+llama 7b
+gpt-4 achieve
+gpt-4 llama
+gpt-4 was
+while gpt-4
+llm gpt-4
+compared gpt-4
+gpt-4 ability
+gpt-3 gpt-4
+find gpt-4
+result gpt-4
+gpt-4v ision
+gpt-4 gpt-3.5
+gpt-4 perform
+gpt-3.5-turbo gpt-4
+gpt-3 gpt-3.5
+gpt-4 shown
+gpt-4 which
+gpt-2 gpt-3
+llm gpt-3.5
+gpt-4 more
+found gpt-4
+gpt-4 exhibit
+gpt-4 code
+gpt-4 also
+gpt-4 result
+experiment gpt-4
+than gpt-3.5
+gpt-4 claude
+gpt-3.5 turbo
+gpt-2 small
+specifically gpt-4
+than gpt-4
+capabilitie gpt-4
+gpt-4 human
+t5 bart
+roberta t5
+bart t5
+human gpt-4
+GPT
+BERT
+T5
+LLaMA
+Mistral
+Mixtral
+Claude
+PaLM
+Gemini
+Phi
+Qwen
+Falcon
+MPT
+OLMo
+Mixture of Experts
+Sparse MoE
+Dense Transformer
+Encoder-Only
+Decoder-Only
+Encoder-Decoder
+Vision Transformer (ViT)
+CLIP
+Diffusion Transformer

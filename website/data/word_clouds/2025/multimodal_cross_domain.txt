@@ -1,0 +1,17 @@
+# Word Cloud: Multimodal & Cross-Domain
+Vision-Language Model
+VQA
+Image Captioning
+Visual Grounding
+OCR
+Document Understanding
+Speech Recognition
+Text-to-Speech
+Audio-Language
+Video Understanding
+Multimodal Fusion
+Cross-Modal Attention
+CLIP
+LLaVA
+GPT-4V
+Gemini Pro Vision

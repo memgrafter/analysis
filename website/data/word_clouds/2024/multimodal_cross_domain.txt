@@ -1,0 +1,111 @@
+# Word Cloud: Multimodal Cross Domain (2024 shotgun split)
+# source: 2024 shotgun candidates + existing theme seeds
+
+multimodal
+vision-language
+text-to-image
+multimodal large
+multimodal large language
+multimodal model
+VLM
+cross-modal
+image-text
+MLLM
+multimodal data
+large multimodal
+large multimodal model
+image-based
+text-to-image diffusion
+text-to-image diffusion model
+text-to-speech
+multimodal llm
+text-to-image t2i
+multimodal model lmms
+text-to-video
+multimodal learning
+multimodal information
+multimodal fusion
+text-image
+multimodal language
+2d image
+multimodal dataset
+video diffusion
+audio-visual
+image 3d
+multimodal language model
+advancement multimodal
+performance multimodal
+propose multimodal
+image-level
+image retrieval
+language-image
+multimodal recommendation
+advancement multimodal large
+video diffusion model
+multimodal content
+leveraging multimodal
+existing multimodal
+image diffusion
+multimodal emotion
+text-to-image t2i model
+benchmark multimodal
+cross-modal alignment
+llm multimodal
+multimodal understanding
+multimodal input
+multimodal feature
+language model multimodal
+development multimodal
+multimodal benchmark
+introduce multimodal
+image diffusion model
+multimodal reasoning
+multimodal representation
+multimodal emotion recognition
+learning multimodal
+image token
+multimodal contrastive
+multimodal alignment
+advance multimodal
+complex multimodal
+multimodal training
+integrate multimodal
+multimodal foundation
+multimodal foundation model
+leverage multimodal
+multimodal ai
+llm vision-language
+enhance multimodal
+multimodal capabilitie
+multimodal generative
+current multimodal
+align image
+multimodal sensor
+multimodal instruction
+speech token
+multimodal machine
+enhancing multimodal
+unified multimodal
+vision-language alignment
+recent advance multimodal
+effective multimodal
+language-image pretraining
+processing multimodal
+challenge multimodal
+large-scale multimodal
+alignment video
+capabilitie multimodal
+Vision-Language Model
+VQA
+Image Captioning
+Visual Grounding
+OCR
+Document Understanding
+Speech Recognition
+Audio-Language
+Video Understanding
+Cross-Modal Attention
+CLIP
+LLaVA
+GPT-4V
+Gemini Pro Vision

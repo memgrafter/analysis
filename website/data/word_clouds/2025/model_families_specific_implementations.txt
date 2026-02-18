@@ -1,0 +1,24 @@
+# Word Cloud: Model Families & Specific Implementations
+GPT
+BERT
+T5
+LLaMA
+Mistral
+Mixtral
+Claude
+PaLM
+Gemini
+Phi
+Qwen
+Falcon
+MPT
+OLMo
+Mixture of Experts
+Sparse MoE
+Dense Transformer
+Encoder-Only
+Decoder-Only
+Encoder-Decoder
+Vision Transformer (ViT)
+CLIP
+Diffusion Transformer

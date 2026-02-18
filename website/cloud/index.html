@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/mldigest.ico" type="image/x-icon" />
+    <title>Term Cloud</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #f5f7ff;
+        --panel: #ffffff;
+        --text: #1a2440;
+        --muted: #5d6f9a;
+        --border: #dbe2f4;
+        --accent: #2f63d8;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #0b1020;
+          --panel: #121a33;
+          --text: #e8edff;
+          --muted: #a8b4da;
+          --border: #27335f;
+          --accent: #6ea8ff;
+        }
+      }
+
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+      }
+      main {
+        max-width: 1080px;
+        margin: 32px auto;
+        padding: 0 16px 24px;
+      }
+      .panel {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 16px;
+        margin-bottom: 14px;
+      }
+      .muted { color: var(--muted); }
+      a { color: var(--accent); text-decoration: none; }
+
+      .toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px 14px;
+        align-items: center;
+        margin-top: 10px;
+      }
+      .toolbar label {
+        display: inline-flex;
+        gap: 8px;
+        align-items: center;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      select {
+        border: 1px solid var(--border);
+        background: transparent;
+        color: inherit;
+        border-radius: 10px;
+        padding: 8px 10px;
+      }
+
+      .cloud-wrap {
+        min-height: 300px;
+      }
+      .cloud {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 12px;
+        align-items: baseline;
+        line-height: 1.05;
+      }
+      .cloud a {
+        display: inline-block;
+        border: 1px solid transparent;
+        border-radius: 8px;
+        padding: 1px 2px;
+      }
+      .cloud a:hover {
+        border-color: var(--border);
+      }
+      .word-score {
+        font-size: 11px;
+        color: var(--muted);
+        margin-left: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="panel">
+        <h1>ML Term Cloud</h1>
+        <p class="muted">Click any term to open search results for that term (all years).</p>
+        <p><a href="/search/">Open search</a></p>
+
+        <div class="toolbar">
+          <label>
+            Year
+            <select id="year-select" aria-label="Year">
+              <option value="2023">2023</option>
+              <option value="2024">2024</option>
+              <option value="2025" selected>2025</option>
+            </select>
+          </label>
+
+          <label>
+            Size by
+            <select id="metric-select" aria-label="Metric">
+              <option value="score" selected>Selected year score</option>
+              <option value="all_years_score">All-years score</option>
+            </select>
+          </label>
+
+          <label>
+            Terms
+            <select id="limit-select" aria-label="Term limit">
+              <option value="100">Top 100</option>
+              <option value="200" selected>Top 200</option>
+              <option value="300">Top 300</option>
+              <option value="450">Top 450</option>
+            </select>
+          </label>
+        </div>
+
+        <p id="status" class="muted">Loading cloud data…</p>
+      </section>
+
+      <section class="panel cloud-wrap">
+        <div id="cloud" class="cloud"></div>
+      </section>
+    </main>
+
+    <script src="/assets/cloud.js"></script>
+  </body>
+</html>

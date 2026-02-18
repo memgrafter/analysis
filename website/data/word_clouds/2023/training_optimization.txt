@@ -1,0 +1,24 @@
+# Word Cloud: Training Optimization (2024 shotgun split)
+# source: 2024 shotgun candidates + existing theme seeds
+
+Backpropagation
+Gradient Descent
+Adam Optimizer
+Learning Rate Schedule
+Warmup
+Weight Decay
+Dropout
+Batch Normalization
+Pre-training
+Fine-tuning
+Instruction Tuning
+RLHF
+DPO
+PPO
+Reward Modeling
+Policy Gradient
+Actor-Critic
+Supervised Fine-Tuning (SFT)
+Contrastive Learning
+Self-Supervised Learning
+Curriculum Learning

@@ -1,0 +1,22 @@
+# Word Cloud: Training & Optimization
+Backpropagation
+Gradient Descent
+Adam Optimizer
+Learning Rate Schedule
+Warmup
+Weight Decay
+Dropout
+Batch Normalization
+Pre-training
+Fine-tuning
+Instruction Tuning
+RLHF
+DPO
+PPO
+Reward Modeling
+Policy Gradient
+Actor-Critic
+Supervised Fine-Tuning (SFT)
+Contrastive Learning
+Self-Supervised Learning
+Curriculum Learning

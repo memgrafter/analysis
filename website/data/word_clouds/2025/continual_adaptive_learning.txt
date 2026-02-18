@@ -1,0 +1,14 @@
+# Word Cloud: Continual & Adaptive Learning
+Continual Learning
+Lifelong Learning
+Catastrophic Forgetting
+Experience Replay
+Elastic Weight Consolidation
+Progressive Nets
+Test-Time Adaptation
+Domain Shift
+Distribution Shift
+Online Learning
+Incremental Learning
+Task-Incremental
+Class-Incremental

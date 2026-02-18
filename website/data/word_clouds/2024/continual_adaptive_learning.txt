@@ -1,0 +1,17 @@
+# Word Cloud: Continual Adaptive Learning (2024 shotgun split)
+# source: 2024 shotgun candidates + existing theme seeds
+
+class-incremental
+continual pretraining
+Continual Learning
+Lifelong Learning
+Catastrophic Forgetting
+Experience Replay
+Elastic Weight Consolidation
+Progressive Nets
+Test-Time Adaptation
+Domain Shift
+Distribution Shift
+Online Learning
+Incremental Learning
+Task-Incremental

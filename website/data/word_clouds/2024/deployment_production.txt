@@ -1,0 +1,22 @@
+# Word Cloud: Deployment Production (2024 shotgun split)
+# source: 2024 shotgun candidates + existing theme seeds
+
+cutting-edge
+on-device
+llm serving
+Inference Optimization
+Latency
+Throughput
+Serving Infrastructure
+Model Serving
+Batch Inference
+Real-Time Inference
+Edge Deployment
+Mobile AI
+Quantized Inference
+TensorRT
+ONNX
+vLLM
+TGI
+Model Compression
+On-Device AI

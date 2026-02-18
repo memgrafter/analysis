@@ -1,0 +1,18 @@
+# Word Cloud: Data & Training Paradigms
+Pre-training Data
+Instruction Data
+Preference Data
+Synthetic Data
+Data Augmentation
+Data Curation
+Data Filtering
+Deduplication
+Data Contamination
+Curriculum Learning
+Multi-Task Learning
+Transfer Learning
+Domain Adaptation
+Cross-Lingual Transfer
+Few-Shot Learning
+Zero-Shot Learning
+In-Context Learning

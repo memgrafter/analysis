@@ -53,6 +53,7 @@ echo "[1/6] Preparing isolated test root"
 mkdir -p "$TEST_ROOT" "$TEST_SEARCH_DIR"
 ln -s "$ROOT_DIR/index.html" "$TEST_ROOT/index.html"
 ln -s "$ROOT_DIR/view" "$TEST_ROOT/view"
+ln -s "$ROOT_DIR/cloud" "$TEST_ROOT/cloud"
 ln -s "$ROOT_DIR/assets" "$TEST_ROOT/assets"
 cp "$ROOT_DIR/search/index.html" "$TEST_SEARCH_DIR/index.html"
 
@@ -128,9 +129,12 @@ VIEW_CODE="$(curl -sS -L -o /dev/null -w "%{http_code}" "http://127.0.0.1:$PORT/
 
 expect_status "http://127.0.0.1:$PORT/view/$SAMPLE_ID.md" 200
 expect_status "http://127.0.0.1:$PORT/search/" 200
+expect_status "http://127.0.0.1:$PORT/cloud/" 200
 expect_status "http://127.0.0.1:$PORT/search/?q=transformers" 200
 expect_status "http://127.0.0.1:$PORT/search/manifest.json" 200
+expect_status "http://127.0.0.1:$PORT/search/cloud-terms.json" 200
 expect_status "http://127.0.0.1:$PORT/search/$DB_FILE" 200
+expect_status "http://127.0.0.1:$PORT/assets/cloud.js" 200
 expect_status "http://127.0.0.1:$PORT/assets/sqljs-httpvfs/index.js" 200
 expect_status "http://127.0.0.1:$PORT/assets/sqljs-httpvfs/sqlite.worker.js" 200
 expect_status "http://127.0.0.1:$PORT/assets/sqljs-httpvfs/sql-wasm.wasm" 200

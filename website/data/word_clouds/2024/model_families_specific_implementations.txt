@@ -1,0 +1,101 @@
+# Word Cloud: Model Families Specific Implementations (2024 shotgun split)
+# source: 2024 shotgun candidates + existing theme seeds
+
+GPT-4
+GPT
+llama
+BERT
+CLIP
+GPT-3
+gpt-3.5
+gpt-4o
+gemini
+mistral
+gpt-4v
+llama-2
+such gpt-4
+claude
+like gpt-4
+GPT-2
+t5
+gpt-3.5-turbo
+transformer vit
+llama model
+vision transformer vit
+gpt-3.5 gpt-4
+llm like gpt-4
+llm such gpt-4
+gpt model
+mistral-7b
+bert model
+mixtral
+llama mistral
+bert roberta
+gpt-4-turbo
+like gpt-4o
+llama-3
+gemini pro
+gpt-4 turbo
+clip embedding
+like bert
+gpt 3.5
+llama 3.1
+llm gpt-4
+outperform gpt-4
+gemini 1.5
+such gpt-4o
+chatgpt gpt-4
+such bert
+like llama
+such llama
+t5 model
+llama 7b
+gpt-4 model
+such gpt-3.5
+e.g gpt-4
+including gpt-4
+openai gpt-4
+gemini 1.5 pro
+specifically gpt-4
+performance gpt-4
+like gpt-3.5
+gpt-4 which
+gpt-3.5-turbo gpt-4
+gpt-4 gemini
+llama-2 7b
+such gpt
+transformer bert
+transformer gpt
+gpt llama
+openai gpt
+gpt-3.5 turbo
+such gpt-4v
+generated gpt-4
+gpt-4 while
+gpt-4 llama-2
+such gpt-3.5-turbo
+llm such gpt-3.5-turbo
+gpt-4 achieve
+llm including gpt-4
+claude 3.5
+representation transformer bert
+llama family
+mistral model
+chatgpt llama
+meta llama
+llama llama
+e.g gpt
+PaLM
+Phi
+Qwen
+Falcon
+MPT
+OLMo
+Mixture of Experts
+Sparse MoE
+Dense Transformer
+Encoder-Only
+Decoder-Only
+Encoder-Decoder
+Vision Transformer (ViT)
+Diffusion Transformer

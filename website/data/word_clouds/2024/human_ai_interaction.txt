@@ -1,0 +1,86 @@
+# Word Cloud: Human Ai Interaction (2024 shotgun split)
+# source: 2024 shotgun candidates + existing theme seeds
+
+alignment
+human feedback rlhf
+human-ai
+preference optimization dpo
+preference alignment
+alignment human
+safety alignment
+feature alignment
+preference-based
+llm alignment
+alignment large
+alignment large language
+alignment technique
+alignment performance
+alignment llm
+alignment algorithm
+llm human preference
+alignment module
+semantic alignment
+alignment process
+human preference alignment
+language model alignment
+improve alignment
+alignment problem
+alignment model
+value alignment
+entity alignment
+alignment strategy
+llm chatbot
+cross-modal alignment
+ai alignment
+enhance alignment
+align human preference
+domain alignment
+alignment propose
+alignment objective
+interactive agent
+alignment data
+alignment preference
+safety alignment large
+alignment score
+multimodal alignment
+alignment human preference
+alignment across
+alignment training
+word alignment
+alignment aligning
+alignment ea
+ensuring alignment
+alignment which
+alignment dataset
+existing alignment
+representation alignment
+aligned human preference
+achieve alignment
+alignment phase
+alignment text
+vision-language alignment
+ensure alignment
+entity alignment ea
+alignment loss
+better alignment
+alignment human judgment
+alignment video
+temporal alignment
+alignment extensive
+current alignment
+alignment accuracy
+Human Feedback
+Preference Learning
+Comparative Feedback
+Scalar Feedback
+Reward Hacking
+Specification Gaming
+Sycophancy
+Helpfulness
+Harmlessness
+Honesty
+User Intent
+Instruction Following
+Conversational AI
+Dialogue Systems
+Interactive Learning

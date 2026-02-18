@@ -1,0 +1,22 @@
+# Word Cloud: Evaluation & Benchmarking
+Benchmark
+MMLU
+GSM8K
+HumanEval
+TruthfulQA
+HellaSwag
+WinoGrande
+ARC
+BIG-Bench
+GLUE
+SuperGLUE
+MT-Bench
+AlpacaEval
+LMSys Arena
+Perplexity
+BLEU
+ROUGE
+F1 Score
+Accuracy
+Calibration
+Factuality

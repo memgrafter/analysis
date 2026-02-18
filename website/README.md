@@ -8,6 +8,7 @@ Build DB:
 
 > This is the canonical build path: stores 500-word body preview in `digests`, and builds full-text contentless FTS5 (`detail=column`).
 > Optional quick dev/test run: `MAX_FILES=1500 ./scripts/build_db.sh`
+> Build also emits `search/cloud-terms.json` from vendored seed terms in `data/word_clouds/`.
 
 Provision infrastructure (bucket only):
 

@@ -37,3 +37,24 @@ echo "  - $SRC_2024"
 echo "  - $SRC_2025"
 
 "${CMD[@]}"
+
+MANIFEST_PATH="$OUTPUT_DIR/manifest.json"
+if [[ -f "$MANIFEST_PATH" ]]; then
+  DB_FILE="$(python3 - <<'PY' "$MANIFEST_PATH"
+import json
+import sys
+from pathlib import Path
+manifest = json.loads(Path(sys.argv[1]).read_text())
+print(manifest.get('db_file', ''))
+PY
+)"
+
+  if [[ -n "$DB_FILE" && -f "$OUTPUT_DIR/$DB_FILE" ]]; then
+    echo "Building cloud term scores..."
+    python3 "$ROOT_DIR/scripts/build_cloud_terms.py" \
+      --db-path "$OUTPUT_DIR/$DB_FILE" \
+      --output "$OUTPUT_DIR/cloud-terms.json"
+  else
+    echo "Warning: could not find DB file from manifest for cloud term build" >&2
+  fi
+fi

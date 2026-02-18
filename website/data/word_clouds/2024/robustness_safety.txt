@@ -1,0 +1,146 @@
+# Word Cloud: Robustness Safety (2024 shotgun split)
+# source: 2024 shotgun candidates + existing theme seeds
+
+alignment
+safety
+hallucination
+safety-critical
+preference alignment
+alignment human
+safety alignment
+safety constraint
+feature alignment
+llm alignment
+safety concern
+alignment large
+alignment large language
+ensuring safety
+safety-critical application
+alignment technique
+hallucination large
+llm safety
+ai safety
+hallucination large language
+mitigate hallucination
+alignment performance
+alignment llm
+alignment algorithm
+bias llm
+fairness-aware
+enhance safety
+alignment module
+semantic alignment
+alignment process
+improve safety
+human preference alignment
+language model alignment
+reduce hallucination
+safety issue
+safety mechanism
+safety risks
+improve alignment
+alignment problem
+alignment model
+safety measure
+ensure safety
+mitigating hallucination
+value alignment
+entity alignment
+hallucination detection
+safety requirement
+safety-critical scenario
+safety violation
+safety reliability
+alignment strategy
+public safety
+patient safety
+safety llm
+cross-modal alignment
+safety assurance
+ai alignment
+enhance alignment
+safety guardrail
+hallucination llm
+domain alignment
+alignment propose
+alignment objective
+alignment data
+alignment preference
+safety performance
+llm hallucination
+safety alignment large
+alignment score
+multimodal alignment
+safety evaluation
+such hallucination
+alignment human preference
+reducing hallucination
+suffer hallucination
+object hallucination
+alignment across
+safety critical
+alignment training
+safety metric
+safety guarantee
+safety-critical domain
+safety large
+safety large language
+reliability safety
+evaluate safety
+safety enhancement
+word alignment
+safety training
+alignment aligning
+improving safety
+safety robustness
+safety work
+safety during
+alignment ea
+ensuring alignment
+alignment which
+robust safety
+especially safety-critical
+safety efficiency
+alignment dataset
+existing alignment
+representation alignment
+achieve alignment
+alignment phase
+llm adversarial
+knowledge hallucination
+alignment text
+vision-language alignment
+robust benchmark
+prone hallucination
+safety assessment
+these hallucination
+ensure alignment
+entity alignment ea
+alignment loss
+better alignment
+alignment human judgment
+significant safety
+alignment video
+temporal alignment
+alignment extensive
+current alignment
+alignment accuracy
+Adversarial Attack
+Adversarial Defense
+Adversarial Training
+FGSM
+PGD
+C&W Attack
+Certified Robustness
+Randomized Smoothing
+Evasion Attack
+Poisoning Attack
+Backdoor Attack
+Data Poisoning
+Jailbreaking
+Red Teaming
+Constitutional AI
+Safety Cases
+Guardrails
+Content Filtering
+Refusal Training

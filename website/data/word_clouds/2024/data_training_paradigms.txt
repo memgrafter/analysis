@@ -1,0 +1,24 @@
+# Word Cloud: Data Training Paradigms (2024 shotgun split)
+# source: 2024 shotgun candidates + existing theme seeds
+
+self-supervised
+retrieval augmentation
+self-supervised pretraining
+multimodal contrastive
+Pre-training Data
+Instruction Data
+Preference Data
+Synthetic Data
+Data Augmentation
+Data Curation
+Data Filtering
+Deduplication
+Data Contamination
+Curriculum Learning
+Multi-Task Learning
+Transfer Learning
+Domain Adaptation
+Cross-Lingual Transfer
+Few-Shot Learning
+Zero-Shot Learning
+In-Context Learning

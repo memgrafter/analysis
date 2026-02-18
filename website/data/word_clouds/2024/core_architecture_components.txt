@@ -1,0 +1,263 @@
+# Word Cloud: Core Architecture Components (2024 shotgun split)
+# source: 2024 shotgun candidates + existing theme seeds
+
+attention
+transformer
+embedding
+token
+transformer-based
+attention mechanism
+self-attention
+transformer architecture
+transformer model
+significant attention
+vision transformer
+attention-based
+transformer-based model
+embedding space
+decoder-only
+self-attention mechanism
+cross-attention
+encoder-decoder
+increasing attention
+embedding model
+graph transformer
+token-level
+gained significant attention
+attention due
+attention recent
+attention network
+word embedding
+text embedding
+graph attention
+next-token
+transformer block
+considerable attention
+garnered significant attention
+pre-trained transformer
+attention layer
+graph embedding
+next token
+attention recent years
+transformer vit
+attention weight
+graph attention network
+next-token prediction
+attention heads
+multi-head attention
+attention module
+transformer layer
+node embedding
+vision transformer vit
+much attention
+token prediction
+input token
+less attention
+transformer-based architecture
+encoder-only
+each token
+transformer vits
+vision transformer vits
+embedding-based
+these embedding
+attention score
+diffusion transformer
+generative pre-trained transformer
+embedding vector
+auto-encoder
+widespread attention
+limited attention
+self-attention layer
+transformer encoder
+discrete token
+transformer network
+attention recently
+significant attention due
+transformer-based language
+transformer-based language model
+output token
+next token prediction
+decoder-only transformer
+transformer-based large
+transformer-based large language
+embedding which
+attention paid
+gained attention
+attracted significant attention
+mechanism transformer
+knowledge graph embedding
+decision transformer
+sentence embedding
+autoregressive transformer
+more attention
+sequence token
+significant attention recent
+attention model
+transformer which
+attention given
+decoder-only llm
+visual token
+token generation
+representation transformer
+transformer decoder
+linear attention
+token embedding
+clip embedding
+trillion token
+embedding technique
+position embedding
+attention block
+pretrained transformer
+attention computation
+fusion transformer
+these token
+token during
+attention however
+research attention
+attention pattern
+semantic embedding
+transformer learn
+llm embedding
+temporal attention
+multi-head self-attention
+transformer attention
+cross-attention mechanism
+embedding dimension
+standard transformer
+network transformer
+gained increasing attention
+transformer large
+attracted increasing attention
+efficient transformer
+transformer trained
+transformer neural
+attention transformer
+spatial attention
+latent embedding
+token sequence
+number token
+little attention
+such transformer
+embedding llm
+embedding then
+like transformer
+lot attention
+transformer graph
+performance transformer
+rnns transformer
+transformer-based llm
+embedding language
+token representation
+text embedding model
+image token
+complexity attention
+vision transformer architecture
+speaker embedding
+linear transformer
+token level
+received significant attention
+transformer backbone
+training token
+state-of-the-art transformer
+encoder representation transformer
+feature embedding
+token while
+embedding these
+token probabilitie
+architecture transformer
+while transformer
+transformer transformer
+attention mechanism transformer
+attracted considerable attention
+embedding layer
+embedding graph
+embedding each
+transformer-based approache
+received limited attention
+token per
+sparse attention
+embedding language model
+language embedding
+cnns transformer
+temporal fusion transformer
+softmax attention
+cnn transformer
+transformer neural network
+attention maps
+pre-trained embedding
+text token
+trained transformer
+fewer token
+increased attention
+attention research
+embedding large
+transformer bert
+neural network transformer
+representation token
+increasing attention recent
+token each
+embedding capture
+embedding represent
+application transformer
+efficient attention
+billion token
+growing attention
+transformer gpt
+received considerable attention
+decoder-only transformer architecture
+embedding while
+training transformer
+each transformer
+transformer demonstrate
+learning transformer
+success transformer
+token however
+attention which
+transformer dt
+decision transformer dt
+embedding representation
+feature attention
+attention researcher
+propose attention-based
+transformer-based neural
+low-dimensional embedding
+semantic token
+positional embedding
+llm token
+important token
+transformer language
+user embedding
+speech token
+transformer module
+embedding algorithm
+attention-based model
+embedding input
+attention-based architecture
+generated token
+conventional transformer
+context embedding
+embedding size
+transformer vision
+global attention
+token then
+different token
+embedding large language
+token text
+representation transformer bert
+transformer variant
+token model
+single transformer
+token which
+reduce token
+few token
+subsequent token
+embedding more
+transformer predict
+each transformer block
+embedding knowledge
+transformer while
+transformer designed
+substantial attention
+outperform transformer
+received less attention
+all token

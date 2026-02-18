@@ -1,0 +1,6974 @@
+{
+  "all_years": {
+    "scored_term_count": 450,
+    "term_count": 1138,
+    "terms": [
+      {
+        "score": 11256,
+        "term": "Transformer"
+      },
+      {
+        "score": 11256,
+        "term": "transformer transformer"
+      },
+      {
+        "score": 11130,
+        "term": "Adapters"
+      },
+      {
+        "score": 10015,
+        "term": "reason"
+      },
+      {
+        "score": 8164,
+        "term": "Benchmark"
+      },
+      {
+        "score": 7769,
+        "term": "Fine-tuning"
+      },
+      {
+        "score": 7650,
+        "term": "alignment"
+      },
+      {
+        "score": 7650,
+        "term": "alignment aligning"
+      },
+      {
+        "score": 6954,
+        "term": "transformer model"
+      },
+      {
+        "score": 6941,
+        "term": "embedding"
+      },
+      {
+        "score": 6684,
+        "term": "attention"
+      },
+      {
+        "score": 6072,
+        "term": "token"
+      },
+      {
+        "score": 6062,
+        "term": "multimodal"
+      },
+      {
+        "score": 5682,
+        "term": "Accuracy"
+      },
+      {
+        "score": 5463,
+        "term": "evaluation llm"
+      },
+      {
+        "score": 5463,
+        "term": "llm evaluation"
+      },
+      {
+        "score": 5404,
+        "term": "benchmark model"
+      },
+      {
+        "score": 5374,
+        "term": "Pre-training"
+      },
+      {
+        "score": 5004,
+        "term": "benchmark evaluate"
+      },
+      {
+        "score": 5004,
+        "term": "benchmark evaluating"
+      },
+      {
+        "score": 5004,
+        "term": "benchmark evaluation"
+      },
+      {
+        "score": 5004,
+        "term": "evaluate benchmark"
+      },
+      {
+        "score": 5004,
+        "term": "evaluated benchmark"
+      },
+      {
+        "score": 5004,
+        "term": "evaluation benchmark"
+      },
+      {
+        "score": 4992,
+        "term": "alignment model"
+      },
+      {
+        "score": 4599,
+        "term": "token model"
+      },
+      {
+        "score": 4530,
+        "term": "benchmark introduce"
+      },
+      {
+        "score": 4530,
+        "term": "introduce benchmark"
+      },
+      {
+        "score": 4382,
+        "term": "transformer-based"
+      },
+      {
+        "score": 4154,
+        "term": "embedding model"
+      },
+      {
+        "score": 4093,
+        "term": "llm reason"
+      },
+      {
+        "score": 4087,
+        "term": "attention model"
+      },
+      {
+        "score": 4078,
+        "term": "multimodal model"
+      },
+      {
+        "score": 3984,
+        "term": "benchmark language"
+      },
+      {
+        "score": 3984,
+        "term": "language benchmark"
+      },
+      {
+        "score": 3793,
+        "term": "vision-language"
+      },
+      {
+        "score": 3462,
+        "term": "Vision-Language Model"
+      },
+      {
+        "score": 3393,
+        "term": "learning transformer"
+      },
+      {
+        "score": 3393,
+        "term": "transformer learn"
+      },
+      {
+        "score": 3248,
+        "term": "benchmark large"
+      },
+      {
+        "score": 3245,
+        "term": "image-based"
+      },
+      {
+        "score": 3057,
+        "term": "Knowledge Base"
+      },
+      {
+        "score": 3042,
+        "term": "image-text"
+      },
+      {
+        "score": 3042,
+        "term": "text-image"
+      },
+      {
+        "score": 2939,
+        "term": "language model alignment"
+      },
+      {
+        "score": 2928,
+        "term": "GPT"
+      },
+      {
+        "score": 2903,
+        "term": "transformer-based model"
+      },
+      {
+        "score": 2901,
+        "term": "distill"
+      },
+      {
+        "score": 2803,
+        "term": "pretrain"
+      },
+      {
+        "score": 2797,
+        "term": "benchmark dataset"
+      },
+      {
+        "score": 2797,
+        "term": "dataset benchmark"
+      },
+      {
+        "score": 2767,
+        "term": "benchmark large language"
+      },
+      {
+        "score": 2764,
+        "term": "Contrastive Learning"
+      },
+      {
+        "score": 2680,
+        "term": "trained transformer"
+      },
+      {
+        "score": 2680,
+        "term": "training transformer"
+      },
+      {
+        "score": 2680,
+        "term": "transformer trained"
+      },
+      {
+        "score": 2671,
+        "term": "language-image"
+      },
+      {
+        "score": 2662,
+        "term": "introduce multimodal"
+      },
+      {
+        "score": 2638,
+        "term": "benchmark llm"
+      },
+      {
+        "score": 2638,
+        "term": "llm benchmark"
+      },
+      {
+        "score": 2559,
+        "term": "Knowledge Graph"
+      },
+      {
+        "score": 2559,
+        "term": "retrieval augmentation"
+      },
+      {
+        "score": 2558,
+        "term": "self-supervised"
+      },
+      {
+        "score": 2515,
+        "term": "multimodal language"
+      },
+      {
+        "score": 2500,
+        "term": "across benchmark"
+      },
+      {
+        "score": 2500,
+        "term": "benchmark across"
+      },
+      {
+        "score": 2498,
+        "term": "alignment propose"
+      },
+      {
+        "score": 2474,
+        "term": "text-to-image"
+      },
+      {
+        "score": 2462,
+        "term": "Data Augmentation"
+      },
+      {
+        "score": 2441,
+        "term": "used benchmark"
+      },
+      {
+        "score": 2396,
+        "term": "Continual Learning"
+      },
+      {
+        "score": 2392,
+        "term": "gpt model"
+      },
+      {
+        "score": 2388,
+        "term": "embedding propose"
+      },
+      {
+        "score": 2387,
+        "term": "transformer language"
+      },
+      {
+        "score": 2329,
+        "term": "language model multimodal"
+      },
+      {
+        "score": 2329,
+        "term": "multimodal language model"
+      },
+      {
+        "score": 2294,
+        "term": "attention-based"
+      },
+      {
+        "score": 2286,
+        "term": "attention transformer"
+      },
+      {
+        "score": 2286,
+        "term": "transformer attention"
+      },
+      {
+        "score": 2278,
+        "term": "Reward Modeling"
+      },
+      {
+        "score": 2272,
+        "term": "Planning"
+      },
+      {
+        "score": 2265,
+        "term": "large multimodal"
+      },
+      {
+        "score": 2265,
+        "term": "multimodal large"
+      },
+      {
+        "score": 2262,
+        "term": "alignment large"
+      },
+      {
+        "score": 2216,
+        "term": "architecture transformer"
+      },
+      {
+        "score": 2216,
+        "term": "transformer architecture"
+      },
+      {
+        "score": 2176,
+        "term": "Synthetic Data"
+      },
+      {
+        "score": 2160,
+        "term": "embedding-based"
+      },
+      {
+        "score": 2146,
+        "term": "generation benchmark"
+      },
+      {
+        "score": 2118,
+        "term": "large multimodal model"
+      },
+      {
+        "score": 2086,
+        "term": "In-Context Learning"
+      },
+      {
+        "score": 2078,
+        "term": "Retrieval-Augmented Generation"
+      },
+      {
+        "score": 2021,
+        "term": "embedding language"
+      },
+      {
+        "score": 2021,
+        "term": "language embedding"
+      },
+      {
+        "score": 2020,
+        "term": "alignment large language"
+      },
+      {
+        "score": 2001,
+        "term": "alignment llm"
+      },
+      {
+        "score": 2001,
+        "term": "llm alignment"
+      },
+      {
+        "score": 1974,
+        "term": "attention mechanism"
+      },
+      {
+        "score": 1912,
+        "term": "image diffusion"
+      },
+      {
+        "score": 1899,
+        "term": "safety"
+      },
+      {
+        "score": 1889,
+        "term": "alignment training"
+      },
+      {
+        "score": 1879,
+        "term": "Transfer Learning"
+      },
+      {
+        "score": 1875,
+        "term": "Domain Adaptation"
+      },
+      {
+        "score": 1862,
+        "term": "generated token"
+      },
+      {
+        "score": 1862,
+        "term": "token generation"
+      },
+      {
+        "score": 1838,
+        "term": "Self-Supervised Learning"
+      },
+      {
+        "score": 1830,
+        "term": "Adversarial Attack"
+      },
+      {
+        "score": 1802,
+        "term": "Quantization"
+      },
+      {
+        "score": 1799,
+        "term": "embedding language model"
+      },
+      {
+        "score": 1789,
+        "term": "multimodal large language"
+      },
+      {
+        "score": 1780,
+        "term": "multimodal generative"
+      },
+      {
+        "score": 1738,
+        "term": "RAG"
+      },
+      {
+        "score": 1705,
+        "term": "gradient-based"
+      },
+      {
+        "score": 1702,
+        "term": "image diffusion model"
+      },
+      {
+        "score": 1701,
+        "term": "propose multimodal"
+      },
+      {
+        "score": 1698,
+        "term": "network transformer"
+      },
+      {
+        "score": 1698,
+        "term": "transformer network"
+      },
+      {
+        "score": 1696,
+        "term": "llm token"
+      },
+      {
+        "score": 1668,
+        "term": "training token"
+      },
+      {
+        "score": 1634,
+        "term": "transformer large"
+      },
+      {
+        "score": 1628,
+        "term": "hallucination"
+      },
+      {
+        "score": 1592,
+        "term": "learning multimodal"
+      },
+      {
+        "score": 1592,
+        "term": "multimodal learning"
+      },
+      {
+        "score": 1584,
+        "term": "reasoning benchmark"
+      },
+      {
+        "score": 1576,
+        "term": "Model Compression"
+      },
+      {
+        "score": 1570,
+        "term": "Pre-training Data"
+      },
+      {
+        "score": 1551,
+        "term": "multimodal data"
+      },
+      {
+        "score": 1548,
+        "term": "alignment data"
+      },
+      {
+        "score": 1547,
+        "term": "Multi-Task Learning"
+      },
+      {
+        "score": 1536,
+        "term": "efficient transformer"
+      },
+      {
+        "score": 1535,
+        "term": "evaluation benchmark dataset"
+      },
+      {
+        "score": 1521,
+        "term": "Interactive Learning"
+      },
+      {
+        "score": 1517,
+        "term": "distill knowledge"
+      },
+      {
+        "score": 1517,
+        "term": "Knowledge Distillation"
+      },
+      {
+        "score": 1487,
+        "term": "generation rag"
+      },
+      {
+        "score": 1476,
+        "term": "transformer predict"
+      },
+      {
+        "score": 1469,
+        "term": "Chain-of-Thought"
+      },
+      {
+        "score": 1458,
+        "term": "Decomposition"
+      },
+      {
+        "score": 1457,
+        "term": "challenge multimodal"
+      },
+      {
+        "score": 1444,
+        "term": "transformer encoder"
+      },
+      {
+        "score": 1397,
+        "term": "llm-based evaluation"
+      },
+      {
+        "score": 1396,
+        "term": "benchmark performance"
+      },
+      {
+        "score": 1396,
+        "term": "performance benchmark"
+      },
+      {
+        "score": 1379,
+        "term": "CLIP"
+      },
+      {
+        "score": 1371,
+        "term": "comprehensive benchmark"
+      },
+      {
+        "score": 1370,
+        "term": "augmented generation rag"
+      },
+      {
+        "score": 1367,
+        "term": "retrieval-augmented generation rag"
+      },
+      {
+        "score": 1366,
+        "term": "attention-based model"
+      },
+      {
+        "score": 1361,
+        "term": "representation transformer"
+      },
+      {
+        "score": 1358,
+        "term": "attention network"
+      },
+      {
+        "score": 1346,
+        "term": "embedding large"
+      },
+      {
+        "score": 1331,
+        "term": "VLM"
+      },
+      {
+        "score": 1330,
+        "term": "transformer which"
+      },
+      {
+        "score": 1328,
+        "term": "benchmark include"
+      },
+      {
+        "score": 1328,
+        "term": "benchmark including"
+      },
+      {
+        "score": 1315,
+        "term": "performance transformer"
+      },
+      {
+        "score": 1314,
+        "term": "Online Learning"
+      },
+      {
+        "score": 1312,
+        "term": "text embedding"
+      },
+      {
+        "score": 1304,
+        "term": "Adversarial Training"
+      },
+      {
+        "score": 1299,
+        "term": "Calibration"
+      },
+      {
+        "score": 1296,
+        "term": "Prompt Tuning"
+      },
+      {
+        "score": 1280,
+        "term": "BERT"
+      },
+      {
+        "score": 1278,
+        "term": "Autoregressive"
+      },
+      {
+        "score": 1264,
+        "term": "benchmark data"
+      },
+      {
+        "score": 1259,
+        "term": "feature attention"
+      },
+      {
+        "score": 1247,
+        "term": "Speech Recognition"
+      },
+      {
+        "score": 1246,
+        "term": "cross-modal"
+      },
+      {
+        "score": 1245,
+        "term": "Instruction Tuning"
+      },
+      {
+        "score": 1237,
+        "term": "embedding representation"
+      },
+      {
+        "score": 1237,
+        "term": "transformer neural"
+      },
+      {
+        "score": 1236,
+        "term": "alignment text"
+      },
+      {
+        "score": 1234,
+        "term": "transformer layer"
+      },
+      {
+        "score": 1229,
+        "term": "GPT-4"
+      },
+      {
+        "score": 1226,
+        "term": "low-rank"
+      },
+      {
+        "score": 1222,
+        "term": "human-ai"
+      },
+      {
+        "score": 1219,
+        "term": "alignment human"
+      },
+      {
+        "score": 1213,
+        "term": "interactive agent"
+      },
+      {
+        "score": 1205,
+        "term": "search-based"
+      },
+      {
+        "score": 1203,
+        "term": "transformer vision"
+      },
+      {
+        "score": 1203,
+        "term": "vision transformer"
+      },
+      {
+        "score": 1199,
+        "term": "LoRA"
+      },
+      {
+        "score": 1189,
+        "term": "Encoder-Decoder"
+      },
+      {
+        "score": 1172,
+        "term": "LLaMA"
+      },
+      {
+        "score": 1172,
+        "term": "llama llama"
+      },
+      {
+        "score": 1171,
+        "term": "benchmark designed"
+      },
+      {
+        "score": 1169,
+        "term": "learning benchmark"
+      },
+      {
+        "score": 1162,
+        "term": "transformer while"
+      },
+      {
+        "score": 1162,
+        "term": "while transformer"
+      },
+      {
+        "score": 1155,
+        "term": "multimodal training"
+      },
+      {
+        "score": 1151,
+        "term": "challenge benchmark"
+      },
+      {
+        "score": 1151,
+        "term": "challenging benchmark"
+      },
+      {
+        "score": 1151,
+        "term": "Self-Attention"
+      },
+      {
+        "score": 1128,
+        "term": "improve alignment"
+      },
+      {
+        "score": 1127,
+        "term": "efficient attention"
+      },
+      {
+        "score": 1119,
+        "term": "embedding space"
+      },
+      {
+        "score": 1106,
+        "term": "memory-efficient"
+      },
+      {
+        "score": 1104,
+        "term": "embedding llm"
+      },
+      {
+        "score": 1104,
+        "term": "llm embedding"
+      },
+      {
+        "score": 1104,
+        "term": "MLLM"
+      },
+      {
+        "score": 1094,
+        "term": "semantic embedding"
+      },
+      {
+        "score": 1081,
+        "term": "Preference Learning"
+      },
+      {
+        "score": 1080,
+        "term": "integrate multimodal"
+      },
+      {
+        "score": 1080,
+        "term": "representation alignment"
+      },
+      {
+        "score": 1071,
+        "term": "multimodal dataset"
+      },
+      {
+        "score": 1059,
+        "term": "llama model"
+      },
+      {
+        "score": 1046,
+        "term": "Distribution Shift"
+      },
+      {
+        "score": 1044,
+        "term": "bert model"
+      },
+      {
+        "score": 1035,
+        "term": "align image"
+      },
+      {
+        "score": 1032,
+        "term": "embedding large language"
+      },
+      {
+        "score": 1022,
+        "term": "Factuality"
+      },
+      {
+        "score": 1021,
+        "term": "cross-attention"
+      },
+      {
+        "score": 1021,
+        "term": "Gradient Descent"
+      },
+      {
+        "score": 1020,
+        "term": "Reflection"
+      },
+      {
+        "score": 1019,
+        "term": "embedding graph"
+      },
+      {
+        "score": 1019,
+        "term": "graph embedding"
+      },
+      {
+        "score": 1018,
+        "term": "Few-Shot Learning"
+      },
+      {
+        "score": 1012,
+        "term": "on-device"
+      },
+      {
+        "score": 1010,
+        "term": "Mixture of Experts"
+      },
+      {
+        "score": 1003,
+        "term": "multimodal reasoning"
+      },
+      {
+        "score": 1002,
+        "term": "Catastrophic Forgetting"
+      },
+      {
+        "score": 1002,
+        "term": "mechanism transformer"
+      },
+      {
+        "score": 993,
+        "term": "gpt-4 model"
+      },
+      {
+        "score": 991,
+        "term": "transformer-based approache"
+      },
+      {
+        "score": 988,
+        "term": "Model Pruning"
+      },
+      {
+        "score": 986,
+        "term": "attention layer"
+      },
+      {
+        "score": 986,
+        "term": "GPT-3"
+      },
+      {
+        "score": 982,
+        "term": "first benchmark"
+      },
+      {
+        "score": 967,
+        "term": "feature alignment"
+      },
+      {
+        "score": 967,
+        "term": "propose attention-based"
+      },
+      {
+        "score": 966,
+        "term": "feature embedding"
+      },
+      {
+        "score": 965,
+        "term": "alignment which"
+      },
+      {
+        "score": 962,
+        "term": "three benchmark"
+      },
+      {
+        "score": 961,
+        "term": "hallucination large"
+      },
+      {
+        "score": 956,
+        "term": "semantic alignment"
+      },
+      {
+        "score": 955,
+        "term": "benchmark existing"
+      },
+      {
+        "score": 955,
+        "term": "existing benchmark"
+      },
+      {
+        "score": 952,
+        "term": "graph transformer"
+      },
+      {
+        "score": 952,
+        "term": "transformer graph"
+      },
+      {
+        "score": 951,
+        "term": "transformer-based architecture"
+      },
+      {
+        "score": 951,
+        "term": "transformer-based language"
+      },
+      {
+        "score": 949,
+        "term": "text token"
+      },
+      {
+        "score": 949,
+        "term": "token level"
+      },
+      {
+        "score": 949,
+        "term": "token text"
+      },
+      {
+        "score": 949,
+        "term": "token-level"
+      },
+      {
+        "score": 946,
+        "term": "alignment preference"
+      },
+      {
+        "score": 946,
+        "term": "preference alignment"
+      },
+      {
+        "score": 933,
+        "term": "alignment across"
+      },
+      {
+        "score": 930,
+        "term": "hallucination large language"
+      },
+      {
+        "score": 928,
+        "term": "Latency"
+      },
+      {
+        "score": 921,
+        "term": "text embedding model"
+      },
+      {
+        "score": 913,
+        "term": "Text-to-Speech"
+      },
+      {
+        "score": 912,
+        "term": "attention which"
+      },
+      {
+        "score": 912,
+        "term": "rag model"
+      },
+      {
+        "score": 900,
+        "term": "benchmark designed evaluate"
+      },
+      {
+        "score": 894,
+        "term": "neural network transformer"
+      },
+      {
+        "score": 894,
+        "term": "transformer neural network"
+      },
+      {
+        "score": 880,
+        "term": "Inference Optimization"
+      },
+      {
+        "score": 880,
+        "term": "Probing"
+      },
+      {
+        "score": 872,
+        "term": "two reason"
+      },
+      {
+        "score": 870,
+        "term": "alignment problem"
+      },
+      {
+        "score": 866,
+        "term": "llm multimodal"
+      },
+      {
+        "score": 866,
+        "term": "multimodal llm"
+      },
+      {
+        "score": 865,
+        "term": "benchmark diverse"
+      },
+      {
+        "score": 865,
+        "term": "diverse benchmark"
+      },
+      {
+        "score": 863,
+        "term": "transformer-based language model"
+      },
+      {
+        "score": 862,
+        "term": "understand reason"
+      },
+      {
+        "score": 861,
+        "term": "preference-based"
+      },
+      {
+        "score": 856,
+        "term": "embedding which"
+      },
+      {
+        "score": 847,
+        "term": "gpt-3 model"
+      },
+      {
+        "score": 845,
+        "term": "benchmark proposed"
+      },
+      {
+        "score": 845,
+        "term": "propose benchmark"
+      },
+      {
+        "score": 844,
+        "term": "benchmark assess"
+      },
+      {
+        "score": 844,
+        "term": "benchmark assessing"
+      },
+      {
+        "score": 842,
+        "term": "attention computation"
+      },
+      {
+        "score": 837,
+        "term": "token which"
+      },
+      {
+        "score": 830,
+        "term": "like transformer"
+      },
+      {
+        "score": 822,
+        "term": "language model gpt-4"
+      },
+      {
+        "score": 822,
+        "term": "planning agent"
+      },
+      {
+        "score": 821,
+        "term": "benchmark test"
+      },
+      {
+        "score": 821,
+        "term": "benchmark tests"
+      },
+      {
+        "score": 821,
+        "term": "image-level"
+      },
+      {
+        "score": 820,
+        "term": "graph attention"
+      },
+      {
+        "score": 820,
+        "term": "multimodal feature"
+      },
+      {
+        "score": 818,
+        "term": "token while"
+      },
+      {
+        "score": 816,
+        "term": "benchmark multimodal"
+      },
+      {
+        "score": 816,
+        "term": "multimodal benchmark"
+      },
+      {
+        "score": 815,
+        "term": "hallucination llm"
+      },
+      {
+        "score": 815,
+        "term": "llm hallucination"
+      },
+      {
+        "score": 796,
+        "term": "Logical Reasoning"
+      },
+      {
+        "score": 786,
+        "term": "Token Prediction"
+      },
+      {
+        "score": 786,
+        "term": "understanding benchmark"
+      },
+      {
+        "score": 777,
+        "term": "Explainable AI"
+      },
+      {
+        "score": 772,
+        "term": "answering benchmark"
+      },
+      {
+        "score": 772,
+        "term": "attention module"
+      },
+      {
+        "score": 772,
+        "term": "multimodal information"
+      },
+      {
+        "score": 769,
+        "term": "alignment dataset"
+      },
+      {
+        "score": 765,
+        "term": "attention heads"
+      },
+      {
+        "score": 765,
+        "term": "gpt-4 large"
+      },
+      {
+        "score": 759,
+        "term": "ability reason"
+      },
+      {
+        "score": 758,
+        "term": "Parameter-Efficient Fine-Tuning"
+      },
+      {
+        "score": 745,
+        "term": "key reason"
+      },
+      {
+        "score": 744,
+        "term": "embedding knowledge"
+      },
+      {
+        "score": 741,
+        "term": "Human Feedback"
+      },
+      {
+        "score": 740,
+        "term": "large language model gpt-4"
+      },
+      {
+        "score": 739,
+        "term": "enhance alignment"
+      },
+      {
+        "score": 739,
+        "term": "pre-trained transformer"
+      },
+      {
+        "score": 737,
+        "term": "image 3d"
+      },
+      {
+        "score": 736,
+        "term": "bias llm"
+      },
+      {
+        "score": 726,
+        "term": "attention mechanism transformer"
+      },
+      {
+        "score": 726,
+        "term": "benchmark real-world"
+      },
+      {
+        "score": 726,
+        "term": "real-world benchmark"
+      },
+      {
+        "score": 725,
+        "term": "leverage multimodal"
+      },
+      {
+        "score": 725,
+        "term": "leveraging multimodal"
+      },
+      {
+        "score": 723,
+        "term": "Instruction Data"
+      },
+      {
+        "score": 723,
+        "term": "llm knowledge graph"
+      },
+      {
+        "score": 719,
+        "term": "multimodal understanding"
+      },
+      {
+        "score": 713,
+        "term": "Helpfulness"
+      },
+      {
+        "score": 711,
+        "term": "multimodal alignment"
+      },
+      {
+        "score": 708,
+        "term": "llm planning"
+      },
+      {
+        "score": 707,
+        "term": "language model gpt-3"
+      },
+      {
+        "score": 706,
+        "term": "multiple benchmark"
+      },
+      {
+        "score": 703,
+        "term": "semantic reasoning"
+      },
+      {
+        "score": 700,
+        "term": "benchmark like"
+      },
+      {
+        "score": 697,
+        "term": "Masked Language Modeling"
+      },
+      {
+        "score": 694,
+        "term": "enhance multimodal"
+      },
+      {
+        "score": 694,
+        "term": "enhancing multimodal"
+      },
+      {
+        "score": 689,
+        "term": "llm gpt-4"
+      },
+      {
+        "score": 689,
+        "term": "text-to-image diffusion"
+      },
+      {
+        "score": 688,
+        "term": "linear transformer"
+      },
+      {
+        "score": 686,
+        "term": "transformer decoder"
+      },
+      {
+        "score": 683,
+        "term": "alignment performance"
+      },
+      {
+        "score": 682,
+        "term": "token embedding"
+      },
+      {
+        "score": 681,
+        "term": "multimodal representation"
+      },
+      {
+        "score": 679,
+        "term": "representation token"
+      },
+      {
+        "score": 679,
+        "term": "token representation"
+      },
+      {
+        "score": 675,
+        "term": "COT"
+      },
+      {
+        "score": 675,
+        "term": "Data Filtering"
+      },
+      {
+        "score": 672,
+        "term": "benchmark compared"
+      },
+      {
+        "score": 672,
+        "term": "compared benchmark"
+      },
+      {
+        "score": 670,
+        "term": "sequence token"
+      },
+      {
+        "score": 670,
+        "term": "token sequence"
+      },
+      {
+        "score": 666,
+        "term": "benchmark problem"
+      },
+      {
+        "score": 660,
+        "term": "safety large"
+      },
+      {
+        "score": 660,
+        "term": "Zero-Shot Learning"
+      },
+      {
+        "score": 655,
+        "term": "Audio-Language"
+      },
+      {
+        "score": 654,
+        "term": "gpt 3.5"
+      },
+      {
+        "score": 654,
+        "term": "gpt-3 gpt-3.5"
+      },
+      {
+        "score": 654,
+        "term": "gpt-3.5"
+      },
+      {
+        "score": 651,
+        "term": "llm safety"
+      },
+      {
+        "score": 651,
+        "term": "safety llm"
+      },
+      {
+        "score": 646,
+        "term": "semantic token"
+      },
+      {
+        "score": 639,
+        "term": "benchmark cover"
+      },
+      {
+        "score": 639,
+        "term": "benchmark covering"
+      },
+      {
+        "score": 639,
+        "term": "text-to-image diffusion model"
+      },
+      {
+        "score": 635,
+        "term": "benchmark two"
+      },
+      {
+        "score": 635,
+        "term": "two benchmark"
+      },
+      {
+        "score": 634,
+        "term": "Image Captioning"
+      },
+      {
+        "score": 633,
+        "term": "transformer designed"
+      },
+      {
+        "score": 632,
+        "term": "embedding while"
+      },
+      {
+        "score": 630,
+        "term": "Incremental Learning"
+      },
+      {
+        "score": 628,
+        "term": "complexity attention"
+      },
+      {
+        "score": 628,
+        "term": "question answering benchmark"
+      },
+      {
+        "score": 628,
+        "term": "question-answering benchmark"
+      },
+      {
+        "score": 627,
+        "term": "Embedding Similarity"
+      },
+      {
+        "score": 626,
+        "term": "existing alignment"
+      },
+      {
+        "score": 624,
+        "term": "performance multimodal"
+      },
+      {
+        "score": 623,
+        "term": "Preference Data"
+      },
+      {
+        "score": 617,
+        "term": "Mathematical Reasoning"
+      },
+      {
+        "score": 616,
+        "term": "transformer module"
+      },
+      {
+        "score": 615,
+        "term": "Domain Shift"
+      },
+      {
+        "score": 615,
+        "term": "limited attention"
+      },
+      {
+        "score": 614,
+        "term": "image retrieval"
+      },
+      {
+        "score": 612,
+        "term": "temporal attention"
+      },
+      {
+        "score": 606,
+        "term": "safety large language"
+      },
+      {
+        "score": 605,
+        "term": "Bidirectional"
+      },
+      {
+        "score": 601,
+        "term": "large-scale benchmark"
+      },
+      {
+        "score": 597,
+        "term": "Diffusion Transformer"
+      },
+      {
+        "score": 596,
+        "term": "benchmark provide"
+      },
+      {
+        "score": 596,
+        "term": "provide benchmark"
+      },
+      {
+        "score": 590,
+        "term": "four benchmark"
+      },
+      {
+        "score": 588,
+        "term": "detection benchmark"
+      },
+      {
+        "score": 586,
+        "term": "domain alignment"
+      },
+      {
+        "score": 583,
+        "term": "alignment objective"
+      },
+      {
+        "score": 583,
+        "term": "self-evaluation"
+      },
+      {
+        "score": 582,
+        "term": "benchmark specifically"
+      },
+      {
+        "score": 577,
+        "term": "llama-3"
+      },
+      {
+        "score": 575,
+        "term": "single transformer"
+      },
+      {
+        "score": 572,
+        "term": "benchmark dataset including"
+      },
+      {
+        "score": 572,
+        "term": "Instruction Following"
+      },
+      {
+        "score": 571,
+        "term": "benchmark achieving"
+      },
+      {
+        "score": 571,
+        "term": "Multimodal Fusion"
+      },
+      {
+        "score": 569,
+        "term": "GPT-2"
+      },
+      {
+        "score": 568,
+        "term": "benchmark both"
+      },
+      {
+        "score": 567,
+        "term": "gpt-3.5 model"
+      },
+      {
+        "score": 566,
+        "term": "Policy Gradient"
+      },
+      {
+        "score": 564,
+        "term": "gpt-4o"
+      },
+      {
+        "score": 562,
+        "term": "present benchmark"
+      },
+      {
+        "score": 562,
+        "term": "transformer-based large"
+      },
+      {
+        "score": 560,
+        "term": "embedding capture"
+      },
+      {
+        "score": 553,
+        "term": "image token"
+      },
+      {
+        "score": 550,
+        "term": "benchmark which"
+      },
+      {
+        "score": 548,
+        "term": "Dialogue Systems"
+      },
+      {
+        "score": 539,
+        "term": "existing multimodal"
+      },
+      {
+        "score": 538,
+        "term": "cot reasoning"
+      },
+      {
+        "score": 538,
+        "term": "knowledge graph reasoning"
+      },
+      {
+        "score": 532,
+        "term": "benchmark consisting"
+      },
+      {
+        "score": 531,
+        "term": "token during"
+      },
+      {
+        "score": 523,
+        "term": "Visual Grounding"
+      },
+      {
+        "score": 522,
+        "term": "reduce token"
+      },
+      {
+        "score": 518,
+        "term": "standard benchmark"
+      },
+      {
+        "score": 518,
+        "term": "standardized benchmark"
+      },
+      {
+        "score": 514,
+        "term": "each transformer"
+      },
+      {
+        "score": 509,
+        "term": "evaluation gpt-4"
+      },
+      {
+        "score": 509,
+        "term": "gpt-4 evaluation"
+      },
+      {
+        "score": 508,
+        "term": "Attention Visualization"
+      },
+      {
+        "score": 508,
+        "term": "text-to-video"
+      },
+      {
+        "score": 505,
+        "term": "Representation Analysis"
+      },
+      {
+        "score": 503,
+        "term": "retrieval benchmark"
+      },
+      {
+        "score": 500,
+        "term": "gpt-2 model"
+      },
+      {
+        "score": 499,
+        "term": "transformer vit"
+      },
+      {
+        "score": 499,
+        "term": "transformer vits"
+      },
+      {
+        "score": 498,
+        "term": "input token"
+      },
+      {
+        "score": 497,
+        "term": "pre-trained embedding"
+      },
+      {
+        "score": 495,
+        "term": "generated gpt-4"
+      },
+      {
+        "score": 492,
+        "term": "processing multimodal"
+      },
+      {
+        "score": 490,
+        "term": "embedding extracted"
+      },
+      {
+        "score": 488,
+        "term": "embedding vector"
+      },
+      {
+        "score": 488,
+        "term": "visual token"
+      },
+      {
+        "score": 486,
+        "term": "context embedding"
+      },
+      {
+        "score": 485,
+        "term": "embedding then"
+      },
+      {
+        "score": 484,
+        "term": "vision-language alignment"
+      },
+      {
+        "score": 482,
+        "term": "llama-2"
+      },
+      {
+        "score": 482,
+        "term": "spatial attention"
+      },
+      {
+        "score": 481,
+        "term": "benchmark contain"
+      },
+      {
+        "score": 481,
+        "term": "global attention"
+      },
+      {
+        "score": 477,
+        "term": "transformer-based neural"
+      },
+      {
+        "score": 476,
+        "term": "benchmark while"
+      },
+      {
+        "score": 476,
+        "term": "five benchmark"
+      },
+      {
+        "score": 475,
+        "term": "Self-Consistency"
+      },
+      {
+        "score": 474,
+        "term": "thought cot reasoning"
+      },
+      {
+        "score": 473,
+        "term": "word embedding"
+      },
+      {
+        "score": 472,
+        "term": "llm adversarial"
+      },
+      {
+        "score": 471,
+        "term": "chain-of-thought cot reasoning"
+      },
+      {
+        "score": 469,
+        "term": "graph attention network"
+      },
+      {
+        "score": 468,
+        "term": "planning reasoning"
+      },
+      {
+        "score": 468,
+        "term": "Positional Encoding"
+      },
+      {
+        "score": 468,
+        "term": "reasoning planning"
+      },
+      {
+        "score": 468,
+        "term": "Softmax"
+      },
+      {
+        "score": 466,
+        "term": "Feature Attribution"
+      },
+      {
+        "score": 466,
+        "term": "multimodal input"
+      }
+    ]
+  },
+  "built_at": "2026-02-18T04:25:13.835590+00:00",
+  "canonical_files": [
+    "continual_adaptive_learning.txt",
+    "core_architecture_components.txt",
+    "data_training_paradigms.txt",
+    "deployment_production.txt",
+    "efficiency_scaling.txt",
+    "evaluation_benchmarking.txt",
+    "human_ai_interaction.txt",
+    "information_retrieval_knowledge.txt",
+    "interpretability_transparency.txt",
+    "model_families_specific_implementations.txt",
+    "multimodal_cross_domain.txt",
+    "reasoning_cognition.txt",
+    "robustness_safety.txt",
+    "training_optimization.txt"
+  ],
+  "db_file": "search-1a2ab3b72666.sqlite",
+  "query_root": "/Users/trentrobbins/code/analysis/website/data/word_clouds",
+  "schema_version": 1,
+  "scoring": {
+    "include_zero_scores": false,
+    "search_scope": [
+      "title",
+      "core_contribution"
+    ],
+    "type": "fts_match_count"
+  },
+  "year_directories": {
+    "2023": "2023",
+    "2024": "2024",
+    "2025": "2025"
+  },
+  "years": {
+    "2023": {
+      "files": [
+        "continual_adaptive_learning.txt",
+        "core_architecture_components.txt",
+        "data_training_paradigms.txt",
+        "deployment_production.txt",
+        "efficiency_scaling.txt",
+        "evaluation_benchmarking.txt",
+        "human_ai_interaction.txt",
+        "information_retrieval_knowledge.txt",
+        "interpretability_transparency.txt",
+        "model_families_specific_implementations.txt",
+        "multimodal_cross_domain.txt",
+        "reasoning_cognition.txt",
+        "robustness_safety.txt",
+        "training_optimization.txt"
+      ],
+      "scored_term_count": 318,
+      "term_count": 325,
+      "terms": [
+        {
+          "all_years_score": 11256,
+          "score": 3018,
+          "term": "Transformer"
+        },
+        {
+          "all_years_score": 11130,
+          "score": 2311,
+          "term": "Adapters"
+        },
+        {
+          "all_years_score": 5374,
+          "score": 1874,
+          "term": "Pre-training"
+        },
+        {
+          "all_years_score": 7769,
+          "score": 1582,
+          "term": "Fine-tuning"
+        },
+        {
+          "all_years_score": 8164,
+          "score": 1457,
+          "term": "Benchmark"
+        },
+        {
+          "all_years_score": 5682,
+          "score": 1311,
+          "term": "Accuracy"
+        },
+        {
+          "all_years_score": 2764,
+          "score": 923,
+          "term": "Contrastive Learning"
+        },
+        {
+          "all_years_score": 2928,
+          "score": 914,
+          "term": "GPT"
+        },
+        {
+          "all_years_score": 2462,
+          "score": 753,
+          "term": "Data Augmentation"
+        },
+        {
+          "all_years_score": 3057,
+          "score": 733,
+          "term": "Knowledge Base"
+        },
+        {
+          "all_years_score": 2559,
+          "score": 705,
+          "term": "Knowledge Graph"
+        },
+        {
+          "all_years_score": 1838,
+          "score": 684,
+          "term": "Self-Supervised Learning"
+        },
+        {
+          "all_years_score": 1879,
+          "score": 639,
+          "term": "Transfer Learning"
+        },
+        {
+          "all_years_score": 2396,
+          "score": 626,
+          "term": "Continual Learning"
+        },
+        {
+          "all_years_score": 1570,
+          "score": 511,
+          "term": "Pre-training Data"
+        },
+        {
+          "all_years_score": 1280,
+          "score": 509,
+          "term": "BERT"
+        },
+        {
+          "all_years_score": 1875,
+          "score": 507,
+          "term": "Domain Adaptation"
+        },
+        {
+          "all_years_score": 2086,
+          "score": 496,
+          "term": "In-Context Learning"
+        },
+        {
+          "all_years_score": 1830,
+          "score": 477,
+          "term": "Adversarial Attack"
+        },
+        {
+          "all_years_score": 3462,
+          "score": 472,
+          "term": "Vision-Language Model"
+        },
+        {
+          "all_years_score": 2272,
+          "score": 463,
+          "term": "Planning"
+        },
+        {
+          "all_years_score": 1547,
+          "score": 463,
+          "term": "Multi-Task Learning"
+        },
+        {
+          "all_years_score": 1247,
+          "score": 455,
+          "term": "Speech Recognition"
+        },
+        {
+          "all_years_score": 1517,
+          "score": 448,
+          "term": "Knowledge Distillation"
+        },
+        {
+          "all_years_score": 2176,
+          "score": 438,
+          "term": "Synthetic Data"
+        },
+        {
+          "all_years_score": 1304,
+          "score": 425,
+          "term": "Adversarial Training"
+        },
+        {
+          "all_years_score": 1314,
+          "score": 396,
+          "term": "Online Learning"
+        },
+        {
+          "all_years_score": 1189,
+          "score": 395,
+          "term": "Encoder-Decoder"
+        },
+        {
+          "all_years_score": 1521,
+          "score": 382,
+          "term": "Interactive Learning"
+        },
+        {
+          "all_years_score": 1018,
+          "score": 367,
+          "term": "Few-Shot Learning"
+        },
+        {
+          "all_years_score": 1802,
+          "score": 357,
+          "term": "Quantization"
+        },
+        {
+          "all_years_score": 1379,
+          "score": 357,
+          "term": "CLIP"
+        },
+        {
+          "all_years_score": 1021,
+          "score": 353,
+          "term": "Gradient Descent"
+        },
+        {
+          "all_years_score": 1458,
+          "score": 349,
+          "term": "Decomposition"
+        },
+        {
+          "all_years_score": 1296,
+          "score": 349,
+          "term": "Prompt Tuning"
+        },
+        {
+          "all_years_score": 847,
+          "score": 334,
+          "term": "gpt-3 model"
+        },
+        {
+          "all_years_score": 1151,
+          "score": 327,
+          "term": "Self-Attention"
+        },
+        {
+          "all_years_score": 1046,
+          "score": 327,
+          "term": "Distribution Shift"
+        },
+        {
+          "all_years_score": 993,
+          "score": 324,
+          "term": "gpt-4 model"
+        },
+        {
+          "all_years_score": 1245,
+          "score": 308,
+          "term": "Instruction Tuning"
+        },
+        {
+          "all_years_score": 1299,
+          "score": 304,
+          "term": "Calibration"
+        },
+        {
+          "all_years_score": 1576,
+          "score": 300,
+          "term": "Model Compression"
+        },
+        {
+          "all_years_score": 2278,
+          "score": 295,
+          "term": "Reward Modeling"
+        },
+        {
+          "all_years_score": 913,
+          "score": 283,
+          "term": "Text-to-Speech"
+        },
+        {
+          "all_years_score": 707,
+          "score": 272,
+          "term": "language model gpt-3"
+        },
+        {
+          "all_years_score": 1278,
+          "score": 268,
+          "term": "Autoregressive"
+        },
+        {
+          "all_years_score": 822,
+          "score": 263,
+          "term": "language model gpt-4"
+        },
+        {
+          "all_years_score": 1002,
+          "score": 254,
+          "term": "Catastrophic Forgetting"
+        },
+        {
+          "all_years_score": 765,
+          "score": 245,
+          "term": "gpt-4 large"
+        },
+        {
+          "all_years_score": 654,
+          "score": 236,
+          "term": "gpt 3.5"
+        },
+        {
+          "all_years_score": 654,
+          "score": 236,
+          "term": "gpt-3 gpt-3.5"
+        },
+        {
+          "all_years_score": 740,
+          "score": 235,
+          "term": "large language model gpt-4"
+        },
+        {
+          "all_years_score": 1469,
+          "score": 232,
+          "term": "Chain-of-Thought"
+        },
+        {
+          "all_years_score": 1022,
+          "score": 219,
+          "term": "Factuality"
+        },
+        {
+          "all_years_score": 713,
+          "score": 217,
+          "term": "Helpfulness"
+        },
+        {
+          "all_years_score": 988,
+          "score": 209,
+          "term": "Model Pruning"
+        },
+        {
+          "all_years_score": 777,
+          "score": 201,
+          "term": "Explainable AI"
+        },
+        {
+          "all_years_score": 660,
+          "score": 200,
+          "term": "Zero-Shot Learning"
+        },
+        {
+          "all_years_score": 567,
+          "score": 199,
+          "term": "gpt-3.5 model"
+        },
+        {
+          "all_years_score": 548,
+          "score": 198,
+          "term": "Dialogue Systems"
+        },
+        {
+          "all_years_score": 1081,
+          "score": 192,
+          "term": "Preference Learning"
+        },
+        {
+          "all_years_score": 634,
+          "score": 192,
+          "term": "Image Captioning"
+        },
+        {
+          "all_years_score": 630,
+          "score": 188,
+          "term": "Incremental Learning"
+        },
+        {
+          "all_years_score": 615,
+          "score": 188,
+          "term": "Domain Shift"
+        },
+        {
+          "all_years_score": 880,
+          "score": 185,
+          "term": "Probing"
+        },
+        {
+          "all_years_score": 689,
+          "score": 184,
+          "term": "llm gpt-4"
+        },
+        {
+          "all_years_score": 1172,
+          "score": 179,
+          "term": "LLaMA"
+        },
+        {
+          "all_years_score": 509,
+          "score": 172,
+          "term": "evaluation gpt-4"
+        },
+        {
+          "all_years_score": 509,
+          "score": 172,
+          "term": "gpt-4 evaluation"
+        },
+        {
+          "all_years_score": 697,
+          "score": 171,
+          "term": "Masked Language Modeling"
+        },
+        {
+          "all_years_score": 928,
+          "score": 164,
+          "term": "Latency"
+        },
+        {
+          "all_years_score": 741,
+          "score": 164,
+          "term": "Human Feedback"
+        },
+        {
+          "all_years_score": 796,
+          "score": 162,
+          "term": "Logical Reasoning"
+        },
+        {
+          "all_years_score": 723,
+          "score": 155,
+          "term": "Instruction Data"
+        },
+        {
+          "all_years_score": 880,
+          "score": 148,
+          "term": "Inference Optimization"
+        },
+        {
+          "all_years_score": 307,
+          "score": 146,
+          "term": "T5"
+        },
+        {
+          "all_years_score": 627,
+          "score": 142,
+          "term": "Embedding Similarity"
+        },
+        {
+          "all_years_score": 1199,
+          "score": 140,
+          "term": "LoRA"
+        },
+        {
+          "all_years_score": 288,
+          "score": 140,
+          "term": "t5 model"
+        },
+        {
+          "all_years_score": 675,
+          "score": 138,
+          "term": "Data Filtering"
+        },
+        {
+          "all_years_score": 655,
+          "score": 137,
+          "term": "Audio-Language"
+        },
+        {
+          "all_years_score": 395,
+          "score": 137,
+          "term": "gpt-3 gpt-4"
+        },
+        {
+          "all_years_score": 566,
+          "score": 133,
+          "term": "Policy Gradient"
+        },
+        {
+          "all_years_score": 758,
+          "score": 132,
+          "term": "Parameter-Efficient Fine-Tuning"
+        },
+        {
+          "all_years_score": 786,
+          "score": 130,
+          "term": "Token Prediction"
+        },
+        {
+          "all_years_score": 500,
+          "score": 130,
+          "term": "gpt-2 model"
+        },
+        {
+          "all_years_score": 1020,
+          "score": 129,
+          "term": "Reflection"
+        },
+        {
+          "all_years_score": 572,
+          "score": 129,
+          "term": "Instruction Following"
+        },
+        {
+          "all_years_score": 468,
+          "score": 127,
+          "term": "Softmax"
+        },
+        {
+          "all_years_score": 456,
+          "score": 127,
+          "term": "Vision Transformer (ViT)"
+        },
+        {
+          "all_years_score": 466,
+          "score": 126,
+          "term": "Feature Attribution"
+        },
+        {
+          "all_years_score": 442,
+          "score": 126,
+          "term": "Backpropagation"
+        },
+        {
+          "all_years_score": 2078,
+          "score": 120,
+          "term": "Retrieval-Augmented Generation"
+        },
+        {
+          "all_years_score": 605,
+          "score": 120,
+          "term": "Bidirectional"
+        },
+        {
+          "all_years_score": 403,
+          "score": 117,
+          "term": "llm gpt-3.5"
+        },
+        {
+          "all_years_score": 1010,
+          "score": 110,
+          "term": "Mixture of Experts"
+        },
+        {
+          "all_years_score": 303,
+          "score": 110,
+          "term": "gpt-3.5 gpt-4"
+        },
+        {
+          "all_years_score": 303,
+          "score": 110,
+          "term": "gpt-4 gpt-3.5"
+        },
+        {
+          "all_years_score": 430,
+          "score": 109,
+          "term": "Curriculum Learning"
+        },
+        {
+          "all_years_score": 386,
+          "score": 109,
+          "term": "Dense Retrieval"
+        },
+        {
+          "all_years_score": 505,
+          "score": 108,
+          "term": "Representation Analysis"
+        },
+        {
+          "all_years_score": 277,
+          "score": 107,
+          "term": "gpt-4 perform"
+        },
+        {
+          "all_years_score": 369,
+          "score": 105,
+          "term": "Poisoning Attack"
+        },
+        {
+          "all_years_score": 571,
+          "score": 104,
+          "term": "Multimodal Fusion"
+        },
+        {
+          "all_years_score": 475,
+          "score": 104,
+          "term": "Self-Consistency"
+        },
+        {
+          "all_years_score": 452,
+          "score": 104,
+          "term": "Embedding Layer"
+        },
+        {
+          "all_years_score": 409,
+          "score": 103,
+          "term": "VQA"
+        },
+        {
+          "all_years_score": 508,
+          "score": 102,
+          "term": "Attention Visualization"
+        },
+        {
+          "all_years_score": 323,
+          "score": 102,
+          "term": "Dropout"
+        },
+        {
+          "all_years_score": 468,
+          "score": 101,
+          "term": "Positional Encoding"
+        },
+        {
+          "all_years_score": 363,
+          "score": 100,
+          "term": "Data Parallelism"
+        },
+        {
+          "all_years_score": 523,
+          "score": 98,
+          "term": "Visual Grounding"
+        },
+        {
+          "all_years_score": 304,
+          "score": 97,
+          "term": "gpt-4 prompt"
+        },
+        {
+          "all_years_score": 304,
+          "score": 97,
+          "term": "prompt gpt-4"
+        },
+        {
+          "all_years_score": 304,
+          "score": 97,
+          "term": "prompting gpt-4"
+        },
+        {
+          "all_years_score": 336,
+          "score": 96,
+          "term": "Backdoor Attack"
+        },
+        {
+          "all_years_score": 352,
+          "score": 94,
+          "term": "Actor-Critic"
+        },
+        {
+          "all_years_score": 315,
+          "score": 93,
+          "term": "Class-Incremental"
+        },
+        {
+          "all_years_score": 295,
+          "score": 93,
+          "term": "dataset gpt-4"
+        },
+        {
+          "all_years_score": 348,
+          "score": 90,
+          "term": "Adversarial Defense"
+        },
+        {
+          "all_years_score": 250,
+          "score": 90,
+          "term": "Cross-Lingual Transfer"
+        },
+        {
+          "all_years_score": 259,
+          "score": 87,
+          "term": "gpt-4 human"
+        },
+        {
+          "all_years_score": 259,
+          "score": 87,
+          "term": "human gpt-4"
+        },
+        {
+          "all_years_score": 243,
+          "score": 85,
+          "term": "compared gpt-4"
+        },
+        {
+          "all_years_score": 234,
+          "score": 85,
+          "term": "Commonsense Reasoning"
+        },
+        {
+          "all_years_score": 402,
+          "score": 83,
+          "term": "Test-Time Adaptation"
+        },
+        {
+          "all_years_score": 327,
+          "score": 83,
+          "term": "F1 Score"
+        },
+        {
+          "all_years_score": 380,
+          "score": 80,
+          "term": "Multi-Head Attention"
+        },
+        {
+          "all_years_score": 349,
+          "score": 79,
+          "term": "Encoder-Only"
+        },
+        {
+          "all_years_score": 597,
+          "score": 76,
+          "term": "Diffusion Transformer"
+        },
+        {
+          "all_years_score": 463,
+          "score": 75,
+          "term": "RLHF"
+        },
+        {
+          "all_years_score": 409,
+          "score": 74,
+          "term": "Model Serving"
+        },
+        {
+          "all_years_score": 439,
+          "score": 73,
+          "term": "llama-2 model"
+        },
+        {
+          "all_years_score": 296,
+          "score": 71,
+          "term": "SHAP"
+        },
+        {
+          "all_years_score": 107,
+          "score": 71,
+          "term": "chatgpt gpt-4"
+        },
+        {
+          "all_years_score": 107,
+          "score": 71,
+          "term": "gpt-4 chatgpt"
+        },
+        {
+          "all_years_score": 380,
+          "score": 69,
+          "term": "Data Curation"
+        },
+        {
+          "all_years_score": 344,
+          "score": 67,
+          "term": "Integrated Gradients"
+        },
+        {
+          "all_years_score": 410,
+          "score": 64,
+          "term": "Decoder-Only"
+        },
+        {
+          "all_years_score": 246,
+          "score": 64,
+          "term": "Data Poisoning"
+        },
+        {
+          "all_years_score": 623,
+          "score": 61,
+          "term": "Preference Data"
+        },
+        {
+          "all_years_score": 286,
+          "score": 60,
+          "term": "OCR"
+        },
+        {
+          "all_years_score": 430,
+          "score": 59,
+          "term": "Video Understanding"
+        },
+        {
+          "all_years_score": 218,
+          "score": 59,
+          "term": "Task-Incremental"
+        },
+        {
+          "all_years_score": 148,
+          "score": 59,
+          "term": "Batch Normalization"
+        },
+        {
+          "all_years_score": 292,
+          "score": 58,
+          "term": "Semantic Search"
+        },
+        {
+          "all_years_score": 312,
+          "score": 56,
+          "term": "Reranking"
+        },
+        {
+          "all_years_score": 145,
+          "score": 56,
+          "term": "Certified Robustness"
+        },
+        {
+          "all_years_score": 617,
+          "score": 55,
+          "term": "Mathematical Reasoning"
+        },
+        {
+          "all_years_score": 374,
+          "score": 55,
+          "term": "Causal Reasoning"
+        },
+        {
+          "all_years_score": 366,
+          "score": 55,
+          "term": "Sparse Attention"
+        },
+        {
+          "all_years_score": 156,
+          "score": 54,
+          "term": "gpt-3.5 turbo"
+        },
+        {
+          "all_years_score": 329,
+          "score": 53,
+          "term": "Conversational AI"
+        },
+        {
+          "all_years_score": 252,
+          "score": 51,
+          "term": "Quantized Inference"
+        },
+        {
+          "all_years_score": 181,
+          "score": 51,
+          "term": "Dense Transformer"
+        },
+        {
+          "all_years_score": 76,
+          "score": 51,
+          "term": "chatgpt gpt-3"
+        },
+        {
+          "all_years_score": 76,
+          "score": 51,
+          "term": "gpt-3 chatgpt"
+        },
+        {
+          "all_years_score": 220,
+          "score": 50,
+          "term": "Document Understanding"
+        },
+        {
+          "all_years_score": 416,
+          "score": 49,
+          "term": "Multi-Step Reasoning"
+        },
+        {
+          "all_years_score": 231,
+          "score": 49,
+          "term": "Throughput"
+        },
+        {
+          "all_years_score": 192,
+          "score": 49,
+          "term": "gpt-2 gpt-3"
+        },
+        {
+          "all_years_score": 176,
+          "score": 49,
+          "term": "Feed-Forward Network"
+        },
+        {
+          "all_years_score": 295,
+          "score": 47,
+          "term": "PPO"
+        },
+        {
+          "all_years_score": 139,
+          "score": 47,
+          "term": "gpt-4 achieve"
+        },
+        {
+          "all_years_score": 139,
+          "score": 47,
+          "term": "gpt-4 achieved"
+        },
+        {
+          "all_years_score": 250,
+          "score": 46,
+          "term": "Perplexity"
+        },
+        {
+          "all_years_score": 282,
+          "score": 45,
+          "term": "User Intent"
+        },
+        {
+          "all_years_score": 427,
+          "score": 44,
+          "term": "AI Alignment"
+        },
+        {
+          "all_years_score": 152,
+          "score": 44,
+          "term": "BLEU"
+        },
+        {
+          "all_years_score": 204,
+          "score": 43,
+          "term": "Sparse Retrieval"
+        },
+        {
+          "all_years_score": 161,
+          "score": 43,
+          "term": "LIME"
+        },
+        {
+          "all_years_score": 91,
+          "score": 43,
+          "term": "fine-tuned t5"
+        },
+        {
+          "all_years_score": 119,
+          "score": 42,
+          "term": "specifically gpt-4"
+        },
+        {
+          "all_years_score": 96,
+          "score": 42,
+          "term": "gpt-4 ability"
+        },
+        {
+          "all_years_score": 110,
+          "score": 41,
+          "term": "leverage gpt-4"
+        },
+        {
+          "all_years_score": 110,
+          "score": 41,
+          "term": "leveraging gpt-4"
+        },
+        {
+          "all_years_score": 109,
+          "score": 41,
+          "term": "Saliency Maps"
+        },
+        {
+          "all_years_score": 160,
+          "score": 40,
+          "term": "Adam Optimizer"
+        },
+        {
+          "all_years_score": 269,
+          "score": 38,
+          "term": "Cross-Modal Attention"
+        },
+        {
+          "all_years_score": 177,
+          "score": 38,
+          "term": "Mixed Precision"
+        },
+        {
+          "all_years_score": 153,
+          "score": 37,
+          "term": "Concept Activation"
+        },
+        {
+          "all_years_score": 114,
+          "score": 37,
+          "term": "Lifelong Learning"
+        },
+        {
+          "all_years_score": 113,
+          "score": 36,
+          "term": "Randomized Smoothing"
+        },
+        {
+          "all_years_score": 68,
+          "score": 36,
+          "term": "PaLM"
+        },
+        {
+          "all_years_score": 58,
+          "score": 36,
+          "term": "chatgpt gpt-3.5"
+        },
+        {
+          "all_years_score": 60,
+          "score": 35,
+          "term": "transformer t5"
+        },
+        {
+          "all_years_score": 183,
+          "score": 34,
+          "term": "llama 7b"
+        },
+        {
+          "all_years_score": 346,
+          "score": 33,
+          "term": "AI Safety"
+        },
+        {
+          "all_years_score": 127,
+          "score": 33,
+          "term": "Experience Replay"
+        },
+        {
+          "all_years_score": 103,
+          "score": 33,
+          "term": "GPT-4V"
+        },
+        {
+          "all_years_score": 180,
+          "score": 32,
+          "term": "Real-Time Inference"
+        },
+        {
+          "all_years_score": 96,
+          "score": 32,
+          "term": "Prefix Tuning"
+        },
+        {
+          "all_years_score": 148,
+          "score": 31,
+          "term": "ARC"
+        },
+        {
+          "all_years_score": 104,
+          "score": 31,
+          "term": "Weight Decay"
+        },
+        {
+          "all_years_score": 147,
+          "score": 30,
+          "term": "Residual Connections"
+        },
+        {
+          "all_years_score": 405,
+          "score": 29,
+          "term": "Jailbreaking"
+        },
+        {
+          "all_years_score": 129,
+          "score": 29,
+          "term": "Batch Inference"
+        },
+        {
+          "all_years_score": 73,
+          "score": 29,
+          "term": "gpt-4 demonstrate"
+        },
+        {
+          "all_years_score": 73,
+          "score": 29,
+          "term": "gpt-4 demonstrated"
+        },
+        {
+          "all_years_score": 71,
+          "score": 29,
+          "term": "gpt-4 code"
+        },
+        {
+          "all_years_score": 187,
+          "score": 28,
+          "term": "Data Contamination"
+        },
+        {
+          "all_years_score": 148,
+          "score": 28,
+          "term": "gpt-4 llama"
+        },
+        {
+          "all_years_score": 121,
+          "score": 28,
+          "term": "BM25"
+        },
+        {
+          "all_years_score": 106,
+          "score": 27,
+          "term": "Pipeline Parallelism"
+        },
+        {
+          "all_years_score": 200,
+          "score": 26,
+          "term": "Causal Attention"
+        },
+        {
+          "all_years_score": 85,
+          "score": 26,
+          "term": "ROUGE"
+        },
+        {
+          "all_years_score": 60,
+          "score": 26,
+          "term": "experiment gpt-4"
+        },
+        {
+          "all_years_score": 451,
+          "score": 24,
+          "term": "DPO"
+        },
+        {
+          "all_years_score": 41,
+          "score": 24,
+          "term": "bart t5"
+        },
+        {
+          "all_years_score": 41,
+          "score": 24,
+          "term": "t5 bart"
+        },
+        {
+          "all_years_score": 62,
+          "score": 23,
+          "term": "find gpt-4"
+        },
+        {
+          "all_years_score": 47,
+          "score": 23,
+          "term": "GLUE"
+        },
+        {
+          "all_years_score": 41,
+          "score": 23,
+          "term": "openai gpt-3"
+        },
+        {
+          "all_years_score": 133,
+          "score": 22,
+          "term": "Content Filtering"
+        },
+        {
+          "all_years_score": 96,
+          "score": 22,
+          "term": "Comparative Feedback"
+        },
+        {
+          "all_years_score": 149,
+          "score": 21,
+          "term": "Red Teaming"
+        },
+        {
+          "all_years_score": 138,
+          "score": 21,
+          "term": "Deliberation"
+        },
+        {
+          "all_years_score": 96,
+          "score": 21,
+          "term": "Specification Gaming"
+        },
+        {
+          "all_years_score": 62,
+          "score": 21,
+          "term": "gpt-4 which"
+        },
+        {
+          "all_years_score": 89,
+          "score": 20,
+          "term": "Query Expansion"
+        },
+        {
+          "all_years_score": 75,
+          "score": 20,
+          "term": "PGD"
+        },
+        {
+          "all_years_score": 293,
+          "score": 19,
+          "term": "Sparse Autoencoders"
+        },
+        {
+          "all_years_score": 271,
+          "score": 19,
+          "term": "Claude"
+        },
+        {
+          "all_years_score": 182,
+          "score": 19,
+          "term": "LLaVA"
+        },
+        {
+          "all_years_score": 125,
+          "score": 19,
+          "term": "Edge Deployment"
+        },
+        {
+          "all_years_score": 63,
+          "score": 19,
+          "term": "Falcon"
+        },
+        {
+          "all_years_score": 58,
+          "score": 19,
+          "term": "gpt-3.5-turbo gpt-4"
+        },
+        {
+          "all_years_score": 51,
+          "score": 19,
+          "term": "gpt-4 more"
+        },
+        {
+          "all_years_score": 130,
+          "score": 18,
+          "term": "Sparse MoE"
+        },
+        {
+          "all_years_score": 85,
+          "score": 18,
+          "term": "while gpt-4"
+        },
+        {
+          "all_years_score": 80,
+          "score": 18,
+          "term": "Analogical Reasoning"
+        },
+        {
+          "all_years_score": 184,
+          "score": 17,
+          "term": "Mechanistic Interpretability"
+        },
+        {
+          "all_years_score": 54,
+          "score": 17,
+          "term": "Evasion Attack"
+        },
+        {
+          "all_years_score": 31,
+          "score": 17,
+          "term": "chatgpt gpt-3.5 gpt-4"
+        },
+        {
+          "all_years_score": 64,
+          "score": 16,
+          "term": "On-Device AI"
+        },
+        {
+          "all_years_score": 54,
+          "score": 16,
+          "term": "bert gpt-2"
+        },
+        {
+          "all_years_score": 50,
+          "score": 16,
+          "term": "Mobile AI"
+        },
+        {
+          "all_years_score": 87,
+          "score": 15,
+          "term": "Tree of Thoughts"
+        },
+        {
+          "all_years_score": 85,
+          "score": 15,
+          "term": "Deduplication"
+        },
+        {
+          "all_years_score": 68,
+          "score": 15,
+          "term": "QAT"
+        },
+        {
+          "all_years_score": 59,
+          "score": 15,
+          "term": "gpt-4 was"
+        },
+        {
+          "all_years_score": 414,
+          "score": 14,
+          "term": "Gemini"
+        },
+        {
+          "all_years_score": 246,
+          "score": 14,
+          "term": "Speculative Decoding"
+        },
+        {
+          "all_years_score": 98,
+          "score": 14,
+          "term": "PTQ"
+        },
+        {
+          "all_years_score": 89,
+          "score": 14,
+          "term": "GSM8K"
+        },
+        {
+          "all_years_score": 27,
+          "score": 14,
+          "term": "openai gpt-3.5"
+        },
+        {
+          "all_years_score": 27,
+          "score": 14,
+          "term": "openai gpt-4"
+        },
+        {
+          "all_years_score": 77,
+          "score": 13,
+          "term": "Superposition"
+        },
+        {
+          "all_years_score": 72,
+          "score": 13,
+          "term": "Learning Rate Schedule"
+        },
+        {
+          "all_years_score": 37,
+          "score": 13,
+          "term": "gpt-4 result"
+        },
+        {
+          "all_years_score": 37,
+          "score": 13,
+          "term": "result gpt-4"
+        },
+        {
+          "all_years_score": 136,
+          "score": 12,
+          "term": "Hybrid Search"
+        },
+        {
+          "all_years_score": 60,
+          "score": 12,
+          "term": "FGSM"
+        },
+        {
+          "all_years_score": 50,
+          "score": 12,
+          "term": "LayerNorm"
+        },
+        {
+          "all_years_score": 40,
+          "score": 12,
+          "term": "INT8"
+        },
+        {
+          "all_years_score": 229,
+          "score": 11,
+          "term": "Supervised Fine-Tuning (SFT)"
+        },
+        {
+          "all_years_score": 101,
+          "score": 11,
+          "term": "gpt-4 claude"
+        },
+        {
+          "all_years_score": 48,
+          "score": 11,
+          "term": "Tensor Parallelism"
+        },
+        {
+          "all_years_score": 45,
+          "score": 11,
+          "term": "than gpt-4"
+        },
+        {
+          "all_years_score": 23,
+          "score": 11,
+          "term": "MPT"
+        },
+        {
+          "all_years_score": 12,
+          "score": 11,
+          "term": "gpt-4v ision"
+        },
+        {
+          "all_years_score": 69,
+          "score": 10,
+          "term": "QLoRA"
+        },
+        {
+          "all_years_score": 29,
+          "score": 10,
+          "term": "than gpt-3.5"
+        },
+        {
+          "all_years_score": 25,
+          "score": 10,
+          "term": "found gpt-4"
+        },
+        {
+          "all_years_score": 114,
+          "score": 9,
+          "term": "Phi"
+        },
+        {
+          "all_years_score": 104,
+          "score": 9,
+          "term": "MMLU"
+        },
+        {
+          "all_years_score": 92,
+          "score": 9,
+          "term": "Harmlessness"
+        },
+        {
+          "all_years_score": 58,
+          "score": 9,
+          "term": "Self-Critique"
+        },
+        {
+          "all_years_score": 47,
+          "score": 9,
+          "term": "transformer gpt-4"
+        },
+        {
+          "all_years_score": 27,
+          "score": 9,
+          "term": "gpt-4 exhibit"
+        },
+        {
+          "all_years_score": 13,
+          "score": 9,
+          "term": "SuperGLUE"
+        },
+        {
+          "all_years_score": 404,
+          "score": 8,
+          "term": "KV Cache"
+        },
+        {
+          "all_years_score": 146,
+          "score": 8,
+          "term": "Guardrails"
+        },
+        {
+          "all_years_score": 106,
+          "score": 8,
+          "term": "Document Chunking"
+        },
+        {
+          "all_years_score": 92,
+          "score": 8,
+          "term": "Vector Database"
+        },
+        {
+          "all_years_score": 46,
+          "score": 8,
+          "term": "Circuit Analysis"
+        },
+        {
+          "all_years_score": 40,
+          "score": 8,
+          "term": "gpt-2 small"
+        },
+        {
+          "all_years_score": 40,
+          "score": 8,
+          "term": "gsm8k math"
+        },
+        {
+          "all_years_score": 18,
+          "score": 8,
+          "term": "BIG-Bench"
+        },
+        {
+          "all_years_score": 319,
+          "score": 7,
+          "term": "Reasoning Traces"
+        },
+        {
+          "all_years_score": 71,
+          "score": 7,
+          "term": "Safety Cases"
+        },
+        {
+          "all_years_score": 61,
+          "score": 7,
+          "term": "Activation Patching"
+        },
+        {
+          "all_years_score": 26,
+          "score": 7,
+          "term": "Elastic Weight Consolidation"
+        },
+        {
+          "all_years_score": 18,
+          "score": 7,
+          "term": "roberta t5"
+        },
+        {
+          "all_years_score": 85,
+          "score": 6,
+          "term": "Reward Hacking"
+        },
+        {
+          "all_years_score": 63,
+          "score": 6,
+          "term": "Metacognition"
+        },
+        {
+          "all_years_score": 27,
+          "score": 6,
+          "term": "speech-to-speech translation s2st"
+        },
+        {
+          "all_years_score": 19,
+          "score": 6,
+          "term": "INT4"
+        },
+        {
+          "all_years_score": 340,
+          "score": 5,
+          "term": "Mistral"
+        },
+        {
+          "all_years_score": 65,
+          "score": 5,
+          "term": "vLLM"
+        },
+        {
+          "all_years_score": 32,
+          "score": 5,
+          "term": "HumanEval"
+        },
+        {
+          "all_years_score": 39,
+          "score": 4,
+          "term": "Block Sparse Attention"
+        },
+        {
+          "all_years_score": 36,
+          "score": 4,
+          "term": "ColBERT"
+        },
+        {
+          "all_years_score": 28,
+          "score": 4,
+          "term": "FP16"
+        },
+        {
+          "all_years_score": 26,
+          "score": 4,
+          "term": "text-to-video t2v"
+        },
+        {
+          "all_years_score": 17,
+          "score": 4,
+          "term": "ONNX"
+        },
+        {
+          "all_years_score": 5,
+          "score": 4,
+          "term": "d4rl benchmark"
+        },
+        {
+          "all_years_score": 182,
+          "score": 3,
+          "term": "Qwen"
+        },
+        {
+          "all_years_score": 51,
+          "score": 3,
+          "term": "Sycophancy"
+        },
+        {
+          "all_years_score": 38,
+          "score": 3,
+          "term": "Warmup"
+        },
+        {
+          "all_years_score": 34,
+          "score": 3,
+          "term": "Honesty"
+        },
+        {
+          "all_years_score": 31,
+          "score": 3,
+          "term": "Constitutional AI"
+        },
+        {
+          "all_years_score": 22,
+          "score": 3,
+          "term": "Gradient Checkpointing"
+        },
+        {
+          "all_years_score": 21,
+          "score": 3,
+          "term": "Gemini Pro Vision"
+        },
+        {
+          "all_years_score": 11,
+          "score": 3,
+          "term": "C&W Attack"
+        },
+        {
+          "all_years_score": 7,
+          "score": 3,
+          "term": "Contriever"
+        },
+        {
+          "all_years_score": 35,
+          "score": 2,
+          "term": "Scalar Feedback"
+        },
+        {
+          "all_years_score": 29,
+          "score": 2,
+          "term": "TruthfulQA"
+        },
+        {
+          "all_years_score": 20,
+          "score": 2,
+          "term": "MT-Bench"
+        },
+        {
+          "all_years_score": 3,
+          "score": 2,
+          "term": "gpt-4 shown"
+        },
+        {
+          "all_years_score": 59,
+          "score": 1,
+          "term": "Mixtral"
+        },
+        {
+          "all_years_score": 42,
+          "score": 1,
+          "term": "Refusal Training"
+        },
+        {
+          "all_years_score": 29,
+          "score": 1,
+          "term": "Flash Attention"
+        },
+        {
+          "all_years_score": 18,
+          "score": 1,
+          "term": "HellaSwag"
+        },
+        {
+          "all_years_score": 13,
+          "score": 1,
+          "term": "Progressive Nets"
+        },
+        {
+          "all_years_score": 10,
+          "score": 1,
+          "term": "AlpacaEval"
+        },
+        {
+          "all_years_score": 5,
+          "score": 1,
+          "term": "WinoGrande"
+        },
+        {
+          "all_years_score": 4,
+          "score": 1,
+          "term": "TensorRT"
+        }
+      ]
+    },
+    "2024": {
+      "files": [
+        "continual_adaptive_learning.txt",
+        "core_architecture_components.txt",
+        "data_training_paradigms.txt",
+        "deployment_production.txt",
+        "efficiency_scaling.txt",
+        "evaluation_benchmarking.txt",
+        "human_ai_interaction.txt",
+        "information_retrieval_knowledge.txt",
+        "interpretability_transparency.txt",
+        "model_families_specific_implementations.txt",
+        "multimodal_cross_domain.txt",
+        "reasoning_cognition.txt",
+        "robustness_safety.txt",
+        "training_optimization.txt"
+      ],
+      "scored_term_count": 450,
+      "term_count": 1064,
+      "terms": [
+        {
+          "all_years_score": 11256,
+          "score": 3624,
+          "term": "transformer"
+        },
+        {
+          "all_years_score": 11256,
+          "score": 3624,
+          "term": "transformer transformer"
+        },
+        {
+          "all_years_score": 11130,
+          "score": 3410,
+          "term": "Adapters"
+        },
+        {
+          "all_years_score": 7769,
+          "score": 2707,
+          "term": "Fine-tuning"
+        },
+        {
+          "all_years_score": 7650,
+          "score": 2503,
+          "term": "alignment"
+        },
+        {
+          "all_years_score": 7650,
+          "score": 2503,
+          "term": "alignment aligning"
+        },
+        {
+          "all_years_score": 10015,
+          "score": 2488,
+          "term": "reason"
+        },
+        {
+          "all_years_score": 8164,
+          "score": 2484,
+          "term": "benchmark"
+        },
+        {
+          "all_years_score": 6941,
+          "score": 2327,
+          "term": "embedding"
+        },
+        {
+          "all_years_score": 6954,
+          "score": 2310,
+          "term": "transformer model"
+        },
+        {
+          "all_years_score": 6684,
+          "score": 2190,
+          "term": "attention"
+        },
+        {
+          "all_years_score": 6072,
+          "score": 2075,
+          "term": "token"
+        },
+        {
+          "all_years_score": 5374,
+          "score": 2002,
+          "term": "Pre-training"
+        },
+        {
+          "all_years_score": 6062,
+          "score": 1928,
+          "term": "multimodal"
+        },
+        {
+          "all_years_score": 5463,
+          "score": 1801,
+          "term": "evaluation llm"
+        },
+        {
+          "all_years_score": 5463,
+          "score": 1801,
+          "term": "llm evaluation"
+        },
+        {
+          "all_years_score": 4992,
+          "score": 1754,
+          "term": "alignment model"
+        },
+        {
+          "all_years_score": 5404,
+          "score": 1723,
+          "term": "benchmark model"
+        },
+        {
+          "all_years_score": 4599,
+          "score": 1640,
+          "term": "token model"
+        },
+        {
+          "all_years_score": 5682,
+          "score": 1612,
+          "term": "Accuracy"
+        },
+        {
+          "all_years_score": 5004,
+          "score": 1519,
+          "term": "benchmark evaluate"
+        },
+        {
+          "all_years_score": 5004,
+          "score": 1519,
+          "term": "benchmark evaluating"
+        },
+        {
+          "all_years_score": 5004,
+          "score": 1519,
+          "term": "benchmark evaluation"
+        },
+        {
+          "all_years_score": 5004,
+          "score": 1519,
+          "term": "evaluate benchmark"
+        },
+        {
+          "all_years_score": 5004,
+          "score": 1519,
+          "term": "evaluated benchmark"
+        },
+        {
+          "all_years_score": 5004,
+          "score": 1519,
+          "term": "evaluation benchmark"
+        },
+        {
+          "all_years_score": 4154,
+          "score": 1436,
+          "term": "embedding model"
+        },
+        {
+          "all_years_score": 4530,
+          "score": 1427,
+          "term": "benchmark introduce"
+        },
+        {
+          "all_years_score": 4530,
+          "score": 1427,
+          "term": "introduce benchmark"
+        },
+        {
+          "all_years_score": 4078,
+          "score": 1384,
+          "term": "multimodal model"
+        },
+        {
+          "all_years_score": 3984,
+          "score": 1357,
+          "term": "benchmark language"
+        },
+        {
+          "all_years_score": 3984,
+          "score": 1357,
+          "term": "language benchmark"
+        },
+        {
+          "all_years_score": 4087,
+          "score": 1348,
+          "term": "attention model"
+        },
+        {
+          "all_years_score": 4382,
+          "score": 1334,
+          "term": "transformer-based"
+        },
+        {
+          "all_years_score": 3793,
+          "score": 1211,
+          "term": "vision-language"
+        },
+        {
+          "all_years_score": 4093,
+          "score": 1205,
+          "term": "llm reason"
+        },
+        {
+          "all_years_score": 3042,
+          "score": 1179,
+          "term": "image-text"
+        },
+        {
+          "all_years_score": 3042,
+          "score": 1179,
+          "term": "text-image"
+        },
+        {
+          "all_years_score": 2939,
+          "score": 1128,
+          "term": "language model alignment"
+        },
+        {
+          "all_years_score": 3248,
+          "score": 1112,
+          "term": "benchmark large"
+        },
+        {
+          "all_years_score": 3462,
+          "score": 1111,
+          "term": "Vision-Language Model"
+        },
+        {
+          "all_years_score": 3245,
+          "score": 1092,
+          "term": "image-based"
+        },
+        {
+          "all_years_score": 3393,
+          "score": 1059,
+          "term": "learning transformer"
+        },
+        {
+          "all_years_score": 3393,
+          "score": 1059,
+          "term": "transformer learn"
+        },
+        {
+          "all_years_score": 2928,
+          "score": 1052,
+          "term": "GPT"
+        },
+        {
+          "all_years_score": 2671,
+          "score": 1009,
+          "term": "language-image"
+        },
+        {
+          "all_years_score": 3057,
+          "score": 997,
+          "term": "Knowledge Base"
+        },
+        {
+          "all_years_score": 2767,
+          "score": 981,
+          "term": "benchmark large language"
+        },
+        {
+          "all_years_score": 2474,
+          "score": 966,
+          "term": "text-to-image"
+        },
+        {
+          "all_years_score": 2803,
+          "score": 949,
+          "term": "pretrain"
+        },
+        {
+          "all_years_score": 2764,
+          "score": 929,
+          "term": "Contrastive Learning"
+        },
+        {
+          "all_years_score": 2797,
+          "score": 925,
+          "term": "benchmark dataset"
+        },
+        {
+          "all_years_score": 2797,
+          "score": 925,
+          "term": "dataset benchmark"
+        },
+        {
+          "all_years_score": 2903,
+          "score": 920,
+          "term": "transformer-based model"
+        },
+        {
+          "all_years_score": 2901,
+          "score": 910,
+          "term": "distill"
+        },
+        {
+          "all_years_score": 2262,
+          "score": 909,
+          "term": "alignment large"
+        },
+        {
+          "all_years_score": 2680,
+          "score": 895,
+          "term": "trained transformer"
+        },
+        {
+          "all_years_score": 2680,
+          "score": 895,
+          "term": "training transformer"
+        },
+        {
+          "all_years_score": 2680,
+          "score": 895,
+          "term": "transformer trained"
+        },
+        {
+          "all_years_score": 2662,
+          "score": 875,
+          "term": "introduce multimodal"
+        },
+        {
+          "all_years_score": 2515,
+          "score": 875,
+          "term": "multimodal language"
+        },
+        {
+          "all_years_score": 2638,
+          "score": 872,
+          "term": "benchmark llm"
+        },
+        {
+          "all_years_score": 2638,
+          "score": 872,
+          "term": "llm benchmark"
+        },
+        {
+          "all_years_score": 2392,
+          "score": 867,
+          "term": "gpt model"
+        },
+        {
+          "all_years_score": 2559,
+          "score": 865,
+          "term": "Knowledge Graph"
+        },
+        {
+          "all_years_score": 2498,
+          "score": 862,
+          "term": "alignment propose"
+        },
+        {
+          "all_years_score": 2559,
+          "score": 861,
+          "term": "retrieval augmentation"
+        },
+        {
+          "all_years_score": 2396,
+          "score": 851,
+          "term": "Continual Learning"
+        },
+        {
+          "all_years_score": 2265,
+          "score": 848,
+          "term": "large multimodal"
+        },
+        {
+          "all_years_score": 2265,
+          "score": 848,
+          "term": "multimodal large"
+        },
+        {
+          "all_years_score": 2388,
+          "score": 836,
+          "term": "embedding propose"
+        },
+        {
+          "all_years_score": 2020,
+          "score": 833,
+          "term": "alignment large language"
+        },
+        {
+          "all_years_score": 2558,
+          "score": 830,
+          "term": "self-supervised"
+        },
+        {
+          "all_years_score": 2329,
+          "score": 826,
+          "term": "language model multimodal"
+        },
+        {
+          "all_years_score": 2329,
+          "score": 826,
+          "term": "multimodal language model"
+        },
+        {
+          "all_years_score": 2118,
+          "score": 816,
+          "term": "large multimodal model"
+        },
+        {
+          "all_years_score": 1912,
+          "score": 800,
+          "term": "image diffusion"
+        },
+        {
+          "all_years_score": 2387,
+          "score": 798,
+          "term": "transformer language"
+        },
+        {
+          "all_years_score": 2086,
+          "score": 791,
+          "term": "In-Context Learning"
+        },
+        {
+          "all_years_score": 2462,
+          "score": 772,
+          "term": "Data Augmentation"
+        },
+        {
+          "all_years_score": 2500,
+          "score": 766,
+          "term": "across benchmark"
+        },
+        {
+          "all_years_score": 2500,
+          "score": 766,
+          "term": "benchmark across"
+        },
+        {
+          "all_years_score": 2001,
+          "score": 760,
+          "term": "alignment llm"
+        },
+        {
+          "all_years_score": 2001,
+          "score": 760,
+          "term": "llm alignment"
+        },
+        {
+          "all_years_score": 2441,
+          "score": 758,
+          "term": "used benchmark"
+        },
+        {
+          "all_years_score": 2286,
+          "score": 741,
+          "term": "attention transformer"
+        },
+        {
+          "all_years_score": 2286,
+          "score": 741,
+          "term": "transformer attention"
+        },
+        {
+          "all_years_score": 2294,
+          "score": 740,
+          "term": "attention-based"
+        },
+        {
+          "all_years_score": 2021,
+          "score": 721,
+          "term": "embedding language"
+        },
+        {
+          "all_years_score": 2021,
+          "score": 721,
+          "term": "language embedding"
+        },
+        {
+          "all_years_score": 1702,
+          "score": 720,
+          "term": "image diffusion model"
+        },
+        {
+          "all_years_score": 2176,
+          "score": 716,
+          "term": "Synthetic Data"
+        },
+        {
+          "all_years_score": 2078,
+          "score": 706,
+          "term": "Retrieval-Augmented Generation"
+        },
+        {
+          "all_years_score": 2216,
+          "score": 691,
+          "term": "architecture transformer"
+        },
+        {
+          "all_years_score": 2216,
+          "score": 691,
+          "term": "transformer architecture"
+        },
+        {
+          "all_years_score": 1889,
+          "score": 678,
+          "term": "alignment training"
+        },
+        {
+          "all_years_score": 2160,
+          "score": 671,
+          "term": "embedding-based"
+        },
+        {
+          "all_years_score": 1789,
+          "score": 661,
+          "term": "multimodal large language"
+        },
+        {
+          "all_years_score": 1799,
+          "score": 656,
+          "term": "embedding language model"
+        },
+        {
+          "all_years_score": 2272,
+          "score": 650,
+          "term": "Planning"
+        },
+        {
+          "all_years_score": 2278,
+          "score": 644,
+          "term": "Reward Modeling"
+        },
+        {
+          "all_years_score": 1974,
+          "score": 637,
+          "term": "attention mechanism"
+        },
+        {
+          "all_years_score": 1830,
+          "score": 634,
+          "term": "Adversarial Attack"
+        },
+        {
+          "all_years_score": 1875,
+          "score": 629,
+          "term": "Domain Adaptation"
+        },
+        {
+          "all_years_score": 1802,
+          "score": 628,
+          "term": "Quantization"
+        },
+        {
+          "all_years_score": 2146,
+          "score": 622,
+          "term": "generation benchmark"
+        },
+        {
+          "all_years_score": 1696,
+          "score": 617,
+          "term": "llm token"
+        },
+        {
+          "all_years_score": 1570,
+          "score": 608,
+          "term": "Pre-training Data"
+        },
+        {
+          "all_years_score": 1879,
+          "score": 604,
+          "term": "Transfer Learning"
+        },
+        {
+          "all_years_score": 1862,
+          "score": 604,
+          "term": "generated token"
+        },
+        {
+          "all_years_score": 1862,
+          "score": 604,
+          "term": "token generation"
+        },
+        {
+          "all_years_score": 1838,
+          "score": 603,
+          "term": "Self-Supervised Learning"
+        },
+        {
+          "all_years_score": 1668,
+          "score": 601,
+          "term": "training token"
+        },
+        {
+          "all_years_score": 1738,
+          "score": 597,
+          "term": "RAG"
+        },
+        {
+          "all_years_score": 1634,
+          "score": 578,
+          "term": "transformer large"
+        },
+        {
+          "all_years_score": 1536,
+          "score": 568,
+          "term": "efficient transformer"
+        },
+        {
+          "all_years_score": 1548,
+          "score": 563,
+          "term": "alignment data"
+        },
+        {
+          "all_years_score": 1780,
+          "score": 555,
+          "term": "multimodal generative"
+        },
+        {
+          "all_years_score": 1698,
+          "score": 554,
+          "term": "network transformer"
+        },
+        {
+          "all_years_score": 1698,
+          "score": 554,
+          "term": "transformer network"
+        },
+        {
+          "all_years_score": 1628,
+          "score": 550,
+          "term": "hallucination"
+        },
+        {
+          "all_years_score": 1705,
+          "score": 548,
+          "term": "gradient-based"
+        },
+        {
+          "all_years_score": 1576,
+          "score": 548,
+          "term": "Model Compression"
+        },
+        {
+          "all_years_score": 1487,
+          "score": 526,
+          "term": "generation rag"
+        },
+        {
+          "all_years_score": 1229,
+          "score": 525,
+          "term": "GPT-4"
+        },
+        {
+          "all_years_score": 1701,
+          "score": 520,
+          "term": "propose multimodal"
+        },
+        {
+          "all_years_score": 1899,
+          "score": 516,
+          "term": "safety"
+        },
+        {
+          "all_years_score": 1551,
+          "score": 516,
+          "term": "multimodal data"
+        },
+        {
+          "all_years_score": 1535,
+          "score": 515,
+          "term": "evaluation benchmark dataset"
+        },
+        {
+          "all_years_score": 1371,
+          "score": 508,
+          "term": "comprehensive benchmark"
+        },
+        {
+          "all_years_score": 1379,
+          "score": 507,
+          "term": "CLIP"
+        },
+        {
+          "all_years_score": 1245,
+          "score": 498,
+          "term": "Instruction Tuning"
+        },
+        {
+          "all_years_score": 1346,
+          "score": 495,
+          "term": "embedding large"
+        },
+        {
+          "all_years_score": 1517,
+          "score": 485,
+          "term": "distill knowledge"
+        },
+        {
+          "all_years_score": 1517,
+          "score": 485,
+          "term": "Knowledge Distillation"
+        },
+        {
+          "all_years_score": 1370,
+          "score": 484,
+          "term": "augmented generation rag"
+        },
+        {
+          "all_years_score": 1547,
+          "score": 483,
+          "term": "Multi-Task Learning"
+        },
+        {
+          "all_years_score": 1367,
+          "score": 482,
+          "term": "retrieval-augmented generation rag"
+        },
+        {
+          "all_years_score": 1312,
+          "score": 482,
+          "term": "text embedding"
+        },
+        {
+          "all_years_score": 1521,
+          "score": 477,
+          "term": "Interactive Learning"
+        },
+        {
+          "all_years_score": 1330,
+          "score": 476,
+          "term": "transformer which"
+        },
+        {
+          "all_years_score": 1219,
+          "score": 476,
+          "term": "alignment human"
+        },
+        {
+          "all_years_score": 1328,
+          "score": 471,
+          "term": "benchmark include"
+        },
+        {
+          "all_years_score": 1328,
+          "score": 471,
+          "term": "benchmark including"
+        },
+        {
+          "all_years_score": 1592,
+          "score": 463,
+          "term": "learning multimodal"
+        },
+        {
+          "all_years_score": 1592,
+          "score": 463,
+          "term": "multimodal learning"
+        },
+        {
+          "all_years_score": 1304,
+          "score": 451,
+          "term": "Adversarial Training"
+        },
+        {
+          "all_years_score": 1296,
+          "score": 446,
+          "term": "Prompt Tuning"
+        },
+        {
+          "all_years_score": 1236,
+          "score": 446,
+          "term": "alignment text"
+        },
+        {
+          "all_years_score": 1315,
+          "score": 445,
+          "term": "performance transformer"
+        },
+        {
+          "all_years_score": 1358,
+          "score": 443,
+          "term": "attention network"
+        },
+        {
+          "all_years_score": 946,
+          "score": 442,
+          "term": "alignment preference"
+        },
+        {
+          "all_years_score": 946,
+          "score": 442,
+          "term": "preference alignment"
+        },
+        {
+          "all_years_score": 1366,
+          "score": 441,
+          "term": "attention-based model"
+        },
+        {
+          "all_years_score": 1457,
+          "score": 438,
+          "term": "challenge multimodal"
+        },
+        {
+          "all_years_score": 1234,
+          "score": 438,
+          "term": "transformer layer"
+        },
+        {
+          "all_years_score": 1458,
+          "score": 437,
+          "term": "Decomposition"
+        },
+        {
+          "all_years_score": 1396,
+          "score": 436,
+          "term": "benchmark performance"
+        },
+        {
+          "all_years_score": 1396,
+          "score": 436,
+          "term": "performance benchmark"
+        },
+        {
+          "all_years_score": 1397,
+          "score": 431,
+          "term": "llm-based evaluation"
+        },
+        {
+          "all_years_score": 1444,
+          "score": 430,
+          "term": "transformer encoder"
+        },
+        {
+          "all_years_score": 1226,
+          "score": 430,
+          "term": "low-rank"
+        },
+        {
+          "all_years_score": 1128,
+          "score": 430,
+          "term": "improve alignment"
+        },
+        {
+          "all_years_score": 993,
+          "score": 430,
+          "term": "gpt-4 model"
+        },
+        {
+          "all_years_score": 1237,
+          "score": 427,
+          "term": "transformer neural"
+        },
+        {
+          "all_years_score": 1476,
+          "score": 426,
+          "term": "transformer predict"
+        },
+        {
+          "all_years_score": 1584,
+          "score": 424,
+          "term": "reasoning benchmark"
+        },
+        {
+          "all_years_score": 1331,
+          "score": 419,
+          "term": "VLM"
+        },
+        {
+          "all_years_score": 1361,
+          "score": 418,
+          "term": "representation transformer"
+        },
+        {
+          "all_years_score": 1081,
+          "score": 418,
+          "term": "Preference Learning"
+        },
+        {
+          "all_years_score": 1247,
+          "score": 408,
+          "term": "Speech Recognition"
+        },
+        {
+          "all_years_score": 1259,
+          "score": 406,
+          "term": "feature attention"
+        },
+        {
+          "all_years_score": 1172,
+          "score": 405,
+          "term": "llama"
+        },
+        {
+          "all_years_score": 1172,
+          "score": 405,
+          "term": "llama llama"
+        },
+        {
+          "all_years_score": 1155,
+          "score": 404,
+          "term": "multimodal training"
+        },
+        {
+          "all_years_score": 1264,
+          "score": 399,
+          "term": "benchmark data"
+        },
+        {
+          "all_years_score": 1199,
+          "score": 399,
+          "term": "LoRA"
+        },
+        {
+          "all_years_score": 1106,
+          "score": 398,
+          "term": "memory-efficient"
+        },
+        {
+          "all_years_score": 1237,
+          "score": 397,
+          "term": "embedding representation"
+        },
+        {
+          "all_years_score": 1071,
+          "score": 395,
+          "term": "multimodal dataset"
+        },
+        {
+          "all_years_score": 1171,
+          "score": 394,
+          "term": "benchmark designed"
+        },
+        {
+          "all_years_score": 1104,
+          "score": 392,
+          "term": "MLLM"
+        },
+        {
+          "all_years_score": 1151,
+          "score": 390,
+          "term": "self-attention"
+        },
+        {
+          "all_years_score": 1127,
+          "score": 390,
+          "term": "efficient attention"
+        },
+        {
+          "all_years_score": 1032,
+          "score": 388,
+          "term": "embedding large language"
+        },
+        {
+          "all_years_score": 1104,
+          "score": 383,
+          "term": "embedding llm"
+        },
+        {
+          "all_years_score": 1104,
+          "score": 383,
+          "term": "llm embedding"
+        },
+        {
+          "all_years_score": 1119,
+          "score": 382,
+          "term": "embedding space"
+        },
+        {
+          "all_years_score": 1314,
+          "score": 381,
+          "term": "Online Learning"
+        },
+        {
+          "all_years_score": 1205,
+          "score": 379,
+          "term": "search-based"
+        },
+        {
+          "all_years_score": 1162,
+          "score": 376,
+          "term": "transformer while"
+        },
+        {
+          "all_years_score": 1162,
+          "score": 376,
+          "term": "while transformer"
+        },
+        {
+          "all_years_score": 1019,
+          "score": 376,
+          "term": "embedding graph"
+        },
+        {
+          "all_years_score": 1019,
+          "score": 376,
+          "term": "graph embedding"
+        },
+        {
+          "all_years_score": 1035,
+          "score": 375,
+          "term": "align image"
+        },
+        {
+          "all_years_score": 1189,
+          "score": 374,
+          "term": "encoder-decoder"
+        },
+        {
+          "all_years_score": 1059,
+          "score": 373,
+          "term": "llama model"
+        },
+        {
+          "all_years_score": 1203,
+          "score": 371,
+          "term": "transformer vision"
+        },
+        {
+          "all_years_score": 1203,
+          "score": 371,
+          "term": "vision transformer"
+        },
+        {
+          "all_years_score": 1151,
+          "score": 371,
+          "term": "challenge benchmark"
+        },
+        {
+          "all_years_score": 1151,
+          "score": 371,
+          "term": "challenging benchmark"
+        },
+        {
+          "all_years_score": 961,
+          "score": 370,
+          "term": "hallucination large"
+        },
+        {
+          "all_years_score": 1246,
+          "score": 369,
+          "term": "cross-modal"
+        },
+        {
+          "all_years_score": 1002,
+          "score": 363,
+          "term": "Catastrophic Forgetting"
+        },
+        {
+          "all_years_score": 949,
+          "score": 363,
+          "term": "text token"
+        },
+        {
+          "all_years_score": 949,
+          "score": 363,
+          "term": "token text"
+        },
+        {
+          "all_years_score": 952,
+          "score": 362,
+          "term": "graph transformer"
+        },
+        {
+          "all_years_score": 952,
+          "score": 362,
+          "term": "transformer graph"
+        },
+        {
+          "all_years_score": 930,
+          "score": 360,
+          "term": "hallucination large language"
+        },
+        {
+          "all_years_score": 1469,
+          "score": 359,
+          "term": "Chain-of-Thought"
+        },
+        {
+          "all_years_score": 912,
+          "score": 359,
+          "term": "rag model"
+        },
+        {
+          "all_years_score": 1169,
+          "score": 356,
+          "term": "learning benchmark"
+        },
+        {
+          "all_years_score": 921,
+          "score": 355,
+          "term": "text embedding model"
+        },
+        {
+          "all_years_score": 1010,
+          "score": 354,
+          "term": "Mixture of Experts"
+        },
+        {
+          "all_years_score": 986,
+          "score": 354,
+          "term": "GPT-3"
+        },
+        {
+          "all_years_score": 1018,
+          "score": 353,
+          "term": "Few-Shot Learning"
+        },
+        {
+          "all_years_score": 988,
+          "score": 352,
+          "term": "Model Pruning"
+        },
+        {
+          "all_years_score": 1021,
+          "score": 350,
+          "term": "cross-attention"
+        },
+        {
+          "all_years_score": 1280,
+          "score": 343,
+          "term": "BERT"
+        },
+        {
+          "all_years_score": 1080,
+          "score": 343,
+          "term": "representation alignment"
+        },
+        {
+          "all_years_score": 1021,
+          "score": 342,
+          "term": "Gradient Descent"
+        },
+        {
+          "all_years_score": 986,
+          "score": 342,
+          "term": "attention layer"
+        },
+        {
+          "all_years_score": 955,
+          "score": 340,
+          "term": "benchmark existing"
+        },
+        {
+          "all_years_score": 955,
+          "score": 340,
+          "term": "existing benchmark"
+        },
+        {
+          "all_years_score": 689,
+          "score": 332,
+          "term": "llm gpt-4"
+        },
+        {
+          "all_years_score": 866,
+          "score": 330,
+          "term": "llm multimodal"
+        },
+        {
+          "all_years_score": 866,
+          "score": 330,
+          "term": "multimodal llm"
+        },
+        {
+          "all_years_score": 1094,
+          "score": 328,
+          "term": "semantic embedding"
+        },
+        {
+          "all_years_score": 1002,
+          "score": 326,
+          "term": "mechanism transformer"
+        },
+        {
+          "all_years_score": 861,
+          "score": 323,
+          "term": "preference-based"
+        },
+        {
+          "all_years_score": 1213,
+          "score": 321,
+          "term": "interactive agent"
+        },
+        {
+          "all_years_score": 1299,
+          "score": 320,
+          "term": "Calibration"
+        },
+        {
+          "all_years_score": 865,
+          "score": 320,
+          "term": "benchmark diverse"
+        },
+        {
+          "all_years_score": 865,
+          "score": 320,
+          "term": "diverse benchmark"
+        },
+        {
+          "all_years_score": 991,
+          "score": 319,
+          "term": "transformer-based approache"
+        },
+        {
+          "all_years_score": 913,
+          "score": 319,
+          "term": "text-to-speech"
+        },
+        {
+          "all_years_score": 966,
+          "score": 318,
+          "term": "feature embedding"
+        },
+        {
+          "all_years_score": 758,
+          "score": 318,
+          "term": "Parameter-Efficient Fine-Tuning"
+        },
+        {
+          "all_years_score": 912,
+          "score": 317,
+          "term": "attention which"
+        },
+        {
+          "all_years_score": 1222,
+          "score": 316,
+          "term": "human-ai"
+        },
+        {
+          "all_years_score": 951,
+          "score": 315,
+          "term": "transformer-based language"
+        },
+        {
+          "all_years_score": 967,
+          "score": 309,
+          "term": "propose attention-based"
+        },
+        {
+          "all_years_score": 894,
+          "score": 309,
+          "term": "neural network transformer"
+        },
+        {
+          "all_years_score": 894,
+          "score": 309,
+          "term": "transformer neural network"
+        },
+        {
+          "all_years_score": 1046,
+          "score": 305,
+          "term": "Distribution Shift"
+        },
+        {
+          "all_years_score": 900,
+          "score": 305,
+          "term": "benchmark designed evaluate"
+        },
+        {
+          "all_years_score": 723,
+          "score": 305,
+          "term": "Instruction Data"
+        },
+        {
+          "all_years_score": 870,
+          "score": 304,
+          "term": "alignment problem"
+        },
+        {
+          "all_years_score": 965,
+          "score": 303,
+          "term": "alignment which"
+        },
+        {
+          "all_years_score": 737,
+          "score": 303,
+          "term": "image 3d"
+        },
+        {
+          "all_years_score": 1080,
+          "score": 299,
+          "term": "integrate multimodal"
+        },
+        {
+          "all_years_score": 820,
+          "score": 298,
+          "term": "graph attention"
+        },
+        {
+          "all_years_score": 815,
+          "score": 296,
+          "term": "hallucination llm"
+        },
+        {
+          "all_years_score": 815,
+          "score": 296,
+          "term": "llm hallucination"
+        },
+        {
+          "all_years_score": 962,
+          "score": 295,
+          "term": "three benchmark"
+        },
+        {
+          "all_years_score": 863,
+          "score": 293,
+          "term": "transformer-based language model"
+        },
+        {
+          "all_years_score": 759,
+          "score": 290,
+          "term": "ability reason"
+        },
+        {
+          "all_years_score": 1044,
+          "score": 289,
+          "term": "bert model"
+        },
+        {
+          "all_years_score": 786,
+          "score": 289,
+          "term": "understanding benchmark"
+        },
+        {
+          "all_years_score": 741,
+          "score": 288,
+          "term": "Human Feedback"
+        },
+        {
+          "all_years_score": 951,
+          "score": 287,
+          "term": "transformer-based architecture"
+        },
+        {
+          "all_years_score": 844,
+          "score": 287,
+          "term": "benchmark assess"
+        },
+        {
+          "all_years_score": 844,
+          "score": 287,
+          "term": "benchmark assessing"
+        },
+        {
+          "all_years_score": 967,
+          "score": 286,
+          "term": "feature alignment"
+        },
+        {
+          "all_years_score": 933,
+          "score": 286,
+          "term": "alignment across"
+        },
+        {
+          "all_years_score": 845,
+          "score": 286,
+          "term": "benchmark proposed"
+        },
+        {
+          "all_years_score": 845,
+          "score": 286,
+          "term": "propose benchmark"
+        },
+        {
+          "all_years_score": 769,
+          "score": 286,
+          "term": "alignment dataset"
+        },
+        {
+          "all_years_score": 739,
+          "score": 286,
+          "term": "enhance alignment"
+        },
+        {
+          "all_years_score": 1022,
+          "score": 285,
+          "term": "Factuality"
+        },
+        {
+          "all_years_score": 830,
+          "score": 284,
+          "term": "like transformer"
+        },
+        {
+          "all_years_score": 821,
+          "score": 284,
+          "term": "image-level"
+        },
+        {
+          "all_years_score": 856,
+          "score": 282,
+          "term": "embedding which"
+        },
+        {
+          "all_years_score": 842,
+          "score": 282,
+          "term": "attention computation"
+        },
+        {
+          "all_years_score": 1012,
+          "score": 281,
+          "term": "on-device"
+        },
+        {
+          "all_years_score": 725,
+          "score": 279,
+          "term": "leverage multimodal"
+        },
+        {
+          "all_years_score": 725,
+          "score": 279,
+          "term": "leveraging multimodal"
+        },
+        {
+          "all_years_score": 689,
+          "score": 277,
+          "term": "text-to-image diffusion"
+        },
+        {
+          "all_years_score": 1020,
+          "score": 276,
+          "term": "Reflection"
+        },
+        {
+          "all_years_score": 949,
+          "score": 275,
+          "term": "token level"
+        },
+        {
+          "all_years_score": 949,
+          "score": 275,
+          "term": "token-level"
+        },
+        {
+          "all_years_score": 816,
+          "score": 273,
+          "term": "benchmark multimodal"
+        },
+        {
+          "all_years_score": 816,
+          "score": 273,
+          "term": "multimodal benchmark"
+        },
+        {
+          "all_years_score": 837,
+          "score": 272,
+          "term": "token which"
+        },
+        {
+          "all_years_score": 772,
+          "score": 271,
+          "term": "multimodal information"
+        },
+        {
+          "all_years_score": 723,
+          "score": 270,
+          "term": "llm knowledge graph"
+        },
+        {
+          "all_years_score": 654,
+          "score": 270,
+          "term": "gpt 3.5"
+        },
+        {
+          "all_years_score": 654,
+          "score": 270,
+          "term": "gpt-3.5"
+        },
+        {
+          "all_years_score": 623,
+          "score": 270,
+          "term": "Preference Data"
+        },
+        {
+          "all_years_score": 688,
+          "score": 267,
+          "term": "linear transformer"
+        },
+        {
+          "all_years_score": 772,
+          "score": 265,
+          "term": "answering benchmark"
+        },
+        {
+          "all_years_score": 862,
+          "score": 264,
+          "term": "understand reason"
+        },
+        {
+          "all_years_score": 880,
+          "score": 263,
+          "term": "Inference Optimization"
+        },
+        {
+          "all_years_score": 772,
+          "score": 263,
+          "term": "attention module"
+        },
+        {
+          "all_years_score": 982,
+          "score": 262,
+          "term": "first benchmark"
+        },
+        {
+          "all_years_score": 765,
+          "score": 262,
+          "term": "attention heads"
+        },
+        {
+          "all_years_score": 744,
+          "score": 261,
+          "term": "embedding knowledge"
+        },
+        {
+          "all_years_score": 639,
+          "score": 260,
+          "term": "text-to-image diffusion model"
+        },
+        {
+          "all_years_score": 821,
+          "score": 259,
+          "term": "benchmark test"
+        },
+        {
+          "all_years_score": 821,
+          "score": 259,
+          "term": "benchmark tests"
+        },
+        {
+          "all_years_score": 706,
+          "score": 259,
+          "term": "multiple benchmark"
+        },
+        {
+          "all_years_score": 786,
+          "score": 258,
+          "term": "token prediction"
+        },
+        {
+          "all_years_score": 818,
+          "score": 257,
+          "term": "token while"
+        },
+        {
+          "all_years_score": 736,
+          "score": 255,
+          "term": "bias llm"
+        },
+        {
+          "all_years_score": 700,
+          "score": 255,
+          "term": "benchmark like"
+        },
+        {
+          "all_years_score": 634,
+          "score": 255,
+          "term": "Image Captioning"
+        },
+        {
+          "all_years_score": 719,
+          "score": 253,
+          "term": "multimodal understanding"
+        },
+        {
+          "all_years_score": 739,
+          "score": 252,
+          "term": "pre-trained transformer"
+        },
+        {
+          "all_years_score": 713,
+          "score": 251,
+          "term": "Helpfulness"
+        },
+        {
+          "all_years_score": 683,
+          "score": 250,
+          "term": "alignment performance"
+        },
+        {
+          "all_years_score": 820,
+          "score": 248,
+          "term": "multimodal feature"
+        },
+        {
+          "all_years_score": 726,
+          "score": 240,
+          "term": "attention mechanism transformer"
+        },
+        {
+          "all_years_score": 880,
+          "score": 236,
+          "term": "Probing"
+        },
+        {
+          "all_years_score": 675,
+          "score": 235,
+          "term": "Data Filtering"
+        },
+        {
+          "all_years_score": 660,
+          "score": 235,
+          "term": "Zero-Shot Learning"
+        },
+        {
+          "all_years_score": 694,
+          "score": 232,
+          "term": "enhance multimodal"
+        },
+        {
+          "all_years_score": 694,
+          "score": 232,
+          "term": "enhancing multimodal"
+        },
+        {
+          "all_years_score": 682,
+          "score": 232,
+          "term": "token embedding"
+        },
+        {
+          "all_years_score": 1003,
+          "score": 231,
+          "term": "multimodal reasoning"
+        },
+        {
+          "all_years_score": 928,
+          "score": 231,
+          "term": "Latency"
+        },
+        {
+          "all_years_score": 495,
+          "score": 231,
+          "term": "generated gpt-4"
+        },
+        {
+          "all_years_score": 822,
+          "score": 228,
+          "term": "planning agent"
+        },
+        {
+          "all_years_score": 628,
+          "score": 228,
+          "term": "complexity attention"
+        },
+        {
+          "all_years_score": 681,
+          "score": 227,
+          "term": "multimodal representation"
+        },
+        {
+          "all_years_score": 463,
+          "score": 226,
+          "term": "RLHF"
+        },
+        {
+          "all_years_score": 444,
+          "score": 226,
+          "term": "align human preference"
+        },
+        {
+          "all_years_score": 444,
+          "score": 226,
+          "term": "aligned human preference"
+        },
+        {
+          "all_years_score": 444,
+          "score": 226,
+          "term": "alignment human preference"
+        },
+        {
+          "all_years_score": 444,
+          "score": 226,
+          "term": "human preference alignment"
+        },
+        {
+          "all_years_score": 639,
+          "score": 225,
+          "term": "benchmark cover"
+        },
+        {
+          "all_years_score": 639,
+          "score": 225,
+          "term": "benchmark covering"
+        },
+        {
+          "all_years_score": 572,
+          "score": 225,
+          "term": "Instruction Following"
+        },
+        {
+          "all_years_score": 956,
+          "score": 224,
+          "term": "semantic alignment"
+        },
+        {
+          "all_years_score": 630,
+          "score": 224,
+          "term": "Incremental Learning"
+        },
+        {
+          "all_years_score": 628,
+          "score": 224,
+          "term": "question answering benchmark"
+        },
+        {
+          "all_years_score": 628,
+          "score": 224,
+          "term": "question-answering benchmark"
+        },
+        {
+          "all_years_score": 597,
+          "score": 224,
+          "term": "diffusion transformer"
+        },
+        {
+          "all_years_score": 745,
+          "score": 222,
+          "term": "key reason"
+        },
+        {
+          "all_years_score": 711,
+          "score": 222,
+          "term": "multimodal alignment"
+        },
+        {
+          "all_years_score": 553,
+          "score": 222,
+          "term": "image token"
+        },
+        {
+          "all_years_score": 796,
+          "score": 221,
+          "term": "Logical Reasoning"
+        },
+        {
+          "all_years_score": 708,
+          "score": 220,
+          "term": "llm planning"
+        },
+        {
+          "all_years_score": 632,
+          "score": 220,
+          "term": "embedding while"
+        },
+        {
+          "all_years_score": 679,
+          "score": 218,
+          "term": "representation token"
+        },
+        {
+          "all_years_score": 679,
+          "score": 218,
+          "term": "token representation"
+        },
+        {
+          "all_years_score": 497,
+          "score": 216,
+          "term": "pre-trained embedding"
+        },
+        {
+          "all_years_score": 726,
+          "score": 215,
+          "term": "benchmark real-world"
+        },
+        {
+          "all_years_score": 726,
+          "score": 215,
+          "term": "real-world benchmark"
+        },
+        {
+          "all_years_score": 670,
+          "score": 214,
+          "term": "sequence token"
+        },
+        {
+          "all_years_score": 670,
+          "score": 214,
+          "term": "token sequence"
+        },
+        {
+          "all_years_score": 655,
+          "score": 214,
+          "term": "Audio-Language"
+        },
+        {
+          "all_years_score": 777,
+          "score": 213,
+          "term": "Explainable AI"
+        },
+        {
+          "all_years_score": 627,
+          "score": 213,
+          "term": "Embedding Similarity"
+        },
+        {
+          "all_years_score": 624,
+          "score": 210,
+          "term": "performance multimodal"
+        },
+        {
+          "all_years_score": 572,
+          "score": 209,
+          "term": "benchmark dataset including"
+        },
+        {
+          "all_years_score": 686,
+          "score": 208,
+          "term": "transformer decoder"
+        },
+        {
+          "all_years_score": 617,
+          "score": 208,
+          "term": "Mathematical Reasoning"
+        },
+        {
+          "all_years_score": 560,
+          "score": 207,
+          "term": "embedding capture"
+        },
+        {
+          "all_years_score": 569,
+          "score": 206,
+          "term": "GPT-2"
+        },
+        {
+          "all_years_score": 451,
+          "score": 206,
+          "term": "DPO"
+        },
+        {
+          "all_years_score": 872,
+          "score": 203,
+          "term": "two reason"
+        },
+        {
+          "all_years_score": 562,
+          "score": 203,
+          "term": "transformer-based large"
+        },
+        {
+          "all_years_score": 633,
+          "score": 200,
+          "term": "transformer designed"
+        },
+        {
+          "all_years_score": 660,
+          "score": 199,
+          "term": "safety large"
+        },
+        {
+          "all_years_score": 626,
+          "score": 198,
+          "term": "existing alignment"
+        },
+        {
+          "all_years_score": 616,
+          "score": 197,
+          "term": "transformer module"
+        },
+        {
+          "all_years_score": 539,
+          "score": 197,
+          "term": "existing multimodal"
+        },
+        {
+          "all_years_score": 482,
+          "score": 196,
+          "term": "llama-2"
+        },
+        {
+          "all_years_score": 672,
+          "score": 195,
+          "term": "benchmark compared"
+        },
+        {
+          "all_years_score": 672,
+          "score": 195,
+          "term": "compared benchmark"
+        },
+        {
+          "all_years_score": 615,
+          "score": 195,
+          "term": "limited attention"
+        },
+        {
+          "all_years_score": 666,
+          "score": 191,
+          "term": "benchmark problem"
+        },
+        {
+          "all_years_score": 614,
+          "score": 191,
+          "term": "image retrieval"
+        },
+        {
+          "all_years_score": 606,
+          "score": 191,
+          "term": "safety large language"
+        },
+        {
+          "all_years_score": 596,
+          "score": 191,
+          "term": "benchmark provide"
+        },
+        {
+          "all_years_score": 596,
+          "score": 191,
+          "term": "provide benchmark"
+        },
+        {
+          "all_years_score": 646,
+          "score": 190,
+          "term": "semantic token"
+        },
+        {
+          "all_years_score": 469,
+          "score": 188,
+          "term": "graph attention network"
+        },
+        {
+          "all_years_score": 538,
+          "score": 187,
+          "term": "knowledge graph reasoning"
+        },
+        {
+          "all_years_score": 583,
+          "score": 186,
+          "term": "alignment objective"
+        },
+        {
+          "all_years_score": 508,
+          "score": 184,
+          "term": "text-to-video"
+        },
+        {
+          "all_years_score": 577,
+          "score": 182,
+          "term": "llama-3"
+        },
+        {
+          "all_years_score": 562,
+          "score": 181,
+          "term": "present benchmark"
+        },
+        {
+          "all_years_score": 575,
+          "score": 180,
+          "term": "single transformer"
+        },
+        {
+          "all_years_score": 473,
+          "score": 179,
+          "term": "word embedding"
+        },
+        {
+          "all_years_score": 531,
+          "score": 178,
+          "term": "token during"
+        },
+        {
+          "all_years_score": 488,
+          "score": 178,
+          "term": "visual token"
+        },
+        {
+          "all_years_score": 615,
+          "score": 177,
+          "term": "Domain Shift"
+        },
+        {
+          "all_years_score": 498,
+          "score": 177,
+          "term": "input token"
+        },
+        {
+          "all_years_score": 586,
+          "score": 176,
+          "term": "domain alignment"
+        },
+        {
+          "all_years_score": 583,
+          "score": 176,
+          "term": "self-evaluation"
+        },
+        {
+          "all_years_score": 522,
+          "score": 176,
+          "term": "reduce token"
+        },
+        {
+          "all_years_score": 550,
+          "score": 173,
+          "term": "benchmark which"
+        },
+        {
+          "all_years_score": 651,
+          "score": 172,
+          "term": "llm safety"
+        },
+        {
+          "all_years_score": 651,
+          "score": 172,
+          "term": "safety llm"
+        },
+        {
+          "all_years_score": 612,
+          "score": 171,
+          "term": "temporal attention"
+        },
+        {
+          "all_years_score": 340,
+          "score": 171,
+          "term": "mistral"
+        },
+        {
+          "all_years_score": 568,
+          "score": 170,
+          "term": "benchmark both"
+        },
+        {
+          "all_years_score": 514,
+          "score": 170,
+          "term": "each transformer"
+        },
+        {
+          "all_years_score": 503,
+          "score": 170,
+          "term": "retrieval benchmark"
+        },
+        {
+          "all_years_score": 359,
+          "score": 168,
+          "term": "optimization dpo"
+        },
+        {
+          "all_years_score": 635,
+          "score": 167,
+          "term": "benchmark two"
+        },
+        {
+          "all_years_score": 635,
+          "score": 167,
+          "term": "two benchmark"
+        },
+        {
+          "all_years_score": 477,
+          "score": 167,
+          "term": "transformer-based neural"
+        },
+        {
+          "all_years_score": 566,
+          "score": 166,
+          "term": "Policy Gradient"
+        },
+        {
+          "all_years_score": 582,
+          "score": 165,
+          "term": "benchmark specifically"
+        },
+        {
+          "all_years_score": 485,
+          "score": 165,
+          "term": "embedding then"
+        },
+        {
+          "all_years_score": 564,
+          "score": 164,
+          "term": "gpt-4o"
+        },
+        {
+          "all_years_score": 675,
+          "score": 163,
+          "term": "COT"
+        },
+        {
+          "all_years_score": 601,
+          "score": 160,
+          "term": "large-scale benchmark"
+        },
+        {
+          "all_years_score": 505,
+          "score": 160,
+          "term": "Representation Analysis"
+        },
+        {
+          "all_years_score": 532,
+          "score": 159,
+          "term": "benchmark consisting"
+        },
+        {
+          "all_years_score": 460,
+          "score": 159,
+          "term": "create benchmark"
+        },
+        {
+          "all_years_score": 499,
+          "score": 158,
+          "term": "transformer vit"
+        },
+        {
+          "all_years_score": 499,
+          "score": 158,
+          "term": "transformer vits"
+        },
+        {
+          "all_years_score": 486,
+          "score": 158,
+          "term": "context embedding"
+        },
+        {
+          "all_years_score": 311,
+          "score": 158,
+          "term": "mistral model"
+        },
+        {
+          "all_years_score": 588,
+          "score": 157,
+          "term": "detection benchmark"
+        },
+        {
+          "all_years_score": 523,
+          "score": 157,
+          "term": "Visual Grounding"
+        },
+        {
+          "all_years_score": 413,
+          "score": 157,
+          "term": "across diverse benchmark"
+        },
+        {
+          "all_years_score": 339,
+          "score": 156,
+          "term": "preference optimization dpo"
+        },
+        {
+          "all_years_score": 508,
+          "score": 155,
+          "term": "Attention Visualization"
+        },
+        {
+          "all_years_score": 472,
+          "score": 155,
+          "term": "llm adversarial"
+        },
+        {
+          "all_years_score": 436,
+          "score": 155,
+          "term": "alignment process"
+        },
+        {
+          "all_years_score": 293,
+          "score": 155,
+          "term": "llm human preference"
+        },
+        {
+          "all_years_score": 571,
+          "score": 154,
+          "term": "benchmark achieving"
+        },
+        {
+          "all_years_score": 446,
+          "score": 154,
+          "term": "linear attention"
+        },
+        {
+          "all_years_score": 590,
+          "score": 153,
+          "term": "four benchmark"
+        },
+        {
+          "all_years_score": 548,
+          "score": 153,
+          "term": "Dialogue Systems"
+        },
+        {
+          "all_years_score": 492,
+          "score": 153,
+          "term": "processing multimodal"
+        },
+        {
+          "all_years_score": 452,
+          "score": 153,
+          "term": "embedding layer"
+        },
+        {
+          "all_years_score": 475,
+          "score": 152,
+          "term": "self-consistency"
+        },
+        {
+          "all_years_score": 430,
+          "score": 152,
+          "term": "Video Understanding"
+        },
+        {
+          "all_years_score": 406,
+          "score": 152,
+          "term": "llm vision-language"
+        },
+        {
+          "all_years_score": 490,
+          "score": 151,
+          "term": "embedding extracted"
+        },
+        {
+          "all_years_score": 380,
+          "score": 151,
+          "term": "transformer-based large language"
+        },
+        {
+          "all_years_score": 410,
+          "score": 150,
+          "term": "decoder-only"
+        },
+        {
+          "all_years_score": 410,
+          "score": 150,
+          "term": "video diffusion"
+        },
+        {
+          "all_years_score": 355,
+          "score": 150,
+          "term": "different benchmark"
+        },
+        {
+          "all_years_score": 518,
+          "score": 148,
+          "term": "standard benchmark"
+        },
+        {
+          "all_years_score": 518,
+          "score": 148,
+          "term": "standardized benchmark"
+        },
+        {
+          "all_years_score": 481,
+          "score": 148,
+          "term": "global attention"
+        },
+        {
+          "all_years_score": 466,
+          "score": 148,
+          "term": "Feature Attribution"
+        },
+        {
+          "all_years_score": 464,
+          "score": 148,
+          "term": "attention weight"
+        },
+        {
+          "all_years_score": 380,
+          "score": 148,
+          "term": "self-attention mechanism"
+        },
+        {
+          "all_years_score": 481,
+          "score": 147,
+          "term": "benchmark contain"
+        },
+        {
+          "all_years_score": 484,
+          "score": 145,
+          "term": "vision-language alignment"
+        },
+        {
+          "all_years_score": 375,
+          "score": 145,
+          "term": "graph benchmark"
+        },
+        {
+          "all_years_score": 462,
+          "score": 144,
+          "term": "construct benchmark"
+        },
+        {
+          "all_years_score": 450,
+          "score": 144,
+          "term": "alignment loss"
+        }
+      ]
+    },
+    "2025": {
+      "files": [
+        "continual_adaptive_learning.txt",
+        "core_architecture_components.txt",
+        "data_training_paradigms.txt",
+        "deployment_production.txt",
+        "efficiency_scaling.txt",
+        "evaluation_benchmarking.txt",
+        "human_ai_interaction.txt",
+        "information_retrieval_knowledge.txt",
+        "interpretability_transparency.txt",
+        "model_families_specific_implementations.txt",
+        "multimodal_cross_domain.txt",
+        "reasoning_cognition.txt",
+        "robustness_safety.txt",
+        "training_optimization.txt"
+      ],
+      "scored_term_count": 245,
+      "term_count": 246,
+      "terms": [
+        {
+          "all_years_score": 11130,
+          "score": 4860,
+          "term": "Adapters"
+        },
+        {
+          "all_years_score": 11256,
+          "score": 4213,
+          "term": "Transformer"
+        },
+        {
+          "all_years_score": 8164,
+          "score": 3775,
+          "term": "Benchmark"
+        },
+        {
+          "all_years_score": 7769,
+          "score": 3180,
+          "term": "Fine-tuning"
+        },
+        {
+          "all_years_score": 5682,
+          "score": 2527,
+          "term": "Accuracy"
+        },
+        {
+          "all_years_score": 3462,
+          "score": 1709,
+          "term": "Vision-Language Model"
+        },
+        {
+          "all_years_score": 5374,
+          "score": 1398,
+          "term": "Pre-training"
+        },
+        {
+          "all_years_score": 3057,
+          "score": 1251,
+          "term": "Knowledge Base"
+        },
+        {
+          "all_years_score": 2278,
+          "score": 1173,
+          "term": "Reward Modeling"
+        },
+        {
+          "all_years_score": 2078,
+          "score": 1160,
+          "term": "Retrieval-Augmented Generation"
+        },
+        {
+          "all_years_score": 2272,
+          "score": 1038,
+          "term": "Planning"
+        },
+        {
+          "all_years_score": 2176,
+          "score": 935,
+          "term": "Synthetic Data"
+        },
+        {
+          "all_years_score": 2559,
+          "score": 923,
+          "term": "Knowledge Graph"
+        },
+        {
+          "all_years_score": 2928,
+          "score": 910,
+          "term": "GPT"
+        },
+        {
+          "all_years_score": 2462,
+          "score": 866,
+          "term": "Data Augmentation"
+        },
+        {
+          "all_years_score": 2764,
+          "score": 843,
+          "term": "Contrastive Learning"
+        },
+        {
+          "all_years_score": 2396,
+          "score": 838,
+          "term": "Continual Learning"
+        },
+        {
+          "all_years_score": 1469,
+          "score": 806,
+          "term": "Chain-of-Thought"
+        },
+        {
+          "all_years_score": 1802,
+          "score": 730,
+          "term": "Quantization"
+        },
+        {
+          "all_years_score": 2086,
+          "score": 709,
+          "term": "In-Context Learning"
+        },
+        {
+          "all_years_score": 1830,
+          "score": 673,
+          "term": "Adversarial Attack"
+        },
+        {
+          "all_years_score": 1875,
+          "score": 668,
+          "term": "Domain Adaptation"
+        },
+        {
+          "all_years_score": 1576,
+          "score": 644,
+          "term": "Model Compression"
+        },
+        {
+          "all_years_score": 1199,
+          "score": 601,
+          "term": "LoRA"
+        },
+        {
+          "all_years_score": 1458,
+          "score": 600,
+          "term": "Decomposition"
+        },
+        {
+          "all_years_score": 1521,
+          "score": 596,
+          "term": "Interactive Learning"
+        },
+        {
+          "all_years_score": 1879,
+          "score": 576,
+          "term": "Transfer Learning"
+        },
+        {
+          "all_years_score": 1299,
+          "score": 572,
+          "term": "Calibration"
+        },
+        {
+          "all_years_score": 1172,
+          "score": 555,
+          "term": "LLaMA"
+        },
+        {
+          "all_years_score": 1020,
+          "score": 550,
+          "term": "Reflection"
+        },
+        {
+          "all_years_score": 1278,
+          "score": 547,
+          "term": "Autoregressive"
+        },
+        {
+          "all_years_score": 1547,
+          "score": 545,
+          "term": "Multi-Task Learning"
+        },
+        {
+          "all_years_score": 1517,
+          "score": 540,
+          "term": "Knowledge Distillation"
+        },
+        {
+          "all_years_score": 1838,
+          "score": 501,
+          "term": "Self-Supervised Learning"
+        },
+        {
+          "all_years_score": 1314,
+          "score": 496,
+          "term": "Online Learning"
+        },
+        {
+          "all_years_score": 1379,
+          "score": 476,
+          "term": "CLIP"
+        },
+        {
+          "all_years_score": 1010,
+          "score": 476,
+          "term": "Mixture of Experts"
+        },
+        {
+          "all_years_score": 928,
+          "score": 472,
+          "term": "Latency"
+        },
+        {
+          "all_years_score": 1296,
+          "score": 471,
+          "term": "Prompt Tuning"
+        },
+        {
+          "all_years_score": 1022,
+          "score": 456,
+          "term": "Factuality"
+        },
+        {
+          "all_years_score": 1081,
+          "score": 422,
+          "term": "Preference Learning"
+        },
+        {
+          "all_years_score": 1570,
+          "score": 421,
+          "term": "Pre-training Data"
+        },
+        {
+          "all_years_score": 880,
+          "score": 414,
+          "term": "Inference Optimization"
+        },
+        {
+          "all_years_score": 1280,
+          "score": 413,
+          "term": "BERT"
+        },
+        {
+          "all_years_score": 1245,
+          "score": 407,
+          "term": "Instruction Tuning"
+        },
+        {
+          "all_years_score": 880,
+          "score": 403,
+          "term": "Probing"
+        },
+        {
+          "all_years_score": 1151,
+          "score": 397,
+          "term": "Self-Attention"
+        },
+        {
+          "all_years_score": 988,
+          "score": 388,
+          "term": "Model Pruning"
+        },
+        {
+          "all_years_score": 1304,
+          "score": 387,
+          "term": "Adversarial Training"
+        },
+        {
+          "all_years_score": 1189,
+          "score": 382,
+          "term": "Encoder-Decoder"
+        },
+        {
+          "all_years_score": 1046,
+          "score": 365,
+          "term": "Distribution Shift"
+        },
+        {
+          "all_years_score": 786,
+          "score": 362,
+          "term": "Token Prediction"
+        },
+        {
+          "all_years_score": 1247,
+          "score": 353,
+          "term": "Speech Recognition"
+        },
+        {
+          "all_years_score": 1002,
+          "score": 353,
+          "term": "Catastrophic Forgetting"
+        },
+        {
+          "all_years_score": 796,
+          "score": 352,
+          "term": "Logical Reasoning"
+        },
+        {
+          "all_years_score": 777,
+          "score": 339,
+          "term": "Explainable AI"
+        },
+        {
+          "all_years_score": 617,
+          "score": 323,
+          "term": "Mathematical Reasoning"
+        },
+        {
+          "all_years_score": 571,
+          "score": 300,
+          "term": "Multimodal Fusion"
+        },
+        {
+          "all_years_score": 1021,
+          "score": 297,
+          "term": "Gradient Descent"
+        },
+        {
+          "all_years_score": 913,
+          "score": 293,
+          "term": "Text-to-Speech"
+        },
+        {
+          "all_years_score": 605,
+          "score": 291,
+          "term": "Bidirectional"
+        },
+        {
+          "all_years_score": 758,
+          "score": 288,
+          "term": "Parameter-Efficient Fine-Tuning"
+        },
+        {
+          "all_years_score": 675,
+          "score": 282,
+          "term": "Data Filtering"
+        },
+        {
+          "all_years_score": 597,
+          "score": 276,
+          "term": "Diffusion Transformer"
+        },
+        {
+          "all_years_score": 623,
+          "score": 275,
+          "term": "Preference Data"
+        },
+        {
+          "all_years_score": 1018,
+          "score": 273,
+          "term": "Few-Shot Learning"
+        },
+        {
+          "all_years_score": 741,
+          "score": 269,
+          "term": "Human Feedback"
+        },
+        {
+          "all_years_score": 655,
+          "score": 269,
+          "term": "Audio-Language"
+        },
+        {
+          "all_years_score": 414,
+          "score": 269,
+          "term": "Gemini"
+        },
+        {
+          "all_years_score": 697,
+          "score": 265,
+          "term": "Masked Language Modeling"
+        },
+        {
+          "all_years_score": 723,
+          "score": 246,
+          "term": "Instruction Data"
+        },
+        {
+          "all_years_score": 627,
+          "score": 245,
+          "term": "Embedding Similarity"
+        },
+        {
+          "all_years_score": 523,
+          "score": 243,
+          "term": "Visual Grounding"
+        },
+        {
+          "all_years_score": 319,
+          "score": 238,
+          "term": "Reasoning Traces"
+        },
+        {
+          "all_years_score": 427,
+          "score": 234,
+          "term": "AI Alignment"
+        },
+        {
+          "all_years_score": 713,
+          "score": 229,
+          "term": "Helpfulness"
+        },
+        {
+          "all_years_score": 566,
+          "score": 227,
+          "term": "Policy Gradient"
+        },
+        {
+          "all_years_score": 508,
+          "score": 227,
+          "term": "Attention Visualization"
+        },
+        {
+          "all_years_score": 404,
+          "score": 224,
+          "term": "KV Cache"
+        },
+        {
+          "all_years_score": 416,
+          "score": 219,
+          "term": "Multi-Step Reasoning"
+        },
+        {
+          "all_years_score": 346,
+          "score": 219,
+          "term": "AI Safety"
+        },
+        {
+          "all_years_score": 405,
+          "score": 217,
+          "term": "Jailbreaking"
+        },
+        {
+          "all_years_score": 615,
+          "score": 214,
+          "term": "Domain Shift"
+        },
+        {
+          "all_years_score": 660,
+          "score": 212,
+          "term": "Zero-Shot Learning"
+        },
+        {
+          "all_years_score": 505,
+          "score": 212,
+          "term": "Representation Analysis"
+        },
+        {
+          "all_years_score": 451,
+          "score": 204,
+          "term": "DPO"
+        },
+        {
+          "all_years_score": 374,
+          "score": 202,
+          "term": "Causal Reasoning"
+        },
+        {
+          "all_years_score": 630,
+          "score": 198,
+          "term": "Incremental Learning"
+        },
+        {
+          "all_years_score": 572,
+          "score": 198,
+          "term": "Instruction Following"
+        },
+        {
+          "all_years_score": 380,
+          "score": 196,
+          "term": "Data Curation"
+        },
+        {
+          "all_years_score": 329,
+          "score": 196,
+          "term": "Conversational AI"
+        },
+        {
+          "all_years_score": 475,
+          "score": 194,
+          "term": "Self-Consistency"
+        },
+        {
+          "all_years_score": 430,
+          "score": 193,
+          "term": "Video Understanding"
+        },
+        {
+          "all_years_score": 366,
+          "score": 193,
+          "term": "Sparse Attention"
+        },
+        {
+          "all_years_score": 409,
+          "score": 190,
+          "term": "Model Serving"
+        },
+        {
+          "all_years_score": 430,
+          "score": 189,
+          "term": "Curriculum Learning"
+        },
+        {
+          "all_years_score": 468,
+          "score": 187,
+          "term": "Positional Encoding"
+        },
+        {
+          "all_years_score": 634,
+          "score": 181,
+          "term": "Image Captioning"
+        },
+        {
+          "all_years_score": 456,
+          "score": 181,
+          "term": "Vision Transformer (ViT)"
+        },
+        {
+          "all_years_score": 466,
+          "score": 180,
+          "term": "Feature Attribution"
+        },
+        {
+          "all_years_score": 548,
+          "score": 178,
+          "term": "Dialogue Systems"
+        },
+        {
+          "all_years_score": 468,
+          "score": 178,
+          "term": "Softmax"
+        },
+        {
+          "all_years_score": 402,
+          "score": 174,
+          "term": "Test-Time Adaptation"
+        },
+        {
+          "all_years_score": 410,
+          "score": 173,
+          "term": "Decoder-Only"
+        },
+        {
+          "all_years_score": 293,
+          "score": 172,
+          "term": "Sparse Autoencoders"
+        },
+        {
+          "all_years_score": 344,
+          "score": 171,
+          "term": "Integrated Gradients"
+        },
+        {
+          "all_years_score": 452,
+          "score": 168,
+          "term": "Embedding Layer"
+        },
+        {
+          "all_years_score": 442,
+          "score": 160,
+          "term": "Backpropagation"
+        },
+        {
+          "all_years_score": 271,
+          "score": 156,
+          "term": "Claude"
+        },
+        {
+          "all_years_score": 380,
+          "score": 154,
+          "term": "Multi-Head Attention"
+        },
+        {
+          "all_years_score": 340,
+          "score": 154,
+          "term": "Mistral"
+        },
+        {
+          "all_years_score": 295,
+          "score": 151,
+          "term": "PPO"
+        },
+        {
+          "all_years_score": 292,
+          "score": 151,
+          "term": "Semantic Search"
+        },
+        {
+          "all_years_score": 463,
+          "score": 150,
+          "term": "RLHF"
+        },
+        {
+          "all_years_score": 409,
+          "score": 150,
+          "term": "VQA"
+        },
+        {
+          "all_years_score": 296,
+          "score": 150,
+          "term": "SHAP"
+        },
+        {
+          "all_years_score": 327,
+          "score": 146,
+          "term": "F1 Score"
+        },
+        {
+          "all_years_score": 349,
+          "score": 145,
+          "term": "Encoder-Only"
+        },
+        {
+          "all_years_score": 386,
+          "score": 142,
+          "term": "Dense Retrieval"
+        },
+        {
+          "all_years_score": 312,
+          "score": 140,
+          "term": "Reranking"
+        },
+        {
+          "all_years_score": 182,
+          "score": 140,
+          "term": "Qwen"
+        },
+        {
+          "all_years_score": 369,
+          "score": 138,
+          "term": "Poisoning Attack"
+        },
+        {
+          "all_years_score": 348,
+          "score": 138,
+          "term": "Adversarial Defense"
+        },
+        {
+          "all_years_score": 269,
+          "score": 137,
+          "term": "Cross-Modal Attention"
+        },
+        {
+          "all_years_score": 286,
+          "score": 135,
+          "term": "OCR"
+        },
+        {
+          "all_years_score": 229,
+          "score": 135,
+          "term": "Supervised Fine-Tuning (SFT)"
+        },
+        {
+          "all_years_score": 352,
+          "score": 133,
+          "term": "Actor-Critic"
+        },
+        {
+          "all_years_score": 363,
+          "score": 131,
+          "term": "Data Parallelism"
+        },
+        {
+          "all_years_score": 246,
+          "score": 130,
+          "term": "Speculative Decoding"
+        },
+        {
+          "all_years_score": 231,
+          "score": 119,
+          "term": "Throughput"
+        },
+        {
+          "all_years_score": 336,
+          "score": 118,
+          "term": "Backdoor Attack"
+        },
+        {
+          "all_years_score": 323,
+          "score": 118,
+          "term": "Dropout"
+        },
+        {
+          "all_years_score": 282,
+          "score": 118,
+          "term": "User Intent"
+        },
+        {
+          "all_years_score": 252,
+          "score": 106,
+          "term": "Quantized Inference"
+        },
+        {
+          "all_years_score": 250,
+          "score": 102,
+          "term": "Perplexity"
+        },
+        {
+          "all_years_score": 146,
+          "score": 100,
+          "term": "Guardrails"
+        },
+        {
+          "all_years_score": 184,
+          "score": 99,
+          "term": "Mechanistic Interpretability"
+        },
+        {
+          "all_years_score": 246,
+          "score": 97,
+          "term": "Data Poisoning"
+        },
+        {
+          "all_years_score": 180,
+          "score": 95,
+          "term": "Real-Time Inference"
+        },
+        {
+          "all_years_score": 315,
+          "score": 91,
+          "term": "Class-Incremental"
+        },
+        {
+          "all_years_score": 220,
+          "score": 90,
+          "term": "Document Understanding"
+        },
+        {
+          "all_years_score": 200,
+          "score": 88,
+          "term": "Causal Attention"
+        },
+        {
+          "all_years_score": 177,
+          "score": 85,
+          "term": "Mixed Precision"
+        },
+        {
+          "all_years_score": 204,
+          "score": 83,
+          "term": "Sparse Retrieval"
+        },
+        {
+          "all_years_score": 149,
+          "score": 80,
+          "term": "Red Teaming"
+        },
+        {
+          "all_years_score": 187,
+          "score": 79,
+          "term": "Data Contamination"
+        },
+        {
+          "all_years_score": 136,
+          "score": 76,
+          "term": "Hybrid Search"
+        },
+        {
+          "all_years_score": 138,
+          "score": 73,
+          "term": "Deliberation"
+        },
+        {
+          "all_years_score": 181,
+          "score": 72,
+          "term": "Dense Transformer"
+        },
+        {
+          "all_years_score": 153,
+          "score": 70,
+          "term": "Concept Activation"
+        },
+        {
+          "all_years_score": 148,
+          "score": 68,
+          "term": "ARC"
+        },
+        {
+          "all_years_score": 125,
+          "score": 68,
+          "term": "Edge Deployment"
+        },
+        {
+          "all_years_score": 218,
+          "score": 66,
+          "term": "Task-Incremental"
+        },
+        {
+          "all_years_score": 133,
+          "score": 65,
+          "term": "Content Filtering"
+        },
+        {
+          "all_years_score": 234,
+          "score": 64,
+          "term": "Commonsense Reasoning"
+        },
+        {
+          "all_years_score": 161,
+          "score": 64,
+          "term": "LIME"
+        },
+        {
+          "all_years_score": 114,
+          "score": 62,
+          "term": "Phi"
+        },
+        {
+          "all_years_score": 182,
+          "score": 61,
+          "term": "LLaVA"
+        },
+        {
+          "all_years_score": 250,
+          "score": 59,
+          "term": "Cross-Lingual Transfer"
+        },
+        {
+          "all_years_score": 121,
+          "score": 59,
+          "term": "BM25"
+        },
+        {
+          "all_years_score": 176,
+          "score": 57,
+          "term": "Feed-Forward Network"
+        },
+        {
+          "all_years_score": 307,
+          "score": 56,
+          "term": "T5"
+        },
+        {
+          "all_years_score": 130,
+          "score": 56,
+          "term": "Sparse MoE"
+        },
+        {
+          "all_years_score": 106,
+          "score": 55,
+          "term": "Document Chunking"
+        },
+        {
+          "all_years_score": 85,
+          "score": 55,
+          "term": "Reward Hacking"
+        },
+        {
+          "all_years_score": 160,
+          "score": 54,
+          "term": "Adam Optimizer"
+        },
+        {
+          "all_years_score": 147,
+          "score": 53,
+          "term": "Residual Connections"
+        },
+        {
+          "all_years_score": 152,
+          "score": 50,
+          "term": "BLEU"
+        },
+        {
+          "all_years_score": 127,
+          "score": 50,
+          "term": "Experience Replay"
+        },
+        {
+          "all_years_score": 106,
+          "score": 48,
+          "term": "Pipeline Parallelism"
+        },
+        {
+          "all_years_score": 71,
+          "score": 47,
+          "term": "Safety Cases"
+        },
+        {
+          "all_years_score": 92,
+          "score": 46,
+          "term": "Vector Database"
+        },
+        {
+          "all_years_score": 104,
+          "score": 45,
+          "term": "MMLU"
+        },
+        {
+          "all_years_score": 104,
+          "score": 43,
+          "term": "Weight Decay"
+        },
+        {
+          "all_years_score": 96,
+          "score": 42,
+          "term": "Comparative Feedback"
+        },
+        {
+          "all_years_score": 96,
+          "score": 42,
+          "term": "Specification Gaming"
+        },
+        {
+          "all_years_score": 92,
+          "score": 41,
+          "term": "Harmlessness"
+        },
+        {
+          "all_years_score": 65,
+          "score": 41,
+          "term": "vLLM"
+        },
+        {
+          "all_years_score": 63,
+          "score": 41,
+          "term": "Metacognition"
+        },
+        {
+          "all_years_score": 129,
+          "score": 39,
+          "term": "Batch Inference"
+        },
+        {
+          "all_years_score": 89,
+          "score": 39,
+          "term": "Query Expansion"
+        },
+        {
+          "all_years_score": 148,
+          "score": 38,
+          "term": "Batch Normalization"
+        },
+        {
+          "all_years_score": 145,
+          "score": 38,
+          "term": "Certified Robustness"
+        },
+        {
+          "all_years_score": 87,
+          "score": 38,
+          "term": "Tree of Thoughts"
+        },
+        {
+          "all_years_score": 77,
+          "score": 38,
+          "term": "Superposition"
+        },
+        {
+          "all_years_score": 98,
+          "score": 37,
+          "term": "PTQ"
+        },
+        {
+          "all_years_score": 89,
+          "score": 37,
+          "term": "GSM8K"
+        },
+        {
+          "all_years_score": 85,
+          "score": 37,
+          "term": "Deduplication"
+        },
+        {
+          "all_years_score": 85,
+          "score": 37,
+          "term": "ROUGE"
+        },
+        {
+          "all_years_score": 64,
+          "score": 36,
+          "term": "On-Device AI"
+        },
+        {
+          "all_years_score": 114,
+          "score": 34,
+          "term": "Lifelong Learning"
+        },
+        {
+          "all_years_score": 113,
+          "score": 34,
+          "term": "Randomized Smoothing"
+        },
+        {
+          "all_years_score": 72,
+          "score": 34,
+          "term": "Learning Rate Schedule"
+        },
+        {
+          "all_years_score": 80,
+          "score": 31,
+          "term": "Analogical Reasoning"
+        },
+        {
+          "all_years_score": 69,
+          "score": 31,
+          "term": "QLoRA"
+        },
+        {
+          "all_years_score": 61,
+          "score": 31,
+          "term": "Activation Patching"
+        },
+        {
+          "all_years_score": 96,
+          "score": 29,
+          "term": "Prefix Tuning"
+        },
+        {
+          "all_years_score": 75,
+          "score": 28,
+          "term": "PGD"
+        },
+        {
+          "all_years_score": 42,
+          "score": 28,
+          "term": "Refusal Training"
+        },
+        {
+          "all_years_score": 68,
+          "score": 26,
+          "term": "QAT"
+        },
+        {
+          "all_years_score": 51,
+          "score": 26,
+          "term": "Sycophancy"
+        },
+        {
+          "all_years_score": 109,
+          "score": 25,
+          "term": "Saliency Maps"
+        },
+        {
+          "all_years_score": 60,
+          "score": 24,
+          "term": "FGSM"
+        },
+        {
+          "all_years_score": 39,
+          "score": 24,
+          "term": "Block Sparse Attention"
+        },
+        {
+          "all_years_score": 58,
+          "score": 23,
+          "term": "Self-Critique"
+        },
+        {
+          "all_years_score": 48,
+          "score": 23,
+          "term": "Tensor Parallelism"
+        },
+        {
+          "all_years_score": 46,
+          "score": 23,
+          "term": "Circuit Analysis"
+        },
+        {
+          "all_years_score": 38,
+          "score": 22,
+          "term": "Warmup"
+        },
+        {
+          "all_years_score": 50,
+          "score": 21,
+          "term": "Mobile AI"
+        },
+        {
+          "all_years_score": 54,
+          "score": 20,
+          "term": "Evasion Attack"
+        },
+        {
+          "all_years_score": 50,
+          "score": 20,
+          "term": "LayerNorm"
+        },
+        {
+          "all_years_score": 36,
+          "score": 20,
+          "term": "ColBERT"
+        },
+        {
+          "all_years_score": 34,
+          "score": 19,
+          "term": "Honesty"
+        },
+        {
+          "all_years_score": 31,
+          "score": 19,
+          "term": "Constitutional AI"
+        },
+        {
+          "all_years_score": 59,
+          "score": 17,
+          "term": "Mixtral"
+        },
+        {
+          "all_years_score": 40,
+          "score": 17,
+          "term": "INT8"
+        },
+        {
+          "all_years_score": 35,
+          "score": 15,
+          "term": "Scalar Feedback"
+        },
+        {
+          "all_years_score": 29,
+          "score": 15,
+          "term": "TruthfulQA"
+        },
+        {
+          "all_years_score": 29,
+          "score": 14,
+          "term": "OLMo"
+        },
+        {
+          "all_years_score": 63,
+          "score": 13,
+          "term": "Falcon"
+        },
+        {
+          "all_years_score": 29,
+          "score": 13,
+          "term": "Flash Attention"
+        },
+        {
+          "all_years_score": 28,
+          "score": 13,
+          "term": "FP16"
+        },
+        {
+          "all_years_score": 22,
+          "score": 11,
+          "term": "Gradient Checkpointing"
+        },
+        {
+          "all_years_score": 103,
+          "score": 10,
+          "term": "GPT-4V"
+        },
+        {
+          "all_years_score": 17,
+          "score": 10,
+          "term": "ONNX"
+        },
+        {
+          "all_years_score": 68,
+          "score": 9,
+          "term": "PaLM"
+        },
+        {
+          "all_years_score": 47,
+          "score": 9,
+          "term": "GLUE"
+        },
+        {
+          "all_years_score": 32,
+          "score": 9,
+          "term": "HumanEval"
+        },
+        {
+          "all_years_score": 26,
+          "score": 9,
+          "term": "Elastic Weight Consolidation"
+        },
+        {
+          "all_years_score": 21,
+          "score": 6,
+          "term": "Gemini Pro Vision"
+        },
+        {
+          "all_years_score": 20,
+          "score": 6,
+          "term": "MT-Bench"
+        },
+        {
+          "all_years_score": 19,
+          "score": 6,
+          "term": "INT4"
+        },
+        {
+          "all_years_score": 18,
+          "score": 6,
+          "term": "HellaSwag"
+        },
+        {
+          "all_years_score": 13,
+          "score": 6,
+          "term": "Progressive Nets"
+        },
+        {
+          "all_years_score": 11,
+          "score": 5,
+          "term": "C&W Attack"
+        },
+        {
+          "all_years_score": 10,
+          "score": 5,
+          "term": "BF16"
+        },
+        {
+          "all_years_score": 18,
+          "score": 4,
+          "term": "BIG-Bench"
+        },
+        {
+          "all_years_score": 10,
+          "score": 3,
+          "term": "AlpacaEval"
+        },
+        {
+          "all_years_score": 7,
+          "score": 3,
+          "term": "Contriever"
+        },
+        {
+          "all_years_score": 3,
+          "score": 3,
+          "term": "Serving Infrastructure"
+        },
+        {
+          "all_years_score": 23,
+          "score": 2,
+          "term": "MPT"
+        },
+        {
+          "all_years_score": 13,
+          "score": 2,
+          "term": "SuperGLUE"
+        },
+        {
+          "all_years_score": 5,
+          "score": 2,
+          "term": "WinoGrande"
+        },
+        {
+          "all_years_score": 4,
+          "score": 2,
+          "term": "TensorRT"
+        },
+        {
+          "all_years_score": 3,
+          "score": 1,
+          "term": "TGI"
+        }
+      ]
+    }
+  }
+}

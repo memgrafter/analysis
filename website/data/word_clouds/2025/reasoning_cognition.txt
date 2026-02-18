@@ -1,0 +1,17 @@
+# Word Cloud: Reasoning & Cognition
+Chain-of-Thought
+Tree of Thoughts
+Self-Consistency
+Reasoning Traces
+Multi-Step Reasoning
+Mathematical Reasoning
+Logical Reasoning
+Commonsense Reasoning
+Causal Reasoning
+Analogical Reasoning
+Metacognition
+Reflection
+Self-Critique
+Deliberation
+Planning
+Decomposition
