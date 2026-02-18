@@ -16,6 +16,7 @@
         --accent: #2f63d8;
         --meta-link: #244fb5;
         --pending: #b56576;
+        --cloud-visited: #1f4aa9;
       }
       @media (prefers-color-scheme: dark) {
         :root {
@@ -27,6 +28,7 @@
           --accent: #6ea8ff;
           --meta-link: #5b94f7;
           --pending: #d89aa7;
+          --cloud-visited: #4a7dc9;
         }
       }
 
@@ -70,6 +72,11 @@
         flex-direction: column;
         align-items: stretch;
         gap: 4px;
+      }
+      .search-action-buttons {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
       }
       .pending-indicator {
         margin: 0;
@@ -156,12 +163,17 @@
         gap: 6px 10px;
       }
       .term-cloud-item {
+        display: inline-block;
         border: 1px solid transparent;
         background: transparent;
         color: var(--accent);
+        text-decoration: none;
         border-radius: 8px;
         padding: 1px 4px;
         cursor: pointer;
+      }
+      .term-cloud-item:visited {
+        color: var(--cloud-visited);
       }
       .term-cloud-item:hover {
         border-color: var(--border);
@@ -201,6 +213,13 @@
         border-color: var(--pending);
         color: var(--pending);
       }
+      .filter-options label.disabled-filter {
+        opacity: 0.65;
+        cursor: not-allowed;
+      }
+      .filter-options label.disabled-filter input {
+        cursor: not-allowed;
+      }
       input[type="search"] {
         width: 100%;
         border: 1px solid var(--border);
@@ -210,6 +229,11 @@
         padding: 10px 12px;
         font-size: 16px;
       }
+      input[type="search"]::-webkit-search-cancel-button {
+        -webkit-appearance: none;
+        appearance: none;
+        display: none;
+      }
       button {
         border: 1px solid var(--border);
         background: var(--accent);
@@ -218,6 +242,16 @@
         padding: 10px 14px;
         font-weight: 600;
         cursor: pointer;
+      }
+      .clear-search-btn {
+        min-width: 34px;
+        height: 34px;
+        padding: 0;
+        border-radius: 8px;
+        background: transparent;
+        color: var(--muted);
+        font-size: 20px;
+        line-height: 1;
       }
       button[disabled] {
         opacity: 0.55;
@@ -303,7 +337,10 @@
         <form id="search-form">
           <input id="q" type="search" name="q" placeholder="Try: Latent Reasoning, or by arXiv ID, e.g. 2404.18923" autocomplete="off" />
           <div class="search-actions">
-            <button type="submit">Search</button>
+            <div class="search-action-buttons">
+              <button type="submit">Search</button>
+              <button id="clear-search" class="clear-search-btn" type="button" aria-label="Clear to search home" title="Clear to search home">×</button>
+            </div>
             <p id="pending-indicator" class="pending-indicator" hidden>pending</p>
           </div>
         </form>
@@ -321,9 +358,9 @@
           <fieldset>
             <legend>Search Scope</legend>
             <div class="filter-options">
-              <label><input type="checkbox" name="scope-filter" value="title" checked /> Title</label>
-              <label><input type="checkbox" name="scope-filter" value="core" checked /> Core contribution</label>
-              <label><input type="checkbox" name="scope-filter" value="body" checked /> Full text (body)</label>
+              <label class="disabled-filter" title="Title is always included in Search Scope."><input type="checkbox" name="scope-filter" value="title" checked disabled /> Title</label>
+              <label title="Search Scope is progressive: Full text includes Core contribution, and Core contribution includes Title."><input type="checkbox" name="scope-filter" value="core" checked /> Core contribution</label>
+              <label title="Search Scope is progressive: Full text includes Core contribution, and Core contribution includes Title."><input type="checkbox" name="scope-filter" value="body" checked /> Full text (body)</label>
             </div>
           </fieldset>
         </div>
@@ -403,6 +440,7 @@
       </section>
     </main>
 
+    <script src="/assets/shared-header.js"></script>
     <script src="/assets/search.js"></script>
   </body>
 </html>

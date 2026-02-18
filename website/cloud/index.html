@@ -14,6 +14,7 @@
         --muted: #5d6f9a;
         --border: #dbe2f4;
         --accent: #2f63d8;
+        --cloud-visited: #1f4aa9;
       }
       @media (prefers-color-scheme: dark) {
         :root {
@@ -23,6 +24,7 @@
           --muted: #a8b4da;
           --border: #27335f;
           --accent: #6ea8ff;
+          --cloud-visited: #4a7dc9;
         }
       }
 
@@ -86,6 +88,9 @@
         border-radius: 8px;
         padding: 1px 2px;
       }
+      .cloud a:visited {
+        color: var(--cloud-visited);
+      }
       .cloud a:hover {
         border-color: var(--border);
       }
@@ -141,6 +146,7 @@
       </section>
     </main>
 
+    <script src="/assets/shared-header.js"></script>
     <script src="/assets/cloud.js"></script>
   </body>
 </html>

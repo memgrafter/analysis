@@ -94,6 +94,11 @@
         padding: 10px 12px;
         font-size: 16px;
       }
+      .search-jump input[type="search"]::-webkit-search-cancel-button {
+        -webkit-appearance: none;
+        appearance: none;
+        display: none;
+      }
       .search-jump button {
         border: 1px solid var(--border);
         background: var(--accent);
@@ -130,6 +135,13 @@
         gap: 6px;
         font-size: 13px;
         color: var(--muted);
+      }
+      .search-jump .filter-options label.disabled-filter {
+        opacity: 0.65;
+        cursor: not-allowed;
+      }
+      .search-jump .filter-options label.disabled-filter input {
+        cursor: not-allowed;
       }
       .frontmatter {
         margin-bottom: 14px;
@@ -298,9 +310,9 @@
             <fieldset>
               <legend>Search Scope</legend>
               <div class="filter-options">
-                <label><input type="checkbox" name="f" value="title" checked /> Title</label>
-                <label><input type="checkbox" name="f" value="core" checked /> Core contribution</label>
-                <label><input type="checkbox" name="f" value="body" checked /> Full text (body)</label>
+                <label class="disabled-filter" title="Title is always included in Search Scope."><input type="checkbox" name="f" value="title" checked disabled /> Title</label>
+                <label title="Search Scope is progressive: Full text includes Core contribution, and Core contribution includes Title."><input type="checkbox" name="f" value="core" checked /> Core contribution</label>
+                <label title="Search Scope is progressive: Full text includes Core contribution, and Core contribution includes Title."><input type="checkbox" name="f" value="body" checked /> Full text (body)</label>
               </div>
             </fieldset>
           </div>
@@ -308,6 +320,7 @@
       </section>
     </main>
 
+    <script src="/assets/shared-header.js"></script>
     <script src="/assets/viewer.js"></script>
   </body>
 </html>

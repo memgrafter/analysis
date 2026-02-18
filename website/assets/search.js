@@ -6,6 +6,7 @@
   const metaEl = document.getElementById("meta");
   const resultsEl = document.getElementById("results");
   const pendingEl = document.getElementById("pending-indicator");
+  const clearSearchBtn = document.getElementById("clear-search");
   const topTermCloudEl = document.getElementById("top-term-cloud");
   const topTermCloudListEl = document.getElementById("top-term-cloud-list");
   const topTermCloudStatusEl = document.getElementById("top-term-cloud-status");
@@ -247,6 +248,7 @@
       pendingEl.hidden = !hasPending;
     }
 
+    updateClearButtonUi();
     return hasPending;
   }
 
@@ -254,6 +256,65 @@
     appliedYears = new Set(state.years);
     appliedScopes = new Set(state.scopes);
     updatePendingUi();
+  }
+
+  function isAtSearchHomeState() {
+    return (
+      !state.query &&
+      state.sort === DEFAULT_SORT &&
+      state.pageSize === DEFAULT_PAGE_SIZE &&
+      setsEqual(state.years, DEFAULT_YEARS_SET) &&
+      setsEqual(state.scopes, DEFAULT_SCOPES_SET) &&
+      state.currentPage === 1 &&
+      !state.currentCursorToken &&
+      !state.nextCursorToken &&
+      state.cursorStack.length === 0
+    );
+  }
+
+  function updateClearButtonUi() {
+    if (!clearSearchBtn) return;
+
+    const hasTypedQuery = Boolean((inputEl?.value || "").trim());
+    clearSearchBtn.disabled = isSearching || (isAtSearchHomeState() && !hasTypedQuery);
+  }
+
+  function resetToSearchHome() {
+    latestSearchRunId += 1;
+    stopSearchAnimation();
+    isSearching = false;
+
+    inputEl.value = "";
+    state.query = "";
+    state.mode = null;
+    state.sort = DEFAULT_SORT;
+    state.pageSize = DEFAULT_PAGE_SIZE;
+    state.years = new Set(DEFAULT_YEARS);
+    state.scopes = new Set(DEFAULT_SCOPES);
+    resetPaging();
+    state.hasMore = false;
+    state.rowCount = 0;
+    state.totalCount = 0;
+
+    appliedYears = new Set(DEFAULT_YEARS);
+    appliedScopes = new Set(DEFAULT_SCOPES);
+
+    syncFilterControls();
+    updatePendingUi();
+    setPagerVisible(false);
+    updateUrlState();
+    updatePagerUi();
+
+    renderEmpty("Search index loaded. Enter a query above.");
+    statusEl.textContent = "Search index ready.";
+    lastRenderedSearchKey = "";
+
+    if (topTermCloudEl && !topTermCloudEl.hidden) {
+      setTopTermCloudCollapsed(false);
+    }
+
+    updateClearButtonUi();
+    inputEl.focus();
   }
 
   function setTopTermCloudCollapsed(collapsed) {
@@ -268,6 +329,19 @@
   function autoCollapseTopTermCloud() {
     if (!topTermCloudEl || topTermCloudEl.hidden) return;
     setTopTermCloudCollapsed(true);
+  }
+
+  function buildTopTermSearchHref(term) {
+    const url = new URL("/search/", window.location.origin);
+    url.searchParams.set("q", term);
+    url.searchParams.set("sort", "relevance");
+    for (const year of YEAR_OPTIONS) {
+      url.searchParams.append("y", String(year));
+    }
+    for (const scope of SCOPE_OPTIONS) {
+      url.searchParams.append("f", scope);
+    }
+    return `${url.pathname}${url.search}`;
   }
 
   function renderTopTermCloudTerms(terms) {
@@ -288,7 +362,8 @@
         const score = Number(item?.score || 0);
         const normalized = (score - min) / spread;
         const fontSizePx = 13 + normalized * 13;
-        return `<button type="button" class="term-cloud-item" data-term="${escapeHtml(term)}" style="font-size:${fontSizePx.toFixed(1)}px;">${escapeHtml(term)}<span class="term-cloud-score">${score}</span></button>`;
+        const href = buildTopTermSearchHref(term);
+        return `<a class="term-cloud-item" href="${href}" style="font-size:${fontSizePx.toFixed(1)}px;">${escapeHtml(term)}<span class="term-cloud-score">${score}</span></a>`;
       })
       .join("\n");
   }
@@ -372,6 +447,7 @@
     syncSortControls();
     updatePagerLabels();
     setControlsDisabled(isSearching);
+    updateClearButtonUi();
   }
 
   function resetPaging() {
@@ -1345,18 +1421,22 @@
     });
   }
 
-  if (topTermCloudListEl) {
-    topTermCloudListEl.addEventListener("click", (event) => {
-      const button = event.target.closest(".term-cloud-item");
-      if (!button) return;
-
-      const term = String(button.dataset.term || "").trim();
-      if (!term) return;
-
-      inputEl.value = term;
-      formEl.requestSubmit();
+  if (clearSearchBtn) {
+    clearSearchBtn.addEventListener("click", () => {
+      resetToSearchHome();
     });
   }
+
+  inputEl.addEventListener("input", () => {
+    updateClearButtonUi();
+  });
+
+  inputEl.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      event.preventDefault();
+      resetToSearchHome();
+    }
+  });
 
   formEl.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -1402,13 +1482,20 @@
   }
 
   for (const input of scopeInputs) {
-    input.addEventListener("change", () => {
+    input.addEventListener("change", (event) => {
+      const changed = event.target;
       const nextScopesRaw = new Set(
         scopeInputs
           .filter((el) => el.checked)
           .map((el) => el.value)
           .filter((scope) => SCOPE_OPTIONS_SET.has(scope))
       );
+
+      // Progressive rule UX: if user unchecks Core while Full text is checked,
+      // also uncheck Full text so Core can actually be removed.
+      if (changed?.value === "core" && !changed.checked && nextScopesRaw.has("body")) {
+        nextScopesRaw.delete("body");
+      }
 
       if (nextScopesRaw.size === 0) {
         syncFilterControls();

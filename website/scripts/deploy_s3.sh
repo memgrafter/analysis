@@ -28,7 +28,7 @@ trap cleanup EXIT
 echo "Staging site assets into: $STAGE_DIR"
 
 # Preserve mtimes so aws s3 sync can skip unchanged files.
-mkdir -p "$STAGE_DIR/view" "$STAGE_DIR/assets" "$STAGE_DIR/search" "$STAGE_DIR/cloud"
+mkdir -p "$STAGE_DIR/view" "$STAGE_DIR/assets" "$STAGE_DIR/search" "$STAGE_DIR/cloud" "$STAGE_DIR/about"
 cp -p "$ROOT_DIR/index.html" "$STAGE_DIR/index.html"
 if [[ -f "$ROOT_DIR/mldigest.ico" ]]; then
   cp -p "$ROOT_DIR/mldigest.ico" "$STAGE_DIR/mldigest.ico"
@@ -38,6 +38,9 @@ cp -a "$ROOT_DIR/assets/." "$STAGE_DIR/assets/"
 cp -a "$ROOT_DIR/search/." "$STAGE_DIR/search/"
 if [[ -d "$ROOT_DIR/cloud" ]]; then
   cp -a "$ROOT_DIR/cloud/." "$STAGE_DIR/cloud/"
+fi
+if [[ -d "$ROOT_DIR/about" ]]; then
+  cp -a "$ROOT_DIR/about/." "$STAGE_DIR/about/"
 fi
 
 if [[ ! -f "$STAGE_DIR/search/manifest.json" ]]; then

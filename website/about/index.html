@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/mldigest.ico" type="image/x-icon" />
+    <title>About</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #f5f7ff;
+        --panel: #ffffff;
+        --text: #1a2440;
+        --muted: #5d6f9a;
+        --border: #dbe2f4;
+        --accent: #2f63d8;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #0b1020;
+          --panel: #121a33;
+          --text: #e8edff;
+          --muted: #a8b4da;
+          --border: #27335f;
+          --accent: #6ea8ff;
+        }
+      }
+
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+      }
+      main {
+        max-width: 760px;
+        margin: 48px auto;
+        padding: 0 16px 24px;
+      }
+      .panel {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 16px;
+      }
+      p { color: var(--muted); }
+      a { color: var(--accent); text-decoration: none; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="panel">
+        <h1>About</h1>
+        <p>Minimal placeholder page.</p>
+        <p><a href="/search/">Open search</a></p>
+      </section>
+    </main>
+
+    <script src="/assets/shared-header.js"></script>
+  </body>
+</html>
