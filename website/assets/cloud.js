@@ -81,7 +81,7 @@
         const score = Number(row?.[metric] ?? 0);
         const normalized = (score - min) / spread;
         const fontSizePx = 13 + normalized * 34;
-        const opacity = 0.62 + normalized * 0.38;
+        const opacity = 0.72 + normalized * 0.28;
         const href = buildSearchHref(term);
 
         return `<a href="${href}" title="${escapeHtml(term)} (${metric}: ${score})" style="font-size:${fontSizePx.toFixed(1)}px;opacity:${opacity.toFixed(2)};">${escapeHtml(term)}<span class="word-score">${score}</span></a>`;

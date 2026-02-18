@@ -1,23 +1,6 @@
 (() => {
   const REPO_URL = "https://github.com/memgrafter/analysis";
 
-  function updatePlacement() {
-    const nav = document.getElementById("shared-top-links");
-    if (!nav) return;
-
-    let right = 12;
-    const container = document.querySelector("main") || document.querySelector("header") || document.body;
-
-    if (container && container !== document.body) {
-      const rect = container.getBoundingClientRect();
-      if (rect.width > 0) {
-        right = Math.max(12, Math.round(window.innerWidth - rect.right));
-      }
-    }
-
-    nav.style.right = `${right}px`;
-  }
-
   function inject() {
     if (!document.body) return;
     if (document.getElementById("shared-top-links")) return;
@@ -26,11 +9,13 @@
       const style = document.createElement("style");
       style.id = "shared-top-links-style";
       style.textContent = `
+        .shared-top-links-row {
+          display: flex;
+          justify-content: flex-end;
+          margin: 6px 0 10px;
+        }
+
         .shared-top-links {
-          position: fixed;
-          top: 10px;
-          right: 12px;
-          z-index: 1000;
           display: inline-flex;
           align-items: center;
           gap: 6px;
@@ -66,10 +51,12 @@
       <a href="${REPO_URL}" target="_blank" rel="noopener noreferrer">github</a>
     `;
 
-    document.body.appendChild(nav);
-    updatePlacement();
+    const row = document.createElement("div");
+    row.className = "shared-top-links-row";
+    row.appendChild(nav);
 
-    window.addEventListener("resize", updatePlacement, { passive: true });
+    const host = document.querySelector("main") || document.body;
+    host.insertBefore(row, host.firstChild);
   }
 
   if (document.readyState === "loading") {
