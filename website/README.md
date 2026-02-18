@@ -6,9 +6,9 @@ Build DB:
   ./scripts/build_db.sh
 ```
 
-> This is the canonical build path: stores 500-word body preview in `digests`, and builds full-text contentless FTS5 (`detail=column`).
+> This is the canonical build path: builds full-text contentless FTS5 (`detail=column`) and app metadata in `digests`.
 > Optional quick dev/test run: `MAX_FILES=1500 ./scripts/build_db.sh`
-> Build also emits `search/cloud-terms.json` from vendored seed terms in `data/word_clouds/`.
+> Build also emits `search/cloud-terms.json` and precomputes cloud search cache tables (`cloud_term`, `cloud_term_postings`) in the SQLite DB from vendored seed terms in `data/word_clouds/`.
 
 Provision infrastructure (bucket only):
 

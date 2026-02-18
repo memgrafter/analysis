@@ -14,7 +14,8 @@ OUTPUT_DIR="${OUTPUT_DIR:-$ROOT_DIR/search}"
 mkdir -p "$OUTPUT_DIR"
 rm -f "$OUTPUT_DIR"/search-*.sqlite \
       "$OUTPUT_DIR"/manifest.json \
-      "$OUTPUT_DIR"/search-manifest.json
+      "$OUTPUT_DIR"/search-manifest.json \
+      "$OUTPUT_DIR"/cloud-terms.json
 
 CMD=(
   python3 "$ROOT_DIR/scripts/build_search_db.py"
@@ -50,10 +51,12 @@ PY
 )"
 
   if [[ -n "$DB_FILE" && -f "$OUTPUT_DIR/$DB_FILE" ]]; then
-    echo "Building cloud term scores..."
+    echo "Building cloud term scores + precomputed cloud search cache..."
     python3 "$ROOT_DIR/scripts/build_cloud_terms.py" \
       --db-path "$OUTPUT_DIR/$DB_FILE" \
-      --output "$OUTPUT_DIR/cloud-terms.json"
+      --output "$OUTPUT_DIR/cloud-terms.json" \
+      --max-terms-per-year 0 \
+      --sorts relevance,newest,title_asc
   else
     echo "Warning: could not find DB file from manifest for cloud term build" >&2
   fi

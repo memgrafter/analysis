@@ -96,6 +96,19 @@ PY
 )"
 [[ -n "$SAMPLE_ID" ]] || fail "Could not fetch sample digest_id from DB"
 
+python3 - <<'PY' "$TEST_SEARCH_DIR/$DB_FILE"
+import sqlite3
+import sys
+conn = sqlite3.connect(sys.argv[1])
+term_count = conn.execute("SELECT COUNT(*) FROM cloud_term").fetchone()[0]
+posting_chunk_count = conn.execute("SELECT COUNT(*) FROM cloud_term_postings").fetchone()[0]
+if term_count <= 0 or posting_chunk_count <= 0:
+    raise SystemExit(
+        f"cloud cache tables look empty (terms={term_count}, postings_chunks={posting_chunk_count})"
+    )
+print(f"cloud cache rows: terms={term_count}, postings_chunks={posting_chunk_count}")
+PY
+
 echo "[4/6] Starting local server on :$PORT (isolated root)"
 (
   cd "$ROOT_DIR"

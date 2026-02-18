@@ -36,18 +36,21 @@
 
   const YEAR_OPTIONS = [2023, 2024, 2025];
   const YEAR_OPTIONS_SET = new Set(YEAR_OPTIONS);
-  const DEFAULT_YEARS = [2025];
+  const DEFAULT_YEARS = [2023, 2024, 2025];
   const DEFAULT_YEARS_SET = new Set(DEFAULT_YEARS);
 
   const SCOPE_OPTIONS = ["title", "core", "body"];
   const SCOPE_OPTIONS_SET = new Set(SCOPE_OPTIONS);
-  const DEFAULT_SCOPES = ["title", "core"];
+  const DEFAULT_SCOPES = ["title", "core", "body"];
   const DEFAULT_SCOPES_SET = new Set(DEFAULT_SCOPES);
+
+  const CLOUD_POSTING_CHUNK_SIZE = 512;
 
   let db = null;
   let workerDb = null;
   let backend = null; // "httpvfs" | "full"
   let supportsFts = false;
+  let supportsCloudCache = false;
   let isSearching = false;
   let latestSearchRunId = 0;
   let activeDbFile = "";
@@ -177,6 +180,10 @@
       if (!b.has(value)) return false;
     }
     return true;
+  }
+
+  function isFullCorpusDefaultFilters(years, scopes) {
+    return setsEqual(years, YEAR_OPTIONS_SET) && setsEqual(scopes, SCOPE_OPTIONS_SET);
   }
 
   function syncFilterControls() {
@@ -360,9 +367,13 @@
       .toLowerCase()
       // Treat common separators as token boundaries so queries like "test-time" become "test time".
       .replace(/[-_/]+/g, " ")
-      .replace(/[^a-z0-9.\s]/g, " ");
+      .replace(/[^a-z0-9\s]/g, " ");
 
     return normalized.split(/\s+/).filter(Boolean);
+  }
+
+  function normalizeCloudTermKey(input) {
+    return normalizeFtsTokens(input).join(" ");
   }
 
   function buildScopedFtsQuery(input, scopes) {
@@ -550,6 +561,16 @@
     }
   }
 
+  async function detectCloudCacheSupport() {
+    try {
+      await execRaw("SELECT term_id FROM cloud_term LIMIT 1");
+      await execRaw("SELECT term_id FROM cloud_term_postings LIMIT 1");
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
   function buildYearPredicateSql(years, tableAlias = "d") {
     const selectedYears = sortedYears(years);
     if (selectedYears.length === YEAR_OPTIONS.length) {
@@ -655,6 +676,160 @@
     const hasMore = rows.length > pageSize;
     const pageRows = hasMore ? rows.slice(0, pageSize) : rows;
     return { rows: pageRows, hasMore };
+  }
+
+  function toUint8Array(value) {
+    if (!value) return new Uint8Array(0);
+    if (value instanceof Uint8Array) return value;
+    if (value instanceof ArrayBuffer) return new Uint8Array(value);
+    if (Array.isArray(value)) return Uint8Array.from(value);
+    if (ArrayBuffer.isView(value)) return new Uint8Array(value.buffer, value.byteOffset, value.byteLength);
+
+    if (typeof value === "string") {
+      const out = new Uint8Array(value.length);
+      for (let i = 0; i < value.length; i += 1) {
+        out[i] = value.charCodeAt(i) & 0xff;
+      }
+      return out;
+    }
+
+    return new Uint8Array(0);
+  }
+
+  function decodeUint32LeBlob(value) {
+    const bytes = toUint8Array(value);
+    if (bytes.length === 0) return [];
+    const count = Math.floor(bytes.length / 4);
+    const view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength);
+    const out = new Array(count);
+    for (let i = 0; i < count; i += 1) {
+      out[i] = view.getUint32(i * 4, true);
+    }
+    return out;
+  }
+
+  async function queryCloudCachedPage(input, pageSize, cursor, sort, years, scopes) {
+    if (!supportsCloudCache) return null;
+    if (!isFullCorpusDefaultFilters(years, scopes)) return null;
+    if (looksLikeArxivId(input)) return null;
+
+    const termKey = normalizeCloudTermKey(input);
+    if (!termKey) return null;
+
+    const sortId = sort === "relevance" ? 0 : sort === "newest" ? 1 : sort === "title_asc" ? 2 : null;
+    if (sortId === null) return null;
+
+    const termRows = await execRows(
+      `
+      SELECT term_id, total_count
+      FROM cloud_term
+      WHERE term_key = ?
+      LIMIT 1
+      `,
+      [termKey]
+    );
+
+    if (termRows.length === 0) return null;
+
+    const termId = Number(termRows[0].term_id);
+    const totalCount = Number(termRows[0].total_count || 0);
+    if (totalCount <= 0) {
+      return {
+        rows: [],
+        hasMore: false,
+        totalCount: 0,
+        source: "cloud_cache",
+      };
+    }
+
+    const pageNumber = cursor && Number.isInteger(cursor.p) && cursor.p > 0 ? cursor.p : 1;
+    const startRank = (pageNumber - 1) * pageSize + 1;
+    const endRank = Math.min(totalCount, startRank + pageSize - 1);
+
+    const firstChunk = Math.floor((startRank - 1) / CLOUD_POSTING_CHUNK_SIZE);
+    const lastChunk = Math.floor((endRank - 1) / CLOUD_POSTING_CHUNK_SIZE);
+
+    const chunkRows = await execRows(
+      `
+      SELECT chunk_idx, ids_blob
+      FROM cloud_term_postings
+      WHERE term_id = ?
+        AND sort_id = ?
+        AND chunk_idx BETWEEN ? AND ?
+      ORDER BY chunk_idx ASC
+      `,
+      [termId, sortId, firstChunk, lastChunk]
+    );
+
+    if (chunkRows.length === 0) {
+      return {
+        rows: [],
+        hasMore: false,
+        totalCount,
+        source: "cloud_cache",
+      };
+    }
+
+    const combinedIds = [];
+    for (const chunkRow of chunkRows) {
+      const ids = decodeUint32LeBlob(chunkRow.ids_blob);
+      combinedIds.push(...ids);
+    }
+
+    const baseOffset = startRank - 1 - firstChunk * CLOUD_POSTING_CHUNK_SIZE;
+    const needed = endRank - startRank + 1;
+    const pageIds = combinedIds.slice(baseOffset, baseOffset + needed);
+
+    if (pageIds.length === 0) {
+      return {
+        rows: [],
+        hasMore: endRank < totalCount,
+        totalCount,
+        source: "cloud_cache",
+      };
+    }
+
+    const placeholders = pageIds.map(() => "?").join(", ");
+    const digestRows = await execRows(
+      `
+      SELECT
+        d.id AS id,
+        d.digest_id AS digest_id,
+        d.title AS title,
+        d.arxiv_id AS arxiv_id,
+        d.core_contribution AS core_contribution,
+        COALESCE(d.arxiv_id, '') AS arxiv_key,
+        lower(COALESCE(d.title, '')) AS title_key
+      FROM digests d
+      WHERE d.id IN (${placeholders})
+      `,
+      pageIds
+    );
+
+    const byId = new Map(digestRows.map((row) => [Number(row.id), row]));
+    const rows = [];
+
+    for (let i = 0; i < pageIds.length; i += 1) {
+      const digestId = Number(pageIds[i]);
+      const row = byId.get(digestId);
+      if (!row) continue;
+      rows.push({
+        digest_id: row.digest_id,
+        title: row.title,
+        arxiv_id: row.arxiv_id,
+        core_contribution: row.core_contribution,
+        arxiv_key: row.arxiv_key,
+        title_key: row.title_key,
+        score: sortId === 0 ? startRank + i : 0,
+      });
+    }
+
+    return {
+      rows,
+      hasMore: endRank < totalCount,
+      totalCount,
+      source: "cloud_cache",
+    };
   }
 
   async function queryFtsPage(input, pageSize, cursor, sort, years, scopes) {
@@ -784,14 +959,8 @@
     return Number(rows[0]?.c || 0);
   }
 
-  function detectMode(input) {
-    if (looksLikeArxivId(input)) return "arxiv_exact";
-    if (supportsFts) return "fts";
-    throw new Error("FTS is unavailable for this DB/runtime. Only exact arXiv ID search is available.");
-  }
-
   async function fetchPage(input, sort, years, scopes, pageSize, cursorToken) {
-    const mode = detectMode(input);
+    const mode = looksLikeArxivId(input) ? "arxiv_exact" : "fts";
     const cursor = validateCursor(cursorToken, mode, sort, input, years, scopes, pageSize);
 
     if (mode === "arxiv_exact") {
@@ -799,7 +968,23 @@
         queryArxivPage(input, pageSize, cursor, sort, years),
         queryTotalCount(mode, input, years, scopes),
       ]);
-      return { mode, cursor, totalCount, ...result };
+      return { mode, cursor, totalCount, ...result, source: "live" };
+    }
+
+    const cached = await queryCloudCachedPage(input, pageSize, cursor, sort, years, scopes);
+    if (cached) {
+      return {
+        mode,
+        cursor,
+        totalCount: cached.totalCount,
+        rows: cached.rows,
+        hasMore: cached.hasMore,
+        source: cached.source,
+      };
+    }
+
+    if (!supportsFts) {
+      throw new Error("FTS is unavailable for this DB/runtime and no precomputed cache matched this query.");
     }
 
     try {
@@ -807,7 +992,7 @@
         queryFtsPage(input, pageSize, cursor, sort, years, scopes),
         queryTotalCount(mode, input, years, scopes),
       ]);
-      return { mode, cursor, totalCount, ...result };
+      return { mode, cursor, totalCount, ...result, source: "live" };
     } catch (err) {
       if (isFtsError(err)) {
         supportsFts = false;
@@ -851,7 +1036,7 @@
 
     if (state.scopes.size === 0) {
       stopSearchAnimation();
-      statusEl.textContent = "Select at least one search scope.";
+      statusEl.textContent = "Select at least one Search Scope.";
       renderEmpty("Pick one or more scopes (title, core contribution, or full text).");
       return;
     }
@@ -906,7 +1091,8 @@
 
       const elapsedMs = (performance.now() - started).toFixed(1);
       const filterSummary = `${yearsLabel(state.years)} · ${scopeLabel(state.scopes)}`;
-      statusEl.textContent = `Showing ${page.rows.length} of ${state.totalCount} result(s) for \"${q}\" in ${elapsedMs} ms (${backend}/${state.mode}/${state.sort}; ${filterSummary}).`;
+      const sourceLabel = page.source === "cloud_cache" ? "precomputed" : "live";
+      statusEl.textContent = `Showing ${page.rows.length} of ${state.totalCount} result(s) for \"${q}\" in ${elapsedMs} ms (${backend}/${state.mode}/${state.sort}/${sourceLabel}; ${filterSummary}).`;
 
       setPagerVisible(true);
       updateUrlState();
@@ -1048,14 +1234,10 @@
 
       state.years = nextYears;
       resetPaging();
+      updateUrlState();
 
       if (state.query) {
-        runSearch().catch((err) => {
-          statusEl.textContent = "Search failed.";
-          renderError(String(err));
-        });
-      } else {
-        updateUrlState();
+        statusEl.textContent = "Year filters updated. Press Search to apply.";
       }
     });
   }
@@ -1071,20 +1253,16 @@
 
       if (nextScopes.size === 0) {
         syncFilterControls();
-        statusEl.textContent = "Select at least one search scope.";
+        statusEl.textContent = "Select at least one search Scope.";
         return;
       }
 
       state.scopes = nextScopes;
       resetPaging();
+      updateUrlState();
 
       if (state.query) {
-        runSearch().catch((err) => {
-          statusEl.textContent = "Search failed.";
-          renderError(String(err));
-        });
-      } else {
-        updateUrlState();
+        statusEl.textContent = "Search Scope filters updated. Press Search to apply.";
       }
     });
   }
@@ -1142,6 +1320,7 @@
 
     backend = "httpvfs";
     supportsFts = await detectFtsSupport();
+    supportsCloudCache = await detectCloudCacheSupport();
   }
 
   async function initFullDownloadBackend(dbFile) {
@@ -1163,6 +1342,7 @@
     db = new SQL.Database(new Uint8Array(dbBytes));
     backend = "full";
     supportsFts = await detectFtsSupport();
+    supportsCloudCache = await detectCloudCacheSupport();
 
     return ((dbBytes.byteLength || 0) / (1024 * 1024)).toFixed(1);
   }
@@ -1219,8 +1399,13 @@
         fetchLabel = `${await initFullDownloadBackend(dbFile)} MB`;
       }
 
-      const modeLabel = supportsFts ? "fts" : "arxiv-only (fts unavailable)";
+      const modeLabel = supportsFts
+        ? "fts"
+        : supportsCloudCache
+          ? "precomputed-only (fts unavailable)"
+          : "arxiv-only (fts unavailable)";
       const backendLabel = backend === "httpvfs" ? "http-range" : "full-download";
+      const cacheLabel = supportsCloudCache ? "cloud-precomputed" : "none";
 
       metaEl.innerHTML =
         `<span class=\"pill\">digests: ${escapeHtml(manifest.digest_count ?? "?")}</span> ` +
@@ -1228,6 +1413,7 @@
         `<span class=\"pill\">db: ${escapeHtml(dbFile)}</span> ` +
         `<span class=\"pill\">backend: ${backendLabel}</span> ` +
         `<span class=\"pill\">search: ${modeLabel}</span> ` +
+        `<span class=\"pill\">cloud-cache: ${cacheLabel}</span> ` +
         `<span class=\"pill\">fetch: ${escapeHtml(fetchLabel)}</span>`;
 
       statusEl.textContent = "Search index ready.";

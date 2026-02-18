@@ -190,7 +190,7 @@
     <main>
       <section class="panel">
         <h1>arXiv ML Digest Search</h1>
-        <p class="muted"><a href="/cloud/">Open term cloud</a></p>
+        <p class="muted"><a href="/cloud/">Open term cloud</a> · defaults: all years + full text</p>
 
         <form id="search-form">
           <input id="q" type="search" name="q" placeholder="Try: Latent Reasoning, or by arXiv ID, e.g. 2404.18923" autocomplete="off" />
@@ -201,18 +201,18 @@
           <fieldset>
             <legend>Year</legend>
             <div class="filter-options">
-              <label><input type="checkbox" name="year-filter" value="2023" /> 2023</label>
-              <label><input type="checkbox" name="year-filter" value="2024" /> 2024</label>
+              <label><input type="checkbox" name="year-filter" value="2023" checked /> 2023</label>
+              <label><input type="checkbox" name="year-filter" value="2024" checked /> 2024</label>
               <label><input type="checkbox" name="year-filter" value="2025" checked /> 2025</label>
             </div>
           </fieldset>
 
           <fieldset>
-            <legend>Search scope</legend>
+            <legend>Search Scope</legend>
             <div class="filter-options">
               <label><input type="checkbox" name="scope-filter" value="title" checked /> Title</label>
               <label><input type="checkbox" name="scope-filter" value="core" checked /> Core contribution</label>
-              <label><input type="checkbox" name="scope-filter" value="body" /> Full text (body)</label>
+              <label><input type="checkbox" name="scope-filter" value="body" checked /> Full text (body)</label>
             </div>
           </fieldset>
         </div>

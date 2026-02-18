@@ -6,6 +6,7 @@
   const cloudEl = document.getElementById("cloud");
 
   const ALL_YEARS = [2023, 2024, 2025];
+  const ALL_SCOPES = ["title", "core", "body"];
 
   let payload = null;
 
@@ -37,8 +38,12 @@
   function buildSearchHref(term) {
     const url = new URL("/search/", window.location.origin);
     url.searchParams.set("q", term);
+    url.searchParams.set("sort", "relevance");
     for (const year of ALL_YEARS) {
       url.searchParams.append("y", String(year));
+    }
+    for (const scope of ALL_SCOPES) {
+      url.searchParams.append("f", scope);
     }
     return `${url.pathname}${url.search}`;
   }
@@ -85,7 +90,7 @@
 
     cloudEl.innerHTML = html;
 
-    statusEl.textContent = `Showing ${rows.length} term(s) for ${year}. Click a term to search across all years.`;
+    statusEl.textContent = `Showing ${rows.length} term(s) for ${year}. Click a term to run full-corpus full-text search.`;
   }
 
   async function init() {

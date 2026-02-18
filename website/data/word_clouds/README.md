@@ -16,4 +16,4 @@ Only the canonical `.txt` files present in the 2025 set are vendored for all yea
 
 The website build should not depend on another repository being present locally.
 
-By keeping the seed terms here, `scripts/build_cloud_terms.py` can always build `search/cloud-terms.json` from in-repo data.
+By keeping the seed terms here, `scripts/build_cloud_terms.py` can always build `search/cloud-terms.json` and SQLite cloud cache tables (`cloud_term`, `cloud_term_postings`) from in-repo data.
