@@ -6,8 +6,12 @@
     <link rel="icon" href="/mldigest.ico" type="image/x-icon" />
     <title>AGENTS.md</title>
     <style>
+      @import url("https://fonts.googleapis.com/css2?family=Cabin:wght@400;500;600;700&display=swap");
+
       :root {
         color-scheme: light dark;
+        --font-sans: "Cabin", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+        --font-mono: "Cabin", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
         --bg: #f5f7ff;
         --panel: #ffffff;
         --text: #1a2440;
@@ -31,7 +35,7 @@
       * { box-sizing: border-box; }
       body {
         margin: 0;
-        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+        font-family: var(--font-sans);
         background: var(--bg);
         color: var(--text);
       }
@@ -82,7 +86,7 @@
       }
       .markdown-body a { color: var(--accent); }
       .markdown-body code {
-        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        font-family: var(--font-mono);
         background: var(--code-bg);
         padding: 0.1em 0.32em;
         border-radius: 6px;
