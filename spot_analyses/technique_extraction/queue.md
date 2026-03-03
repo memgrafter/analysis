@@ -29,6 +29,8 @@ To minimize touchups when adding/removing topics:
 | `continual_online_tta` | 60 | done | Spin-off from TTA set; 58/60 grep-matched (96.7%), reconciled into 8-category continual/online TTA taxonomy | [analysis](continual_online_tta.md), [papers](continual_online_tta/papers.md), [option C](continual_online_tta/option_c_extraction.md), [option A](continual_online_tta/option_a_refinement.md) |
 | `adaptive_compute_allocation` | 51 | done | Spin-off from TTC set; 51/51 grep-matched (100%), reconciled into 7-category adaptive compute-allocation taxonomy | [analysis](adaptive_compute_allocation.md), [papers](adaptive_compute_allocation/papers.md), [option C](adaptive_compute_allocation/option_c_extraction.md), [option A](adaptive_compute_allocation/option_a_refinement.md) |
 | `multi_agent_debate` | 153 | done | Debate-focused spin-off; 147/153 grep-matched (96.1%), reconciled into 8 core technique categories + 2 overlays | [analysis](multi_agent_debate.md), [papers](multi_agent_debate/papers.md), [option C](multi_agent_debate/option_c_extraction.md), [option A](multi_agent_debate/option_a_refinement.md) |
+| `process_reward_models` | 111 | done | PRM-focused extraction; 111/111 grep-matched (100%), reconciled into 7 core technique categories + 2 overlays | [analysis](process_reward_models.md), [papers](process_reward_models/papers.md), [option C](process_reward_models/option_c_extraction.md), [option A](process_reward_models/option_a_refinement.md) |
+| `reasoning_distillation` | 86 | done | Distillation-focused extraction; 86/86 grep-matched (100%), reconciled into 7 core technique categories + 2 overlays | [analysis](reasoning_distillation.md), [papers](reasoning_distillation/papers.md), [option C](reasoning_distillation/option_c_extraction.md), [option A](reasoning_distillation/option_a_refinement.md) |
 
 ---
 
@@ -43,8 +45,6 @@ To minimize touchups when adding/removing topics:
 
 | group | est papers | status | scope (1-line) | source/dependency | FlatAgents/FlatMachines relevance |
 |---|---:|---|---|---|---|
-| `process_reward_models` | 80–150 | queued | Step-level reward signals for intermediate reasoning evaluation | TTC verification sub-cluster | Helps define verifier/judge role patterns (agent-as-judge, scoring loops) for `flatmachines` workflows and structured outputs in `flatagents`. |
-| `reasoning_distillation` | 45–120 | queued | Compress expensive reasoning into smaller/faster models | TTC enabling technique | Informs cheap/expensive model cascade design and profile fallback policies across both SDKs. |
 | `vlm_tta` | 80–150 | queued | Test-time adaptation for VLM/foundation models | TTA spin-off | Useful for multimodal agent pipeline design (tooling + adaptation hooks) and domain-specific model profile strategy. |
 
 ### P2 (needs tighter scoping or overlap control)
