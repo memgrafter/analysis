@@ -8,6 +8,7 @@ MAX_FILES="${MAX_FILES:-}"
 SRC_2023="${DIGESTS_2023_DIR:-$ROOT_DIR/../ml_research_analysis_2023}"
 SRC_2024="${DIGESTS_2024_DIR:-$ROOT_DIR/../ml_research_analysis_2024}"
 SRC_2025="${DIGESTS_2025_DIR:-$ROOT_DIR/../ml_research_analysis_2025}"
+SRC_2026="${DIGESTS_2026_DIR:-$ROOT_DIR/../ml_research_analysis_2026}"
 
 LOG_DIR="$(mktemp -d "${TMPDIR:-/tmp}/website-integration.XXXXXX")"
 SERVER_LOG="$LOG_DIR/server.log"
@@ -63,6 +64,7 @@ BUILD_ENV=(
   "DIGESTS_2023_DIR=$SRC_2023"
   "DIGESTS_2024_DIR=$SRC_2024"
   "DIGESTS_2025_DIR=$SRC_2025"
+  "DIGESTS_2026_DIR=$SRC_2026"
   "OUTPUT_DIR=$TEST_SEARCH_DIR"
 )
 if [[ -n "$MAX_FILES" ]]; then
@@ -120,6 +122,7 @@ echo "[4/6] Starting local server on :$PORT (isolated root)"
     --source-dir "$SRC_2023" \
     --source-dir "$SRC_2024" \
     --source-dir "$SRC_2025" \
+    --source-dir "$SRC_2026" \
     >"$SERVER_LOG" 2>&1
 ) &
 SERVER_PID=$!

@@ -15,12 +15,13 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_QUERY_ROOT = PROJECT_ROOT / "data" / "word_clouds"
 LEGACY_QUERY_ROOT = PROJECT_ROOT.parent.parent / "research_crawler" / "research_paper_analysis_v2" / "queries"
 
-YEAR_OPTIONS = [2023, 2024, 2025]
+YEAR_OPTIONS = [2023, 2024, 2025, 2026]
 
 YEAR_DIR_MAP: dict[int, str] = {
     2023: "2023",
     2024: "2024",
     2025: "2025",
+    2026: "2026",
 }
 
 LEGACY_YEAR_DIR_MAP: dict[int, str] = {
@@ -81,6 +82,9 @@ def parse_terms(file_path: Path) -> list[str]:
 
 
 def resolve_query_layout(query_root: Path) -> dict[int, str]:
+    if (query_root / YEAR_DIR_MAP[2026]).exists():
+        return YEAR_DIR_MAP
+
     if (query_root / YEAR_DIR_MAP[2025]).exists():
         return YEAR_DIR_MAP
 
@@ -91,7 +95,9 @@ def resolve_query_layout(query_root: Path) -> dict[int, str]:
 
 
 def discover_canonical_files(query_root: Path, year_dir_map: dict[int, str]) -> list[str]:
-    canonical_dir = query_root / year_dir_map[2025]
+    # Use the newest available year as canonical seed source.
+    canonical_year = 2026 if (query_root / year_dir_map[2026]).exists() else 2025
+    canonical_dir = query_root / year_dir_map[canonical_year]
     if not canonical_dir.exists():
         return []
 
@@ -139,7 +145,7 @@ def collect_seed_terms(
 def choose_union_terms(seeds_by_year: dict[int, dict[str, str]]) -> dict[str, str]:
     # Prefer newer display forms when a normalized key appears in multiple yearly lists.
     union: dict[str, str] = {}
-    for year in [2025, 2024, 2023]:
+    for year in [2026, 2025, 2024, 2023]:
         for term_key, display_term in seeds_by_year.get(year, {}).items():
             union.setdefault(term_key, display_term)
     return union

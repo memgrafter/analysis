@@ -6,6 +6,7 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 SRC_2023="${DIGESTS_2023_DIR:-$ROOT_DIR/../ml_research_analysis_2023}"
 SRC_2024="${DIGESTS_2024_DIR:-$ROOT_DIR/../ml_research_analysis_2024}"
 SRC_2025="${DIGESTS_2025_DIR:-$ROOT_DIR/../ml_research_analysis_2025}"
+SRC_2026="${DIGESTS_2026_DIR:-$ROOT_DIR/../ml_research_analysis_2026}"
 
 # Canonical deploy output is "$ROOT_DIR/search".
 # Tests may override via OUTPUT_DIR to avoid mutating deploy artifacts.
@@ -22,6 +23,7 @@ CMD=(
   --source-dir "$SRC_2023"
   --source-dir "$SRC_2024"
   --source-dir "$SRC_2025"
+  --source-dir "$SRC_2026"
   --output-dir "$OUTPUT_DIR"
 )
 
@@ -36,6 +38,7 @@ echo "Sources:"
 echo "  - $SRC_2023"
 echo "  - $SRC_2024"
 echo "  - $SRC_2025"
+echo "  - $SRC_2026"
 
 "${CMD[@]}"
 

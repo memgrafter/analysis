@@ -16,6 +16,7 @@ DEFAULT_SOURCE_DIRS = [
     PROJECT_ROOT.parent / "ml_research_analysis_2023",
     PROJECT_ROOT.parent / "ml_research_analysis_2024",
     PROJECT_ROOT.parent / "ml_research_analysis_2025",
+    PROJECT_ROOT.parent / "ml_research_analysis_2026",
 ]
 
 TIMESTAMP_SUFFIX_RE = re.compile(r"_(\d{8}_\d{6})$")
