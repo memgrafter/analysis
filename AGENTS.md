@@ -2,7 +2,7 @@
 
 ## What this repo is
 
-Output-only corpus of **121,245** LLM-generated markdown analyses of ML arXiv papers (2023–2025). Pipeline code lives at [memgrafter/research_crawler_flatagents](https://github.com/memgrafter/research_crawler_flatagents); do not look for runner code here.
+Output-only corpus of LLM-generated markdown analyses of ML arXiv papers (2023–2026). Pipeline code lives at [memgrafter/research_crawler_flatagents](https://github.com/memgrafter/research_crawler_flatagents); do not look for runner code here.
 
 ## Layout
 
@@ -10,6 +10,7 @@ Output-only corpus of **121,245** LLM-generated markdown analyses of ML arXiv pa
 ml_research_analysis_2023/   29,961 files (29,961 unique IDs)
 ml_research_analysis_2024/   39,185 files (38,027 unique IDs, 1,158 reruns)
 ml_research_analysis_2025/   52,099 files (51,517 unique IDs, 582 reruns)
+ml_research_analysis_2026/   _ files (backfill in progress)
 analysis_outputs/            research_index.sqlite + digests
 scripts/                     index_frontmatter.py, search_topic.py
 spot_analyses/               grouped deep-dives by topic
