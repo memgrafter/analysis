@@ -5,7 +5,7 @@
   const statusEl = document.getElementById("status");
   const cloudEl = document.getElementById("cloud");
 
-  const ALL_YEARS = [2023, 2024, 2025];
+  const ALL_YEARS = [2023, 2024, 2025, 2026];
   const ALL_SCOPES = ["title", "core", "body"];
 
   let payload = null;

@@ -1,5 +1,7 @@
 # AGENTS.md — ML Research Analysis Corpus
 
+_Last arXiv sync: 2026-04-04 (scan date)._
+
 ## What this repo is
 
 Output-only corpus of LLM-generated markdown analyses of ML arXiv papers (2023–2026). Pipeline code lives at [memgrafter/research_crawler_flatagents](https://github.com/memgrafter/research_crawler_flatagents); do not look for runner code here.
@@ -7,10 +9,10 @@ Output-only corpus of LLM-generated markdown analyses of ML arXiv papers (2023�
 ## Layout
 
 ```
-ml_research_analysis_2023/   29,961 files (29,961 unique IDs)
-ml_research_analysis_2024/   39,185 files (38,027 unique IDs, 1,158 reruns)
-ml_research_analysis_2025/   52,099 files (51,517 unique IDs, 582 reruns)
-ml_research_analysis_2026/   _ files (backfill in progress)
+ml_research_analysis_2023/   30,070 files (30,070 unique IDs)
+ml_research_analysis_2024/   39,693 files (38,529 unique IDs, 1,164 reruns)
+ml_research_analysis_2025/   46,753 files (46,232 unique IDs, 521 reruns)
+ml_research_analysis_2026/   18,950 files (18,870 unique IDs, 80 reruns)
 analysis_outputs/            research_index.sqlite + digests
 scripts/                     index_frontmatter.py, search_topic.py
 spot_analyses/               grouped deep-dives by topic
@@ -25,7 +27,7 @@ Named `{arxiv_id}_{slug}_{timestamp}.md`. YAML frontmatter has `arxiv_id`, `core
 
 `analysis_outputs/research_index.sqlite` — two tables:
 
-- **`papers`** (52,099 rows, 2025 bucket indexed): `id`, `filename`, `title`, `arxiv_id`, `tags` (JSON array), `core_contribution`, `indexed_at`, `file_mtime_ns`, `file_size`. Indexed on `arxiv_id`.
+- **`papers`** (116,503 rows; 2023–2025 buckets indexed): `id`, `filename`, `title`, `arxiv_id`, `tags` (JSON array), `core_contribution`, `indexed_at`, `file_mtime_ns`, `file_size`, `source_dir`. Indexed on `arxiv_id`.
 - **`spot_analysis_paper_groups`**: `group_name`, `arxiv_id`, `title`, `source_url`, `filepath`. 1,824 rows across 8 groups (e.g. `test_time_compute_scaling`, `reasoning_distillation`, `multi_agent_debate`).
 
 ## Searching

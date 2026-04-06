@@ -40,9 +40,9 @@
   const SORT_OPTIONS = new Set(["newest", "relevance", "title_asc"]);
   const DEFAULT_SORT = "relevance";
 
-  const YEAR_OPTIONS = [2023, 2024, 2025];
+  const YEAR_OPTIONS = [2023, 2024, 2025, 2026];
   const YEAR_OPTIONS_SET = new Set(YEAR_OPTIONS);
-  const DEFAULT_YEARS = [2023, 2024, 2025];
+  const DEFAULT_YEARS = [2023, 2024, 2025, 2026];
   const DEFAULT_YEARS_SET = new Set(DEFAULT_YEARS);
 
   const SCOPE_OPTIONS = ["title", "core", "body"];
@@ -51,7 +51,7 @@
   const DEFAULT_SCOPES_SET = new Set(DEFAULT_SCOPES);
 
   const CLOUD_POSTING_CHUNK_SIZE = 512;
-  const DEFAULT_TOP_CLOUD_YEAR = "2025";
+  const DEFAULT_TOP_CLOUD_YEAR = "2026";
   const DEFAULT_TOP_CLOUD_LIMIT = 50;
 
   let db = null;
@@ -374,7 +374,7 @@
     topTermCloudEl.hidden = false;
     if (topTermCloudStatusEl) {
       topTermCloudStatusEl.hidden = false;
-      topTermCloudStatusEl.textContent = "Loading 2025 top terms…";
+      topTermCloudStatusEl.textContent = `Loading ${DEFAULT_TOP_CLOUD_YEAR} top terms…`;
     }
 
     try {
