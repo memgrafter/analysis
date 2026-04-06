@@ -1,0 +1,19 @@
+# Word Cloud: Organic Semantic ML+LLM Terms
+# generated_by: generate_word_list_organic_semantic.py
+# candidate_papers: 28249
+# year_prefix: 26
+# ngram_range: 2-4
+# include_unigrams: False
+# semantic_enabled: True
+# semantic_anchors: 2856
+# embedding_model: dunzhang/stella_en_400M_v5
+# embedding_batch_size: 64
+# cleaned_by: cleanup_word_list.py
+# exclusions_applied: 150
+# removed_terms: 238
+
+4-bit quantization
+gsm8k math
+1m token
+128k token
+128k context

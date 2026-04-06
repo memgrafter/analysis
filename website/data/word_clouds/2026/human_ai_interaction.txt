@@ -1,0 +1,18 @@
+# Word Cloud: Human Ai Interaction (2024 shotgun split)
+# source: 2024 shotgun candidates + existing theme seeds
+
+Human Feedback
+Preference Learning
+Comparative Feedback
+Scalar Feedback
+Reward Hacking
+Specification Gaming
+Sycophancy
+Helpfulness
+Harmlessness
+Honesty
+User Intent
+Instruction Following
+Conversational AI
+Dialogue Systems
+Interactive Learning

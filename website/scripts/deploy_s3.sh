@@ -11,6 +11,7 @@ DELETE_RECONCILE="${DELETE_RECONCILE:-0}"
 SRC_2023="${DIGESTS_2023_DIR:-$ROOT_DIR/../ml_research_analysis_2023}"
 SRC_2024="${DIGESTS_2024_DIR:-$ROOT_DIR/../ml_research_analysis_2024}"
 SRC_2025="${DIGESTS_2025_DIR:-$ROOT_DIR/../ml_research_analysis_2025}"
+SRC_2026="${DIGESTS_2026_DIR:-$ROOT_DIR/../ml_research_analysis_2026}"
 PROJECT_AGENTS_PATH="${PROJECT_AGENTS_PATH:-$ROOT_DIR/../AGENTS.md}"
 
 for required in aws mktemp; do
@@ -98,7 +99,7 @@ if [[ "$SYNC_VIEW_MARKDOWN" == "1" ]]; then
   echo "Syncing digest markdown files to /view/ (SYNC_VIEW_MARKDOWN=1, MD_SYNC_PARALLEL=$MD_SYNC_PARALLEL) ..."
 
   md_sources=()
-  for src in "$SRC_2023" "$SRC_2024" "$SRC_2025"; do
+  for src in "$SRC_2023" "$SRC_2024" "$SRC_2025" "$SRC_2026"; do
     if [[ -d "$src" ]]; then
       md_sources+=("$src")
     else

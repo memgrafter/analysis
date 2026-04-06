@@ -1,0 +1,23 @@
+# Word Cloud: Core Architecture Components (2024 shotgun split)
+# source: 2024 shotgun candidates + existing theme seeds
+
+1m token
+128k token
+Transformer
+Self-Attention
+Multi-Head Attention
+Encoder-Decoder
+Feed-Forward Network
+LayerNorm
+Residual Connections
+Positional Encoding
+Embedding Layer
+Softmax
+Token Prediction
+Autoregressive
+Masked Language Modeling
+Causal Attention
+Bidirectional
+Flash Attention
+Sparse Attention
+Block Sparse Attention

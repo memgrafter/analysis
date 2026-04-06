@@ -1,0 +1,18 @@
+# Word Cloud: Information Retrieval Knowledge (2024 shotgun split)
+# source: 2024 shotgun candidates + existing theme seeds
+
+Retrieval-Augmented Generation
+Dense Retrieval
+Sparse Retrieval
+Knowledge Graph
+Knowledge Base
+Semantic Search
+Vector Database
+Embedding Similarity
+Reranking
+Query Expansion
+Document Chunking
+Hybrid Search
+BM25
+Contriever
+ColBERT

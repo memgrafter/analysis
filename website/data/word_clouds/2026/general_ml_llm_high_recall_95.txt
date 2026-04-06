@@ -1,0 +1,291 @@
+# Word Cloud: General ML/LLM High-Recall (~95% target coverage)
+# source: 2024 shotgun candidates + existing seeds + fixed anchors
+
+large language model
+language model
+llm
+foundation model
+transformer
+self attention
+multi-head attention
+attention mechanism
+encoder-decoder
+decoder-only
+mixture of experts
+moe
+tokenization
+context window
+long context
+pretraining
+fine-tuning
+instruction tuning
+supervised fine-tuning
+rlhf
+dpo
+ppo
+reward model
+alignment
+ai safety
+jailbreak
+hallucination
+factuality
+reasoning
+chain of thought
+agent
+agentic
+tool use
+function calling
+retrieval augmented generation
+rag
+retrieval
+reranking
+vector database
+embedding model
+knowledge graph
+semantic search
+benchmark
+evaluation
+mmlu
+gsm8k
+truthfulqa
+multimodal
+vision-language
+diffusion
+quantization
+distillation
+pruning
+inference optimization
+latency
+throughput
+scaling law
+continual learning
+domain adaptation
+interpretability
+mechanistic interpretability
+attribution
+human-ai interaction
+prompt engineering
+synthetic data
+self-supervised learning
+contrastive learning
+4-bit quantization
+gsm8k math
+1m token
+128k token
+128k context
+Self-Attention
+Feed-Forward Network
+LayerNorm
+Residual Connections
+Positional Encoding
+Embedding Layer
+Softmax
+Token Prediction
+Autoregressive
+Masked Language Modeling
+Causal Attention
+Bidirectional
+Flash Attention
+Sparse Attention
+Block Sparse Attention
+GPT
+BERT
+T5
+LLaMA
+Mistral
+Mixtral
+Claude
+PaLM
+Gemini
+Phi
+Qwen
+Falcon
+MPT
+OLMo
+Sparse MoE
+Dense Transformer
+Encoder-Only
+Vision Transformer (ViT)
+CLIP
+Diffusion Transformer
+Backpropagation
+Gradient Descent
+Adam Optimizer
+Learning Rate Schedule
+Warmup
+Weight Decay
+Dropout
+Batch Normalization
+Pre-training
+Reward Modeling
+Policy Gradient
+Actor-Critic
+Supervised Fine-Tuning (SFT)
+Curriculum Learning
+Chain-of-Thought
+Tree of Thoughts
+Self-Consistency
+Reasoning Traces
+Multi-Step Reasoning
+Mathematical Reasoning
+Logical Reasoning
+Commonsense Reasoning
+Causal Reasoning
+Analogical Reasoning
+Metacognition
+Reflection
+Self-Critique
+Deliberation
+Planning
+Decomposition
+Retrieval-Augmented Generation
+Dense Retrieval
+Sparse Retrieval
+Knowledge Base
+Embedding Similarity
+Query Expansion
+Document Chunking
+Hybrid Search
+BM25
+Contriever
+ColBERT
+Adversarial Attack
+Adversarial Defense
+Adversarial Training
+FGSM
+PGD
+C&W Attack
+Certified Robustness
+Randomized Smoothing
+Evasion Attack
+Poisoning Attack
+Backdoor Attack
+Data Poisoning
+Jailbreaking
+Red Teaming
+AI Alignment
+Constitutional AI
+Safety Cases
+Guardrails
+Content Filtering
+Refusal Training
+HumanEval
+HellaSwag
+WinoGrande
+ARC
+BIG-Bench
+GLUE
+SuperGLUE
+MT-Bench
+AlpacaEval
+LMSys Arena
+Perplexity
+BLEU
+ROUGE
+F1 Score
+Accuracy
+Calibration
+QAT
+PTQ
+INT8
+INT4
+FP16
+BF16
+Mixed Precision
+LoRA
+QLoRA
+Adapters
+Prefix Tuning
+Prompt Tuning
+Parameter-Efficient Fine-Tuning
+Knowledge Distillation
+Model Pruning
+Speculative Decoding
+KV Cache
+Gradient Checkpointing
+Pipeline Parallelism
+Tensor Parallelism
+Data Parallelism
+Vision-Language Model
+VQA
+Image Captioning
+Visual Grounding
+OCR
+Document Understanding
+Speech Recognition
+Text-to-Speech
+Audio-Language
+Video Understanding
+Multimodal Fusion
+Cross-Modal Attention
+LLaVA
+GPT-4V
+Gemini Pro Vision
+Serving Infrastructure
+Model Serving
+Batch Inference
+Real-Time Inference
+Edge Deployment
+Mobile AI
+Quantized Inference
+TensorRT
+ONNX
+vLLM
+TGI
+Model Compression
+On-Device AI
+Lifelong Learning
+Catastrophic Forgetting
+Experience Replay
+Elastic Weight Consolidation
+Progressive Nets
+Test-Time Adaptation
+Domain Shift
+Distribution Shift
+Online Learning
+Incremental Learning
+Task-Incremental
+Class-Incremental
+Explainable AI
+Feature Attribution
+Attention Visualization
+Saliency Maps
+Integrated Gradients
+SHAP
+LIME
+Concept Activation
+Probing
+Circuit Analysis
+Superposition
+Sparse Autoencoders
+Representation Analysis
+Activation Patching
+Human Feedback
+Preference Learning
+Comparative Feedback
+Scalar Feedback
+Reward Hacking
+Specification Gaming
+Sycophancy
+Helpfulness
+Harmlessness
+Honesty
+User Intent
+Instruction Following
+Conversational AI
+Dialogue Systems
+Interactive Learning
+Pre-training Data
+Instruction Data
+Preference Data
+Data Augmentation
+Data Curation
+Data Filtering
+Deduplication
+Data Contamination
+Multi-Task Learning
+Transfer Learning
+Cross-Lingual Transfer
+Few-Shot Learning
+Zero-Shot Learning
+In-Context Learning

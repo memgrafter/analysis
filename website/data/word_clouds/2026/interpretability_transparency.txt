@@ -1,0 +1,18 @@
+# Word Cloud: Interpretability Transparency (2024 shotgun split)
+# source: 2024 shotgun candidates + existing theme seeds
+
+Explainable AI
+Mechanistic Interpretability
+Feature Attribution
+Attention Visualization
+Saliency Maps
+Integrated Gradients
+SHAP
+LIME
+Concept Activation
+Probing
+Circuit Analysis
+Superposition
+Sparse Autoencoders
+Representation Analysis
+Activation Patching
