@@ -42,24 +42,26 @@ def init_db(conn: sqlite3.Connection) -> None:
         """
         CREATE TABLE IF NOT EXISTS papers (
             id              INTEGER PRIMARY KEY,
-            filename        TEXT NOT NULL UNIQUE,
+            filename        TEXT NOT NULL,
             title           TEXT,
             arxiv_id        TEXT,
-            tags            TEXT,
             core_contribution TEXT,
             indexed_at      TEXT DEFAULT (datetime('now')),
             file_mtime_ns   INTEGER,
             file_size       INTEGER,
-            source_dir      TEXT
+            source_dir      TEXT,
+            model           TEXT
         )
     """
     )
     conn.execute("CREATE INDEX IF NOT EXISTS idx_arxiv_id ON papers(arxiv_id)")
 
-    # Lightweight migration for older DBs that predate source_dir column.
+    # Lightweight migrations for older DBs.
     cols = {r[1] for r in conn.execute("PRAGMA table_info(papers)").fetchall()}
     if "source_dir" not in cols:
         conn.execute("ALTER TABLE papers ADD COLUMN source_dir TEXT")
+    if "model" not in cols:
+        conn.execute("ALTER TABLE papers ADD COLUMN model TEXT")
 
     conn.commit()
 
@@ -362,22 +364,14 @@ def index_directory(
         conn.close()
         return
 
-    upsert_sql = """
+    insert_sql = """
         INSERT INTO papers
-            (filename, title, arxiv_id, tags, core_contribution, indexed_at,
-             file_mtime_ns, file_size, source_dir)
+            (filename, title, arxiv_id, core_contribution, indexed_at,
+             file_mtime_ns, file_size, source_dir, model)
         VALUES
-            (?, ?, ?, ?, ?, datetime('now'), ?, ?, ?)
-        ON CONFLICT(filename) DO UPDATE SET
-            title=excluded.title,
-            arxiv_id=excluded.arxiv_id,
-            tags=excluded.tags,
-            core_contribution=excluded.core_contribution,
-            indexed_at=datetime('now'),
-            file_mtime_ns=excluded.file_mtime_ns,
-            file_size=excluded.file_size,
-            source_dir=excluded.source_dir
+            (?, ?, ?, ?, datetime('now'), ?, ?, ?, ?)
     """
+    delete_sql = "DELETE FROM papers WHERE filename = ?"
 
     inserted = 0
     updated = 0
@@ -392,15 +386,17 @@ def index_directory(
             continue
 
         st = fpath.stat()
+        model_val = fm.get("model", None)
+        model_str = str(model_val).strip() if model_val not in (None, "", "''") else None
         rec = (
             fname,
             str(fm.get("title", "")),
             str(fm.get("arxiv_id", "")),
-            normalize_tags(fm.get("tags", [])),
             str(fm.get("core_contribution", "")),
             int(st.st_mtime_ns),
             int(st.st_size),
             source_dir_name,
+            model_str,
         )
         batch.append(rec)
 
@@ -411,12 +407,19 @@ def index_directory(
 
         if len(batch) >= max(batch_size, 1):
             if not dry_run:
-                conn.executemany(upsert_sql, batch)
+                # Delete existing rows first, then insert fresh
+                del_batch = [(r[0],) for r in batch if r[0] in existing_meta]
+                if del_batch:
+                    conn.executemany(delete_sql, del_batch)
+                conn.executemany(insert_sql, batch)
                 conn.commit()
             batch = []
 
     if batch and not dry_run:
-        conn.executemany(upsert_sql, batch)
+        del_batch = [(r[0],) for r in batch if r[0] in existing_meta]
+        if del_batch:
+            conn.executemany(delete_sql, del_batch)
+        conn.executemany(insert_sql, batch)
         conn.commit()
 
     pruned = 0

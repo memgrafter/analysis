@@ -91,26 +91,21 @@ def evaluate_row(
     phrase: str,
     hyphen_phrase: str,
     alias_patterns: list[re.Pattern[str]],
-    dynamic_tag_count: int,
     mode: str,
 ) -> MatchResult | None:
     filename = (row["filename"] or "").strip()
     title = (row["title"] or "").strip()
     core = (row["core_contribution"] or "").strip()
-    tags = parse_tags(row["tags"])
-    dynamic_tags = tags[:dynamic_tag_count]
 
     title_phrase = contains_topic(title, phrase, hyphen_phrase)
     core_phrase = contains_topic(core, phrase, hyphen_phrase)
     filename_phrase = contains_topic(filename, phrase, hyphen_phrase)
-    dyn_tags_phrase = any(contains_topic(tag, phrase, hyphen_phrase) for tag in dynamic_tags)
 
     title_alias = has_alias(title, alias_patterns) if alias_patterns else False
     core_alias = has_alias(core, alias_patterns) if alias_patterns else False
     filename_alias = has_alias(filename, alias_patterns) if alias_patterns else False
-    dyn_tags_alias = any(has_alias(tag, alias_patterns) for tag in dynamic_tags) if alias_patterns else False
 
-    alias_any = title_alias or core_alias or filename_alias or dyn_tags_alias
+    alias_any = title_alias or core_alias or filename_alias
 
     matched_in: list[str] = []
     if title_phrase:
@@ -119,8 +114,6 @@ def evaluate_row(
         matched_in.append("core")
     if filename_phrase:
         matched_in.append("filename")
-    if dyn_tags_phrase:
-        matched_in.append("tags[0:5]")
     if alias_any:
         matched_in.append("alias")
 
@@ -133,7 +126,7 @@ def evaluate_row(
         return MatchResult(filename=filename, title=title, score=score, matched_in=matched_in)
 
     # Broad mode
-    hit = title_phrase or core_phrase or filename_phrase or dyn_tags_phrase or alias_any
+    hit = title_phrase or core_phrase or filename_phrase or alias_any
     if not hit:
         return None
 
@@ -141,7 +134,6 @@ def evaluate_row(
         3 * int(title_phrase)
         + 2 * int(core_phrase)
         + 2 * int(filename_phrase)
-        + 1 * int(dyn_tags_phrase)
         + 1 * int(alias_any)
     )
     return MatchResult(filename=filename, title=title, score=score, matched_in=matched_in)
@@ -154,7 +146,7 @@ def main() -> None:
     parser.add_argument("--db", default=DEFAULT_DB, help=f"SQLite path (default: {DEFAULT_DB})")
     parser.add_argument("--mode", choices=["broad", "strict"], default="broad", help="broad=recall, strict=precision")
     parser.add_argument("--limit", type=int, default=50, help="Max rows to print")
-    parser.add_argument("--dynamic-tag-count", type=int, default=5, help="How many leading tags to treat as dynamic (default 5)")
+
     parser.add_argument("--min-score", type=int, default=1, help="Minimum score (broad mode only)")
     parser.add_argument("--json", action="store_true", help="Emit JSON")
     args = parser.parse_args()
@@ -175,7 +167,7 @@ def main() -> None:
     conn.row_factory = sqlite3.Row
 
     rows = conn.execute(
-        "SELECT filename, title, core_contribution, tags FROM papers"
+        "SELECT filename, title, core_contribution FROM papers"
     ).fetchall()
     conn.close()
 
@@ -186,7 +178,6 @@ def main() -> None:
             phrase=phrase,
             hyphen_phrase=hyphen_phrase,
             alias_patterns=alias_patterns,
-            dynamic_tag_count=max(0, args.dynamic_tag_count),
             mode=args.mode,
         )
         if result is None:
